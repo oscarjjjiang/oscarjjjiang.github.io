@@ -954,6 +954,7 @@
 
     // 页面加载时检查一次并初始化粒子
     window.addEventListener('load', () => {
+      
       // 设置默认背景为第一页
       document.body.classList.add('home-background');
       checkVisibility();
@@ -968,6 +969,7 @@
       // 移动端滚动优化
       if ('ontouchstart' in window) {
         // 确保移动端滚动正常工作
+        document.addEventListener('touchstart', function() {}, {passive: true});
         document.addEventListener('touchstart', function() {}, {passive: true});
         document.addEventListener('touchmove', function() {}, {passive: true});
         document.addEventListener('touchend', function() {}, {passive: true});
