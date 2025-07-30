@@ -71,6 +71,11 @@
           <div class="scroll-arrow"></div>
           <span class="scroll-text">向下滑动</span>
         </div>
+        
+        <!-- 移动端滚动测试按钮 -->
+        <div class="mobile-scroll-test" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: red; color: white; padding: 10px; border-radius: 5px; font-size: 12px; display: none;">
+          测试滚动
+        </div>
       </div>
 
         </div>
@@ -798,6 +803,93 @@
         // 延迟执行确保DOM完全加载
         setTimeout(fixMobileScroll, 100);
         setTimeout(fixMobileScroll, 500);
+        
+        // 添加更强的移动端滚动修复
+        function forceMobileScroll() {
+          // 移除所有可能阻止滚动的事件
+          document.removeEventListener('touchmove', function(){}, true);
+          document.removeEventListener('touchstart', function(){}, true);
+          
+          // 强制设置滚动属性
+          const style = document.createElement('style');
+          style.textContent = `
+            html, body {
+              overflow-y: auto !important;
+              -webkit-overflow-scrolling: touch !important;
+              height: auto !important;
+              min-height: 100vh !important;
+            }
+            .section, .hero-section {
+              overflow-y: auto !important;
+              -webkit-overflow-scrolling: touch !important;
+              height: auto !important;
+              min-height: 100vh !important;
+            }
+          `;
+          document.head.appendChild(style);
+          
+          // 确保页面可以滚动
+          document.body.style.height = 'auto';
+          document.body.style.overflow = 'auto';
+          document.documentElement.style.height = 'auto';
+          document.documentElement.style.overflow = 'auto';
+        }
+        
+        // 执行强制修复
+        forceMobileScroll();
+        
+        // 监听触摸事件，确保滚动正常
+        document.addEventListener('touchmove', function(e) {
+          // 不阻止默认行为
+        }, {passive: true});
+        
+        // 移动端滚动测试和修复
+        function testAndFixMobileScroll() {
+          console.log('Testing mobile scroll...');
+          
+          // 检查页面高度
+          const bodyHeight = document.body.scrollHeight;
+          const windowHeight = window.innerHeight;
+          console.log('Body height:', bodyHeight, 'Window height:', windowHeight);
+          
+          // 如果页面内容不够高，强制添加高度
+          if (bodyHeight <= windowHeight) {
+            console.log('Page too short, adding content height');
+            document.body.style.minHeight = (windowHeight * 2) + 'px';
+          }
+          
+          // 强制启用所有滚动
+          const allElements = document.querySelectorAll('*');
+          allElements.forEach(el => {
+            if (el.style.overflow === 'hidden') {
+              el.style.overflow = 'auto';
+            }
+          });
+          
+          // 测试滚动功能
+          setTimeout(() => {
+            window.scrollTo(0, 100);
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
+          }, 1000);
+        }
+        
+        // 执行测试和修复
+        testAndFixMobileScroll();
+        
+        // 显示移动端滚动测试按钮
+        const testButton = document.querySelector('.mobile-scroll-test');
+        if (testButton) {
+          testButton.style.display = 'block';
+          testButton.addEventListener('click', function() {
+            console.log('Manual scroll test triggered');
+            window.scrollTo(0, 500);
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 1000);
+          });
+        }
       }
     });
     
