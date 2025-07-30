@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OctoChat - 智能客户支持 AI Agent | 智腕AI</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('octochat-bg.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            /* 备用背景 */
+            background-color: #1a1a2e;
+        }
+
+        /* 背景装饰 */
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* 背景图片加载失败时的备用样式 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* 当背景图片加载失败时显示备用背景 */
+        body.bg-fallback::before {
+            opacity: 1;
+        }
+
+        .gear {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff6b9d;
+            opacity: 0.3;
+            animation: rotate 20s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.3));
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 导航栏 */
+        .header {
+            position: relative;
+            padding: 20px 8vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .language-toggle {
+            background: linear-gradient(135deg, #0066FF, #FF6600);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 12px 24px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.5px;
+        }
+
+        .language-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .language-toggle:hover {
+            background: linear-gradient(135deg, #FF6600, #0066FF);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .language-toggle:hover::before {
+            left: 100%;
+        }
+
+        .language-toggle:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 10px rgba(0, 102, 255, 0.3);
+        }
+
+        /* 响应式设计 - 移动端调整 */
+        @media (max-width: 600px) {
+            /* 移动端背景图片强制优化 */
+            body {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                background-position: center !important;
+                -webkit-background-size: cover !important;
+                -moz-background-size: cover !important;
+                -o-background-size: cover !important;
+                background-repeat: no-repeat !important;
+            }
+            
+            .language-toggle {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                border-radius: 25px;
+            }
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item {
+            margin: 0 12px; /* 从10px增加到12px */
+            transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .hexagon {
+            width: 108px; /* 从120px缩小到108px (减少10%) */
+            height: 62px; /* 从69px缩小到62px (减少10%) */
+            background: linear-gradient(135deg, #3366FF, #FF6600);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+            transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+        }
+        
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: -1;
+        }
+        
+        .hexagon span {
+            color: #fff;
+            font-size: 1.08rem; /* 从1.2rem缩小到1.08rem (减少10%) */
+            font-weight: 600;
+            text-align: center;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover .hexagon {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
+        }
+
+        .nav-item:hover .hexagon::before {
+            background: linear-gradient(135deg, #e91e63, #1e3c72);
+        }
+
+        .nav-item:hover .hexagon span {
+            color: white;
+        }
+
+        .nav-item.active .hexagon {
+            background: linear-gradient(135deg, #1e3c72, #e91e63);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.3);
+        }
+
+        .nav-item.active .hexagon::before {
+            background: linear-gradient(135deg, #1e3c72, #e91e63);
+        }
+
+        .nav-item.active .hexagon span {
+            color: white;
+        }
+        
+
+
+        .back-home {
+            background: rgba(255, 107, 157, 0.2);
+            border: 2px solid rgba(255, 107, 157, 0.4);
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 107, 157, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* 页面内容 */
+        .page {
+            min-height: 100vh;
+            padding: 40px 40px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-content {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(0, 20, 60, 0.65);
+            border-radius: 20px;
+            padding: 60px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #ffffff;
+            opacity: 0.8;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 功能卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: rgba(0, 20, 60, 0.6);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 20, 60, 0.75);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #ffffff;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* 行业解决方案 */
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .industry-card {
+            background: rgba(0, 20, 60, 0.6);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .industry-card:hover {
+            transform: scale(1.05);
+            background: rgba(0, 20, 60, 0.75);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .industry-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .industry-description {
+            color: #ffffff;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* 定价表格 */
+        .pricing-section {
+            margin: 60px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .pricing-card {
+            background: rgba(0, 20, 60, 0.6);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #ff6b9d;
+            background: rgba(0, 20, 60, 0.75);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .plan-features li {
+            color: #ffffff;
+            opacity: 0.9;
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .plan-features li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        /* 技术对比表格 */
+        .tech-comparison {
+            background: rgba(0, 20, 60, 0.6);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 107, 157, 0.2);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 500;
+        }
+
+        /* CTA按钮 */
+        .cta-section {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .cta-secondary {
+            background: rgba(0, 20, 60, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            /* 移动端背景图片优化 */
+            body {
+                background-attachment: scroll; /* 移动端使用scroll而不是fixed */
+                background-size: cover;
+                background-position: center;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('octochat-bg.webp');
+            }
+            
+            .header { padding: 18px 4vw; }
+            .nav-container {
+                gap: 6px;
+            }
+            .hexagon {
+                width: 50px;
+                height: 60px;
+            }
+            .hexagon span {
+                font-size: 0.7rem;
+            }
+            
+            .page-content {
+                padding: 40px 30px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid,
+            .industry-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 12px; /* 从8px增加到12px */
+            }
+            
+            .hexagon {
+                width: 86px; /* 从96px缩小到86px (减少10%) */
+                height: 50px; /* 从55px缩小到50px (减少10%) */
+                transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+            }
+            
+            .hexagon span {
+                font-size: 0.9rem; /* 从1rem缩小到0.9rem (减少10%) */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* 小屏幕移动端背景图片优化 */
+            body {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                /* 确保背景图片在移动端正确显示 */
+                background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('octochat-bg.webp');
+            }
+            
+            .nav-container {
+                gap: 8px; /* 从4px增加到8px */
+            }
+            
+            .hexagon {
+                width: 65px; /* 从72px缩小到65px (减少10%) */
+                height: 37px; /* 从41px缩小到37px (减少10%) */
+                transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+            }
+            
+            .hexagon span {
+                font-size: 0.72rem; /* 从0.8rem缩小到0.72rem (减少10%) */
+            }
+        }
+
+        /* 滚动指示器 */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .section-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+            margin: 40px auto;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="background-decoration" id="backgroundDecoration"></div>
+
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="header-left">
+            <button id="lang-toggle" class="language-toggle" onclick="toggleLanguage()">
+                <span class="lang-zh" style="display: none;">English</span>
+                <span class="lang-en">中文</span>
+            </button>
+            
+            <a href="index.html" class="back-home">
+                <span class="lang-zh" style="display: none;">返回首页</span>
+                <span class="lang-en">Back to Home</span>
+            </a>
+        </div>
+        
+        <nav class="nav-container">
+            <div class="nav-item active">
+                <a href="#hero" onclick="scrollToSection('hero')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">产品</span>
+                        <span class="lang-en">Product</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#features" onclick="scrollToSection('features')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">功能</span>
+                        <span class="lang-en">Features</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#industries" onclick="scrollToSection('industries')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">方案</span>
+                        <span class="lang-en">Solutions</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#pricing" onclick="scrollToSection('pricing')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">定价</span>
+                        <span class="lang-en">Pricing</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#technology" onclick="scrollToSection('technology')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">技术</span>
+                        <span class="lang-en">Technology</span>
+                    </div>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 滚动指示器 -->
+    <div class="scroll-indicator">
+        <span style="font-size: 24px;">↓</span>
+    </div>
+
+    <!-- 产品介绍页面 -->
+    <div class="page visible" data-section="hero">
+        <div class="page-content">
+            <div class="hero-section">
+                <div class="hero-title">
+                                    <span class="lang-zh">OctoChat</span>
+                <span class="lang-en" style="display: none;">OctoChat</span>
+                </div>
+                <div class="hero-subtitle">
+                    <span class="lang-zh">智能客户支持 AI Agent</span>
+                    <span class="lang-en" style="display: none;">Intelligent Customer Support AI Agent</span>
+                </div>
+                <div class="hero-description">
+                    <span class="lang-zh">为你的业务定制一位全天候、全能型"客服专家"。OctoChat 基于大语言模型（LLM）+ RAG（检索增强生成）技术，帮助你打造专属的 AI 客服助理，快速响应客户问题、提升服务效率、降低人工成本。</span>
+                    <span class="lang-en" style="display: none;">Customize a 24/7, versatile "customer service expert" for your business. OctoChat is built on Large Language Model (LLM) + RAG (Retrieval-Augmented Generation) technology, helping you create a dedicated AI customer service assistant to quickly respond to customer inquiries, improve service efficiency, and reduce labor costs.</span>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div style="text-align: center; margin: 60px 0;">
+                <h2 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 40px;">
+                    <span class="lang-zh">🚀 为什么选择 OctoChat？</span>
+                    <span class="lang-en" style="display: none;">🚀 Why Choose OctoChat?</span>
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🕐</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">全天候服务</span>
+                            <span class="lang-en" style="display: none;">24/7 Service</span>
+                        </h3>
+                        <p class="feature-description">
+                            <span class="lang-zh">7x24 小时智能回复，不漏接任何客户</span>
+                            <span class="lang-en" style="display: none;">24/7 intelligent responses, never miss any customer</span>
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">定制语气与行业术语</span>
+                            <span class="lang-en" style="display: none;">Custom Tone & Industry Terms</span>
+                        </h3>
+                        <p class="feature-description">
+                            <span class="lang-zh">支持多行业词汇和品牌风格的微调</span>
+                            <span class="lang-en" style="display: none;">Support for multi-industry vocabulary and brand style fine-tuning</span>
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">跨平台部署</span>
+                            <span class="lang-en" style="display: none;">Cross-Platform Deployment</span>
+                        </h3>
+                        <p class="feature-description">
+                            <span class="lang-zh">网站、微信、WhatsApp、邮箱等多平台无缝集成</span>
+                            <span class="lang-en" style="display: none;">Seamless integration across websites, WeChat, WhatsApp, email, and more</span>
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📚</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">知识库增强（RAG）</span>
+                            <span class="lang-en" style="display: none;">Knowledge Base Enhancement (RAG)</span>
+                        </h3>
+                        <p class="feature-description">
+                            <span class="lang-zh">支持导入企业手册/FAQ，精准回答客户问题</span>
+                            <span class="lang-en" style="display: none;">Support importing company manuals/FAQs for precise customer responses</span>
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🤝</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">协作式搭建</span>
+                            <span class="lang-en" style="display: none;">Collaborative Development</span>
+                        </h3>
+                        <p class="feature-description">
+                            <span class="lang-zh">与你共同打造符合业务逻辑的智能流程</span>
+                            <span class="lang-en" style="display: none;">Work with you to create intelligent processes that match your business logic</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心功能页面 -->
+    <div class="page" data-section="features">
+        <div class="page-content">
+            <h1 class="page-title">
+                <span class="lang-zh">💡 核心功能一览</span>
+                <span class="lang-en" style="display: none;">💡 Core Features Overview</span>
+            </h1>
+            
+            <div class="tech-comparison">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="lang-zh">功能模块</span>
+                                <span class="lang-en" style="display: none;">Feature Module</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">描述</span>
+                                <span class="lang-en" style="display: none;">Description</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📚 <span class="lang-zh">知识集成</span><span class="lang-en" style="display: none;">Knowledge Integration</span></td>
+                            <td>
+                                <span class="lang-zh">利用企业内部文档/FAQ 创建结构化知识库（支持 RAG）</span>
+                                <span class="lang-en" style="display: none;">Create structured knowledge base using internal documents/FAQs (RAG supported)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🧠 <span class="lang-zh">语料微调</span><span class="lang-en" style="display: none;">Corpus Fine-tuning</span></td>
+                            <td>
+                                <span class="lang-zh">根据行业语调+语境定制，让 AI 回答更贴近你的品牌风格</span>
+                                <span class="lang-en" style="display: none;">Customize based on industry tone + context to make AI responses closer to your brand style</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🔌 <span class="lang-zh">工具集成</span><span class="lang-en" style="display: none;">Tool Integration</span></td>
+                            <td>
+                                <span class="lang-zh">可对接 CRM、预约系统、库存管理等，支持自动操作</span>
+                                <span class="lang-en" style="display: none;">Connect with CRM, booking systems, inventory management, etc., supporting automated operations</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🌐 <span class="lang-zh">多平台部署</span><span class="lang-en" style="display: none;">Multi-platform Deployment</span></td>
+                            <td>
+                                <span class="lang-zh">支持部署在微信、WhatsApp、企业网站、Shopify 等平台</span>
+                                <span class="lang-en" style="display: none;">Support deployment on WeChat, WhatsApp, corporate websites, Shopify, and other platforms</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🔄 <span class="lang-zh">持续优化</span><span class="lang-en" style="display: none;">Continuous Optimization</span></td>
+                            <td>
+                                <span class="lang-zh">包含模型升级、知识库优化、技术支持等长期维护服务</span>
+                                <span class="lang-en" style="display: none;">Includes model upgrades, knowledge base optimization, technical support, and other long-term maintenance services</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 行业解决方案页面 -->
+    <div class="page" data-section="industries">
+        <div class="page-content">
+            <h1 class="page-title">
+                <span class="lang-zh">🔍 不同行业的解决方案</span>
+                <span class="lang-en" style="display: none;">🔍 Industry-Specific Solutions</span>
+            </h1>
+            
+            <div class="industry-grid">
+                <div class="industry-card">
+                    <span class="industry-icon">🏥</span>
+                    <h3 class="industry-title">
+                        <span class="lang-zh">医疗诊所</span>
+                        <span class="lang-en" style="display: none;">Medical Clinics</span>
+                    </h3>
+                    <p class="industry-description">
+                        <span class="lang-zh">自动预约、就诊提醒、保险/流程咨询</span>
+                        <span class="lang-en" style="display: none;">Automated appointments, visit reminders, insurance/process consultations</span>
+                    </p>
+                </div>
+                <div class="industry-card">
+                    <span class="industry-icon">🛍️</span>
+                    <h3 class="industry-title">
+                        <span class="lang-zh">电商&零售</span>
+                        <span class="lang-en" style="display: none;">E-commerce & Retail</span>
+                    </h3>
+                    <p class="industry-description">
+                        <span class="lang-zh">商品咨询、物流跟踪、退换货政策</span>
+                        <span class="lang-en" style="display: none;">Product inquiries, logistics tracking, return/exchange policies</span>
+                    </p>
+                </div>
+                <div class="industry-card">
+                    <span class="industry-icon">🎓</span>
+                    <h3 class="industry-title">
+                        <span class="lang-zh">教育机构</span>
+                        <span class="lang-en" style="display: none;">Educational Institutions</span>
+                    </h3>
+                    <p class="industry-description">
+                        <span class="lang-zh">报名咨询、家长沟通、双语支持</span>
+                        <span class="lang-en" style="display: none;">Enrollment inquiries, parent communication, bilingual support</span>
+                    </p>
+                </div>
+                <div class="industry-card">
+                    <span class="industry-icon">💅</span>
+                    <h3 class="industry-title">
+                        <span class="lang-zh">美业/健身</span>
+                        <span class="lang-en" style="display: none;">Beauty/Fitness</span>
+                    </h3>
+                    <p class="industry-description">
+                        <span class="lang-zh">预约管理、项目介绍、客户回访</span>
+                        <span class="lang-en" style="display: none;">Appointment management, service introductions, customer follow-ups</span>
+                    </p>
+                </div>
+                <div class="industry-card">
+                    <span class="industry-icon">🔧</span>
+                    <h3 class="industry-title">
+                        <span class="lang-zh">本地维修</span>
+                        <span class="lang-en" style="display: none;">Local Repair Services</span>
+                    </h3>
+                    <p class="industry-description">
+                        <span class="lang-zh">报价/时间安排、现场派单、满意度回访</span>
+                        <span class="lang-en" style="display: none;">Quotes/scheduling, on-site dispatch, satisfaction follow-ups</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 套餐定价页面 -->
+    <div class="page" data-section="pricing">
+        <div class="page-content">
+            <h1 class="page-title">
+                <span class="lang-zh">💰 套餐定价</span>
+                <span class="lang-en" style="display: none;">💰 Pricing Plans</span>
+            </h1>
+            <p class="page-subtitle">
+                <span class="lang-zh">含一次性部署 + 终身使用</span>
+                <span class="lang-en" style="display: none;">One-time deployment + Lifetime usage</span>
+            </p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="plan-name">
+                        <span class="lang-zh">Starter Plan</span>
+                        <span class="lang-en" style="display: none;">Starter Plan</span>
+                    </h3>
+                    <div class="plan-price">$325</div>
+                    <ul class="plan-features">
+                        <li>
+                            <span class="lang-zh">Prompt设计</span>
+                            <span class="lang-en" style="display: none;">Prompt Design</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">基础知识库建设</span>
+                            <span class="lang-en" style="display: none;">Basic Knowledge Base</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">1个工具集成</span>
+                            <span class="lang-en" style="display: none;">1 Tool Integration</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">1个部署平台</span>
+                            <span class="lang-en" style="display: none;">1 Deployment Platform</span>
+                        </li>
+                    </ul>
+                    <p style="color: #ffffff; opacity: 0.8; margin-top: 20px;">
+                        <span class="lang-zh">适合：小型标准业务</span>
+                        <span class="lang-en" style="display: none;">Suitable for: Small standard businesses</span>
+                    </p>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3 class="plan-name">
+                        <span class="lang-zh">Growth Plan</span>
+                        <span class="lang-en" style="display: none;">Growth Plan</span>
+                    </h3>
+                    <div class="plan-price">$800</div>
+                    <ul class="plan-features">
+                        <li>
+                            <span class="lang-zh">Prompt设计</span>
+                            <span class="lang-en" style="display: none;">Prompt Design</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">中等知识库建设</span>
+                            <span class="lang-en" style="display: none;">Medium Knowledge Base</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">模型微调</span>
+                            <span class="lang-en" style="display: none;">Model Fine-tuning</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">2个工具集成</span>
+                            <span class="lang-en" style="display: none;">2 Tool Integrations</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">2个部署平台</span>
+                            <span class="lang-en" style="display: none;">2 Deployment Platforms</span>
+                        </li>
+                    </ul>
+                    <p style="color: #ffffff; opacity: 0.8; margin-top: 20px;">
+                        <span class="lang-zh">适合：中小型增长型企业</span>
+                        <span class="lang-en" style="display: none;">Suitable for: Growing SMEs</span>
+                    </p>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 class="plan-name">
+                        <span class="lang-zh">Enterprise Plan</span>
+                        <span class="lang-en" style="display: none;">Enterprise Plan</span>
+                    </h3>
+                    <div class="plan-price">$1300</div>
+                    <ul class="plan-features">
+                        <li>
+                            <span class="lang-zh">Prompt设计</span>
+                            <span class="lang-en" style="display: none;">Prompt Design</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">高级知识库建设</span>
+                            <span class="lang-en" style="display: none;">Advanced Knowledge Base</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">高级模型微调</span>
+                            <span class="lang-en" style="display: none;">Advanced Model Fine-tuning</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">2个工具集成</span>
+                            <span class="lang-en" style="display: none;">2 Tool Integrations</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">2个部署平台</span>
+                            <span class="lang-en" style="display: none;">2 Deployment Platforms</span>
+                        </li>
+                    </ul>
+                    <p style="color: #ffffff; opacity: 0.8; margin-top: 20px;">
+                        <span class="lang-zh">适合：大型复杂业务</span>
+                        <span class="lang-en" style="display: none;">Suitable for: Large complex businesses</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="tech-comparison">
+                <h2 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 30px; text-align: center;">
+                    <span class="lang-zh">功能模块详细定价</span>
+                    <span class="lang-en" style="display: none;">Detailed Module Pricing</span>
+                </h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="lang-zh">功能模块</span>
+                                <span class="lang-en" style="display: none;">Feature Module</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">价格区间</span>
+                                <span class="lang-en" style="display: none;">Price Range</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">说明</span>
+                                <span class="lang-en" style="display: none;">Description</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📐 <span class="lang-zh">框架设计+Prompt工程</span><span class="lang-en" style="display: none;">Framework Design + Prompt Engineering</span></td>
+                            <td>$50 <span class="lang-zh">（必选）</span><span class="lang-en" style="display: none;">(Required)</span></td>
+                            <td>
+                                <span class="lang-zh">构建高质量提示词，快速赋能模型</span>
+                                <span class="lang-en" style="display: none;">Build high-quality prompts to quickly empower the model</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>📚 <span class="lang-zh">RAG知识库建设</span><span class="lang-en" style="display: none;">RAG Knowledge Base</span></td>
+                            <td>$200–$400</td>
+                            <td>
+                                <span class="lang-zh">构建语义知识库，提升专业回答能力</span>
+                                <span class="lang-en" style="display: none;">Build semantic knowledge base to enhance professional answering capabilities</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🧠 <span class="lang-zh">模型微调（LLM）</span><span class="lang-en" style="display: none;">Model Fine-tuning (LLM)</span></td>
+                            <td>$400–$800</td>
+                            <td>
+                                <span class="lang-zh">根据企业语料训练，更懂你业务的 AI</span>
+                                <span class="lang-en" style="display: none;">Train with enterprise corpus for AI that better understands your business</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🔌 <span class="lang-zh">工具集成</span><span class="lang-en" style="display: none;">Tool Integration</span></td>
+                            <td>$50/<span class="lang-zh">系统</span><span class="lang-en" style="display: none;">system</span></td>
+                            <td>
+                                <span class="lang-zh">接入预约系统、CRM 等</span>
+                                <span class="lang-en" style="display: none;">Connect to booking systems, CRM, etc.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🌐 <span class="lang-zh">多平台部署</span><span class="lang-en" style="display: none;">Multi-platform Deployment</span></td>
+                            <td>$25/<span class="lang-zh">平台</span><span class="lang-en" style="display: none;">platform</span></td>
+                            <td>
+                                <span class="lang-zh">支持多个沟通渠道上线</span>
+                                <span class="lang-en" style="display: none;">Support multiple communication channels</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🔧 <span class="lang-zh">终身维护计划</span><span class="lang-en" style="display: none;">Lifetime Maintenance</span></td>
+                            <td>$400 <span class="lang-zh">（可选）</span><span class="lang-en" style="display: none;">(Optional)</span></td>
+                            <td>
+                                <span class="lang-zh">模型更新、技术支持全包服务</span>
+                                <span class="lang-en" style="display: none;">Model updates, comprehensive technical support</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 技术优势页面 -->
+    <div class="page" data-section="technology">
+        <div class="page-content">
+            <h1 class="page-title">
+                <span class="lang-zh">🧠 OctoChat 背后的三种 AI 技术</span>
+                <span class="lang-en" style="display: none;">🧠 Three AI Technologies Behind OctoChat</span>
+            </h1>
+            
+            <div class="tech-comparison">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="lang-zh">名称</span>
+                                <span class="lang-en" style="display: none;">Name</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">比喻说明</span>
+                                <span class="lang-en" style="display: none;">Analogy</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">优点</span>
+                                <span class="lang-en" style="display: none;">Advantages</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">缺点</span>
+                                <span class="lang-en" style="display: none;">Disadvantages</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🗣️ <span class="lang-zh">Prompt 工程</span><span class="lang-en" style="display: none;">Prompt Engineering</span></td>
+                            <td>
+                                <span class="lang-zh">像临时给客服写一张便条</span>
+                                <span class="lang-en" style="display: none;">Like writing a quick note to customer service</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">快速响应，修改方便</span>
+                                <span class="lang-en" style="display: none;">Quick response, easy to modify</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">信息量有限</span>
+                                <span class="lang-en" style="display: none;">Limited information capacity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>📚 <span class="lang-zh">RAG</span><span class="lang-en" style="display: none;">RAG</span></td>
+                            <td>
+                                <span class="lang-zh">给客服一本公司手册</span>
+                                <span class="lang-en" style="display: none;">Giving customer service a company manual</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">覆盖面广，实时更新</span>
+                                <span class="lang-en" style="display: none;">Wide coverage, real-time updates</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">查找速度略慢</span>
+                                <span class="lang-en" style="display: none;">Slightly slower search speed</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>🧠 <span class="lang-zh">微调训练</span><span class="lang-en" style="display: none;">Fine-tuning</span></td>
+                            <td>
+                                <span class="lang-zh">真正培训一个员工</span>
+                                <span class="lang-en" style="display: none;">Actually training an employee</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">回答准确、自然</span>
+                                <span class="lang-en" style="display: none;">Accurate, natural responses</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">训练耗时，更新需再训练</span>
+                                <span class="lang-en" style="display: none;">Time-consuming training, updates require retraining</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div style="text-align: center; margin: 60px 0;">
+                <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 30px;">
+                    <span class="lang-zh">🔌 工具集成 = 教会 AI "动手做事"</span>
+                    <span class="lang-en" style="display: none;">🔌 Tool Integration = Teaching AI to "Take Action"</span>
+                </h2>
+                <p style="color: #ffffff; opacity: 0.9; font-size: 1.1rem; margin-bottom: 40px;">
+                    <span class="lang-zh">知道怎么说还不够，他们还要会"做"。我们教 AI 如何：</span>
+                    <span class="lang-en" style="display: none;">Knowing what to say isn't enough, they also need to know how to "do". We teach AI how to:</span>
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">📅</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">预约客户</span>
+                            <span class="lang-en" style="display: none;">Schedule Appointments</span>
+                        </h3>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📋</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">查询订单状态</span>
+                            <span class="lang-en" style="display: none;">Check Order Status</span>
+                        </h3>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📧</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">发送确认邮件</span>
+                            <span class="lang-en" style="display: none;">Send Confirmation Emails</span>
+                        </h3>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💼</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">CRM 记录客户信息</span>
+                            <span class="lang-en" style="display: none;">Record Customer Info in CRM</span>
+                        </h3>
+                    </div>
+                </div>
+                <p style="color: #4ecdc4; font-size: 1.2rem; font-weight: 600; margin-top: 30px;">
+                    <span class="lang-zh">✅ 这一步让 AI 从"客服机器人"变成"自动执行者"。</span>
+                    <span class="lang-en" style="display: none;">✅ This step transforms AI from a "customer service bot" to an "automated executor".</span>
+                </p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div style="text-align: center; margin: 60px 0;">
+                <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 30px;">
+                    <span class="lang-zh">🏢 平台部署 = 决定 AI 在哪里"上班"</span>
+                    <span class="lang-en" style="display: none;">🏢 Platform Deployment = Where AI "Works"</span>
+                </h2>
+                <p style="color: #ffffff; opacity: 0.9; font-size: 1.1rem; margin-bottom: 40px;">
+                    <span class="lang-zh">AI 也要"上岗"：</span>
+                    <span class="lang-en" style="display: none;">AI needs to "go to work":</span>
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">💬</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">网站在线客服</span>
+                            <span class="lang-en" style="display: none;">Website Live Chat</span>
+                        </h3>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📱</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">微信、WhatsApp 聊天</span>
+                            <span class="lang-en" style="display: none;">WeChat, WhatsApp Chat</span>
+                        </h3>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🛒</span>
+                        <h3 class="feature-title">
+                            <span class="lang-zh">Shopify 店铺聊天气泡</span>
+                            <span class="lang-en" style="display: none;">Shopify Store Chat Bubble</span>
+                        </h3>
+                    </div>
+                </div>
+                <p style="color: #4ecdc4; font-size: 1.2rem; font-weight: 600; margin-top: 30px;">
+                    <span class="lang-zh">✅ OctoChat 可部署至你希望触达客户的任何平台。</span>
+                    <span class="lang-en" style="display: none;">✅ OctoChat can be deployed on any platform where you want to reach customers.</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'en'; // 从'zh'改为'en'
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+
+        // 初始化背景装饰
+        function initBackgroundDecoration() {
+            const decoration = document.getElementById('backgroundDecoration');
+            const gearCount = 10;
+            
+            for (let i = 0; i < gearCount; i++) {
+                const gear = document.createElement('div');
+                gear.className = 'gear';
+                gear.textContent = '⚙️';
+                gear.style.left = Math.random() * 100 + '%';
+                gear.style.top = Math.random() * 100 + '%';
+                gear.style.animationDuration = (15 + Math.random() * 10) + 's';
+                gear.style.animationDelay = Math.random() * 5 + 's';
+                decoration.appendChild(gear);
+            }
+        }
+
+        // 语言切换
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            
+            document.querySelectorAll('.lang-zh').forEach(el => {
+                el.style.display = currentLanguage === 'zh' ? 'inline' : 'none';
+            });
+            
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = currentLanguage === 'en' ? 'inline' : 'none';
+            });
+            
+            // 切换显示的语言section
+            const zhSections = document.querySelectorAll('[id$="-zh"]');
+            const enSections = document.querySelectorAll('[id$="-en"]');
+            
+            if (currentLanguage === 'zh') {
+                zhSections.forEach(section => section.style.display = 'block');
+                enSections.forEach(section => section.style.display = 'none');
+            } else {
+                zhSections.forEach(section => section.style.display = 'none');
+                enSections.forEach(section => section.style.display = 'block');
+            }
+        }
+
+
+
+        // 更新导航活动状态
+        function updateActiveNav() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const windowHeight = window.innerHeight;
+            const triggerPoint = windowHeight * 0.5;
+            
+            pages.forEach(page => {
+                if (page.style.display !== 'none') {
+                    const rect = page.getBoundingClientRect();
+                    if (rect.top < triggerPoint && rect.bottom > triggerPoint) {
+                        const sectionId = page.getAttribute('data-section');
+                        
+                        navItems.forEach(nav => {
+                            const link = nav.querySelector('a');
+                            if (link && link.getAttribute('href') === '#' + sectionId) {
+                                nav.classList.add('active');
+                            } else {
+                                nav.classList.remove('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        // 滚动到指定页面
+        function scrollToSection(sectionId) {
+            const targetPage = document.querySelector(`[data-section="${sectionId}"]`);
+            if (targetPage) {
+                targetPage.scrollIntoView({ behavior: 'smooth' });
+                
+                // 更新活动状态
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(nav => {
+                    const link = nav.querySelector('a');
+                    if (link && link.getAttribute('href') === '#' + sectionId) {
+                        nav.classList.add('active');
+                    } else {
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // 检查页面可见性
+        function checkVisibility() {
+            const windowHeight = window.innerHeight;
+            const triggerPoint = windowHeight * 0.3;
+
+            pages.forEach(page => {
+                const rect = page.getBoundingClientRect();
+                const pageTop = rect.top;
+                const pageHeight = rect.height;
+
+                if (pageTop < triggerPoint && pageTop > -pageHeight + triggerPoint) {
+                    page.classList.add('visible');
+                } else {
+                    page.classList.remove('visible');
+                }
+            });
+
+            // 隐藏滚动指示器
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '0.7';
+            }
+        }
+
+        // 防抖函数
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 初始化
+        window.addEventListener('load', () => {
+            initBackgroundDecoration();
+            checkVisibility();
+            updateActiveNav();
+            
+            // 背景图片优化 - 适用于所有设备
+            const bgImage = new Image();
+            bgImage.onload = function() {
+                document.body.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("octochat-bg.webp")';
+                document.body.classList.remove('bg-fallback');
+                console.log('Background image loaded successfully');
+            };
+            bgImage.onerror = function() {
+                // 背景图片加载失败时使用备用背景
+                document.body.classList.add('bg-fallback');
+                console.log('Background image failed to load, using fallback');
+            };
+            bgImage.src = 'octochat-bg.webp';
+            
+            // 移动端特定优化
+            if ('ontouchstart' in window) {
+                // 确保移动端背景图片正确显示
+                setTimeout(() => {
+                    if (!document.body.classList.contains('bg-fallback')) {
+                        document.body.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("octochat-bg.webp")';
+                    }
+                }, 100);
+            }
+        });
+
+        // 监听滚动事件
+        window.addEventListener('scroll', debounce(() => {
+            checkVisibility();
+            updateActiveNav();
+        }, 100));
+
+        // 监听窗口大小变化
+        window.addEventListener('resize', debounce(checkVisibility, 100));
+    </script>
+    <style>
+      /* 固定聊天机器人按钮样式 */
+      #dify-chatbot-bubble-button {
+          position: fixed !important;
+          right: 20px !important;
+          bottom: 20px !important;
+          width: 60px !important;
+          height: 60px !important;
+          background: linear-gradient(135deg, #FF6B9D, #FF8C42) !important;
+          border-radius: 50% !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+          z-index: 9999 !important;
+          transition: all 0.3s ease !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transform: translateZ(0) !important;
+          will-change: transform !important;
+      }
+      
+      /* 隐藏默认图标 - 更强的选择器 */
+      #dify-chatbot-bubble-button svg,
+      #dify-chatbot-bubble-button img,
+      #dify-chatbot-bubble-button .dify-chatbot-bubble-button-icon,
+      #dify-chatbot-bubble-button * {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+      }
+      
+      /* 添加章鱼emoji图标 - 更强的选择器 */
+      #dify-chatbot-bubble-button::before {
+          content: "🐙" !important;
+          font-size: 30px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 100% !important;
+          height: 100% !important;
+          transform: translateX(1px) translateY(-3px) scale(1.08) !important;
+          animation: float 3s ease-in-out infinite !important;
+          z-index: 10000 !important;
+          position: relative !important;
+          filter: brightness(0) invert(1) !important;
+      }
+      
+      /* 浮动动画效果 */
+      @keyframes float {
+          0%, 100% {
+              transform: translateX(1px) translateY(-3px) scale(1.08) translateY(0px) !important;
+          }
+          50% {
+              transform: translateX(1px) translateY(-3px) scale(1.08) translateY(-5px) !important;
+          }
+      }
+      
+      #dify-chatbot-bubble-button:hover {
+          transform: scale(1.1) !important;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+      }
+      
+      /* 聊天窗口样式 */
+      #dify-chatbot-bubble-window {
+          position: fixed !important;
+          right: 20px !important;
+          bottom: 90px !important;
+          width: 380px !important;
+          height: 600px !important;
+          max-height: 80vh !important;
+          border-radius: 12px !important;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+          z-index: 9998 !important;
+          border: none !important;
+          display: none; /* 初始隐藏，点击按钮后显示 */
+          transform: translateZ(0) scale(0.8) !important;
+          opacity: 0;
+          transition: all 0.3s ease !important;
+          will-change: transform !important;
+      }
+      
+      /* 对话框打开时的放大效果 */
+      .chat-open #dify-chatbot-bubble-window {
+          transform: translateZ(0) scale(1) !important;
+          opacity: 1 !important;
+      }
+      
+      /* 当窗口打开时的按钮样式 */
+      .chat-open #dify-chatbot-bubble-button {
+          background: linear-gradient(135deg, #FF5A8A, #FF7A32) !important;
+      }
+    </style>
+    <!-- Dify 聊天机器人嵌入代码 -->
+    <script>
+        window.difyChatbotConfig = {
+            token: 'UHVIMQCGqadcPFGZ',
+            baseUrl: 'http://localhost',
+            // 可以添加其他配置项
+        };
+    </script>
+    <script src="http://localhost/embed.min.js" id="UHVIMQCGqadcPFGZ" defer></script>
+
+    <!-- 可选：添加交互效果 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查元素是否加载完成
+            function waitForElement(selector, callback) {
+                if (document.querySelector(selector)) {
+                    callback();
+                } else {
+                    setTimeout(function() {
+                        waitForElement(selector, callback);
+                    }, 100);
+                }
+            }
+            
+            // 强制应用自定义样式
+            function applyCustomStyles() {
+                const button = document.querySelector('#dify-chatbot-bubble-button');
+                if (button) {
+                    // 隐藏所有默认内容
+                    const defaultElements = button.querySelectorAll('svg, img, .dify-chatbot-bubble-button-icon, *');
+                    defaultElements.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.opacity = '0';
+                        el.style.visibility = 'hidden';
+                    });
+                    
+                    // 确保按钮有渐变背景
+                    button.style.background = 'linear-gradient(135deg, #FF6B9D, #FF8C42)';
+                }
+            }
+            
+            // 显示欢迎对话框
+            function showWelcomeDialog() {
+                // 检测浏览器语言
+                const userLanguage = navigator.language || navigator.userLanguage;
+                const isChinese = userLanguage.startsWith('zh');
+                
+                // 根据语言设置文本内容
+                const welcomeText = isChinese 
+                    ? "你好！我是OTTO，我可以为您介绍Octopod AI。我也是Octochat的产品演示。"
+                    : "Hi, I'm OTTO, I can introduce you to Octopod AI. I am also the product demo of Octochat.";
+                
+                const buttonText = isChinese ? "知道了！" : "Got it!";
+                
+                // 获取按钮位置
+                const button = document.querySelector('#dify-chatbot-bubble-button');
+                if (!button) return;
+                
+                const buttonRect = button.getBoundingClientRect();
+                const dialogWidth = 350; // 对话框宽度
+                const dialogHeight = 200; // 对话框高度
+                
+                // 计算对话框位置（按钮左上方）
+                const dialogLeft = buttonRect.left - dialogWidth - 20; // 按钮左侧20px
+                const dialogTop = buttonRect.top - dialogHeight - 20; // 按钮上方20px
+                
+                // 创建对话框元素
+                const dialog = document.createElement('div');
+                dialog.style.cssText = `
+                    position: fixed;
+                    top: ${dialogTop}px;
+                    left: ${dialogLeft}px;
+                    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+                    color: white;
+                    padding: 25px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    z-index: 10001;
+                    width: ${dialogWidth}px;
+                    text-align: center;
+                    font-family: Arial, sans-serif;
+                    animation: dialogFadeIn 0.5s ease-out;
+                `;
+                
+                dialog.innerHTML = `
+                    <div style="font-size: 48px; margin-bottom: 20px;">🐙</div>
+                    <div style="font-size: 18px; line-height: 1.5; margin-bottom: 20px;">
+                        ${welcomeText}
+                    </div>
+                    <button id="welcome-close-btn" style="
+                        background: white;
+                        color: #1E3A8A;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    ">${buttonText}</button>
+                `;
+                
+                // 添加动画样式
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes dialogFadeIn {
+                        from {
+                            opacity: 0;
+                            transform: scale(0.8);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // 添加到页面
+                document.body.appendChild(dialog);
+                
+                // 添加关闭功能
+                const closeBtn = document.getElementById('welcome-close-btn');
+                
+                // 添加悬停效果
+                closeBtn.addEventListener('mouseenter', function() {
+                    this.style.background = '#f8fafc';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                });
+                
+                closeBtn.addEventListener('mouseleave', function() {
+                    this.style.background = 'white';
+                    this.style.transform = 'translateY(0px)';
+                    this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                });
+                
+                // 添加点击效果
+                closeBtn.addEventListener('mousedown', function() {
+                    this.style.transform = 'translateY(0px) scale(0.95)';
+                    this.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)';
+                });
+                
+                closeBtn.addEventListener('mouseup', function() {
+                    this.style.transform = 'translateY(-2px) scale(1)';
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                });
+                
+                // 添加点击关闭功能
+                closeBtn.addEventListener('click', function() {
+                    // 添加点击动画
+                    this.style.transform = 'scale(0.9)';
+                    this.style.transition = 'transform 0.1s ease';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                        dialog.style.animation = 'dialogFadeOut 0.3s ease-in forwards';
+                        
+                        setTimeout(() => {
+                            document.body.removeChild(dialog);
+                        }, 300);
+                    }, 100);
+                });
+                
+                // 添加淡出动画
+                const fadeOutStyle = document.createElement('style');
+                fadeOutStyle.textContent = `
+                    @keyframes dialogFadeOut {
+                        from {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                        to {
+                            opacity: 0;
+                            transform: scale(0.8);
+                        }
+                    }
+                `;
+                document.head.appendChild(fadeOutStyle);
+            }
+            
+            // 添加点击效果
+            waitForElement('#dify-chatbot-bubble-button', function() {
+                const button = document.querySelector('#dify-chatbot-bubble-button');
+                const chatWindow = document.querySelector('#dify-chatbot-bubble-window');
+                
+                // 应用自定义样式
+                applyCustomStyles();
+                
+                // 定期检查并重新应用样式（防止被覆盖）
+                setInterval(applyCustomStyles, 1000);
+                
+                button.addEventListener('click', function() {
+                    const chatWindow = document.querySelector('#dify-chatbot-bubble-window');
+                    const isOpen = document.body.classList.contains('chat-open');
+                    
+                    if (!isOpen) {
+                        // 打开对话框
+                        document.body.classList.add('chat-open');
+                        if (chatWindow) {
+                            chatWindow.style.display = 'block';
+                            // 延迟一帧后开始动画，确保display:block生效
+                            requestAnimationFrame(() => {
+                                chatWindow.style.transform = 'scale(1)';
+                                chatWindow.style.opacity = '1';
+                            });
+                        }
+                    } else {
+                        // 关闭对话框
+                        if (chatWindow) {
+                            chatWindow.style.transform = 'scale(0.8)';
+                            chatWindow.style.opacity = '0';
+                            setTimeout(() => {
+                                chatWindow.style.display = 'none';
+                                document.body.classList.remove('chat-open');
+                            }, 300);
+                        } else {
+                            document.body.classList.remove('chat-open');
+                        }
+                    }
+                    
+                    // 添加按钮点击时的放大效果
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+                
+                // 延迟显示欢迎对话框
+                setTimeout(showWelcomeDialog, 2000);
+                
+                // 添加语言切换功能
+                function switchLanguage(language) {
+                    // 直接重新显示对话框
+                    setTimeout(() => {
+                        showWelcomeDialog();
+                    }, 500);
+                }
+                
+                // 每次页面加载都会显示对话框
+                // 用户刷新页面时会重新显示欢迎对话框
+            });
+        });
+    </script>
+</body>
+</html> 

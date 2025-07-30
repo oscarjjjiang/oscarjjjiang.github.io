@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OctoFlow - 智能自动化工作流系统 | 智腕AI</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', 'Noto Sans SC', Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('octoflow-bg.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #222;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .octoflow-hero {
+            background: linear-gradient(135deg, rgba(0, 20, 60, 0.98), rgba(0, 30, 80, 0.95));
+            border-radius: 20px;
+            padding: 80px;
+            margin: 120px auto;
+            width: 95%;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            backdrop-filter: blur(15px);
+        }
+        
+        .octoflow-title {
+            font-size: 3.8rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff, #66b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .octoflow-subtitle {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .octoflow-description {
+            font-size: 1.3rem;
+            color: #ffffff;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 102, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feature-content {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .comparison-table {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .comparison-row:nth-child(odd) {
+            background: rgba(0, 102, 255, 0.05);
+        }
+        
+        .traditional, .octoflow {
+            padding: 10px;
+        }
+        
+        .traditional h4, .octoflow h4 {
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .traditional h4 {
+            color: #e91e63;
+        }
+        
+        .octoflow h4 {
+            color: #1e3c72;
+        }
+        
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin: 60px 0;
+        }
+        
+        .service-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 16px;
+            padding: 45px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 102, 255, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .case-study {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 16px;
+            padding: 60px;
+            margin: 60px 0;
+            color: #333;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+        }
+        
+        .case-study h3 {
+            color: #1e3c72;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+        
+        .case-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+            margin: 50px 0;
+        }
+        
+        .case-step {
+            background: rgba(0, 102, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            border-left: 4px solid #0066FF;
+            transition: all 0.3s ease;
+        }
+        
+        .case-step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.15);
+        }
+        
+        .case-step h4 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .case-result {
+            background: linear-gradient(135deg, #0066FF, #1e3c72);
+            color: white;
+            border-radius: 16px;
+            padding: 45px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3);
+        }
+        
+        .case-result h4 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .pricing-table {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 16px;
+            padding: 60px;
+            margin: 60px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table th, .pricing-table td {
+            padding: 25px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+        }
+        
+        .pricing-table th {
+            background: linear-gradient(135deg, #0066FF, #1e3c72);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .pricing-table td {
+            font-size: 1.05rem;
+        }
+        
+        .pricing-table tr:hover {
+            background: rgba(0, 102, 255, 0.05);
+        }
+        
+        /* 导航栏 */
+        .header {
+            position: relative;
+            padding: 20px 8vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .language-toggle {
+            background: linear-gradient(135deg, #0066FF, #FF6600);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 12px 24px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.5px;
+        }
+
+        .language-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .language-toggle:hover {
+            background: linear-gradient(135deg, #FF6600, #0066FF);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .language-toggle:hover::before {
+            left: 100%;
+        }
+
+        .language-toggle:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-item {
+            margin: 0 12px; /* 从10px增加到12px */
+            transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .hexagon {
+            width: 108px; /* 从120px缩小到108px (减少10%) */
+            height: 62px; /* 从69px缩小到62px (减少10%) */
+            background: linear-gradient(135deg, #3366FF, #FF6600);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+            transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+        }
+        
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: -1;
+        }
+        
+        .hexagon span {
+            color: #fff;
+            font-size: 1.08rem; /* 从1.2rem缩小到1.08rem (减少10%) */
+            font-weight: 600;
+            text-align: center;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover .hexagon {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
+        }
+
+        .nav-item:hover .hexagon::before {
+            background: linear-gradient(135deg, #e91e63, #1e3c72);
+        }
+
+        .nav-item:hover .hexagon span {
+            color: white;
+        }
+
+        .nav-item.active .hexagon {
+            background: linear-gradient(135deg, #1e3c72, #e91e63);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.3);
+        }
+
+        .nav-item.active .hexagon::before {
+            background: linear-gradient(135deg, #1e3c72, #e91e63);
+        }
+
+        .nav-item.active .hexagon span {
+            color: white;
+        }
+        
+
+
+        .back-home {
+            background: rgba(255, 107, 157, 0.2);
+            border: 2px solid rgba(255, 107, 157, 0.4);
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 107, 157, 0.3);
+            transform: scale(1.05);
+        }
+        
+
+        
+
+        
+        .gear {
+            position: fixed;
+            opacity: 0.15;
+            animation: rotate linear infinite;
+            font-size: 120px;
+            color: #FF0000;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.3));
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .gear-1 {
+            top: 5%;
+            left: 5%;
+            font-size: 120px;
+            animation-duration: 20s;
+        }
+        
+        .gear-2 {
+            top: 25%;
+            left: 3%;
+            font-size: 100px;
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+        
+        .gear-3 {
+            top: 45%;
+            left: 8%;
+            font-size: 140px;
+            animation-duration: 30s;
+        }
+        
+        .gear-4 {
+            top: 65%;
+            left: 2%;
+            font-size: 90px;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+        
+        .gear-5 {
+            top: 85%;
+            left: 6%;
+            font-size: 110px;
+            animation-duration: 22s;
+        }
+        
+        .gear-6 {
+            top: 8%;
+            right: 4%;
+            font-size: 130px;
+            animation-duration: 24s;
+            animation-direction: reverse;
+        }
+        
+        .gear-7 {
+            top: 28%;
+            right: 7%;
+            font-size: 95px;
+            animation-duration: 19s;
+        }
+        
+        .gear-8 {
+            top: 48%;
+            right: 3%;
+            font-size: 145px;
+            animation-duration: 28s;
+            animation-direction: reverse;
+        }
+        
+        .gear-9 {
+            top: 68%;
+            right: 5%;
+            font-size: 85px;
+            animation-duration: 16s;
+        }
+        
+        .gear-10 {
+            top: 88%;
+            right: 2%;
+            font-size: 115px;
+            animation-duration: 26s;
+            animation-direction: reverse;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+
+        
+        .back-button {
+            background: linear-gradient(135deg, #e91e63, #1e3c72);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 900px) {
+            .header { padding: 18px 4vw; }
+            .nav-container {
+                gap: 6px;
+            }
+            .hexagon {
+                width: 50px;
+                height: 60px;
+            }
+            .hexagon span {
+                font-size: 0.7rem;
+            }
+            
+            .octoflow-hero {
+                width: 95%;
+                padding: 40px 30px;
+            }
+            
+            .octoflow-title {
+                font-size: 2.5rem;
+            }
+            
+            .octoflow-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .features-grid, .services-list, .case-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .language-toggle {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                border-radius: 25px;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+                gap: 8px;
+            }
+            .hexagon {
+                width: 45px;
+                height: 55px;
+            }
+            .hexagon span {
+                font-size: 0.65rem;
+            }
+            
+            .octoflow-hero {
+                padding: 30px 20px;
+            }
+            
+            .octoflow-title {
+                font-size: 2rem;
+            }
+            
+            .back-button {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 页面切换特效样式 */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.4s ease;
+            padding: 0 0 80px 0;
+            margin: -110px 0 140px 0;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-content {
+            width: 90%;
+            max-width: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.1s;
+            margin: 60px 0;
+            background: linear-gradient(135deg, rgba(0, 20, 60, 0.75), rgba(0, 30, 80, 0.7));
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            backdrop-filter: blur(15px);
+        }
+        
+        .section.visible .section-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section.visible .section-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 加宽"为什么选择OctoFlow"部分的排版 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin: 60px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 102, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.6rem;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .feature-content {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .section-content {
+                width: 92%;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .section-content {
+                width: 95%;
+            }
+            
+            .feature-card {
+                padding: 40px;
+            }
+            
+            .section {
+                padding: 0 0 60px 0;
+                margin: -55px 0 70px 0;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .section-content {
+                width: 98%;
+            }
+            
+            .feature-card {
+                padding: 35px;
+            }
+            
+            /* 导航栏响应式 */
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .nav-item {
+                padding: 8px 15px;
+            }
+
+            .nav-item a {
+                font-size: 12px;
+            }
+            
+            .feature-title {
+                font-size: 1.4rem;
+            }
+            
+            .section {
+                padding: 0 0 50px 0;
+                margin: -30px 0 40px 0;
+            }
+            
+            /* 移动端齿轮尺寸调整 */
+            .gear-1 {
+                font-size: 60px;
+            }
+            
+            .gear-2 {
+                font-size: 50px;
+            }
+            
+            .gear-3 {
+                font-size: 70px;
+            }
+            
+            .gear-4 {
+                font-size: 45px;
+            }
+            
+            .gear-5 {
+                font-size: 55px;
+            }
+            
+            .gear-6 {
+                font-size: 65px;
+            }
+            
+            .gear-7 {
+                font-size: 48px;
+            }
+            
+            .gear-8 {
+                font-size: 75px;
+            }
+            
+            .gear-9 {
+                font-size: 42px;
+            }
+            
+            .gear-10 {
+                font-size: 58px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 12px; /* 从8px增加到12px */
+            }
+            
+            .hexagon {
+                width: 86px; /* 从96px缩小到86px (减少10%) */
+                height: 50px; /* 从55px缩小到50px (减少10%) */
+                transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+            }
+            
+            .hexagon span {
+                font-size: 0.9rem; /* 从1rem缩小到0.9rem (减少10%) */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 8px; /* 从4px增加到8px */
+            }
+            
+            .hexagon {
+                width: 65px; /* 从72px缩小到65px (减少10%) */
+                height: 37px; /* 从41px缩小到37px (减少10%) */
+                transform: scale(1.08); /* 从1.2缩小到1.08 (减少10%) */
+            }
+            
+            .hexagon span {
+                font-size: 0.72rem; /* 从0.8rem缩小到0.72rem (减少10%) */
+            }
+        }
+        .case-subtitle {
+            font-size: 1.4rem;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- 转动齿轮背景 -->
+    <div class="gear gear-1">⚙️</div>
+    <div class="gear gear-2">⚙️</div>
+    <div class="gear gear-3">⚙️</div>
+    <div class="gear gear-4">⚙️</div>
+    <div class="gear gear-5">⚙️</div>
+    <div class="gear gear-6">⚙️</div>
+    <div class="gear gear-7">⚙️</div>
+    <div class="gear gear-8">⚙️</div>
+    <div class="gear gear-9">⚙️</div>
+    <div class="gear gear-10">⚙️</div>
+                <!-- 中心圆 -->
+
+    </div>
+    
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="header-left">
+            <button id="lang-toggle" class="language-toggle" onclick="toggleLanguage()">
+                <span class="lang-zh" style="display: none;">English</span>
+                <span class="lang-en">中文</span>
+            </button>
+            
+            <a href="index.html" class="back-home">
+                <span class="lang-zh" style="display: none;">返回首页</span>
+                <span class="lang-en">Back to Home</span>
+            </a>
+        </div>
+        
+        <nav class="nav-container">
+            <div class="nav-item active">
+                <a href="#hero" onclick="scrollToSection('hero')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">产品</span>
+                        <span class="lang-en">Product</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#why-choose" onclick="scrollToSection('why-choose')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">选择</span>
+                        <span class="lang-en">Why</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#services" onclick="scrollToSection('services')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">服务</span>
+                        <span class="lang-en">Services</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#pricing" onclick="scrollToSection('pricing')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">定价</span>
+                        <span class="lang-en">Pricing</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#cases" onclick="scrollToSection('cases')">
+                    <div class="hexagon">
+                        <span class="lang-zh" style="display: none;">案例</span>
+                        <span class="lang-en">Cases</span>
+                    </div>
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="main-content">
+        <!-- Hero Section - Chinese -->
+        <div id="hero-zh" class="octoflow-hero">
+            <h1 class="octoflow-title">OctoFlow</h1>
+            <h2 class="octoflow-subtitle">智能自动化工作流系统</h2>
+            <p class="octoflow-description">
+                让AI团队为您工作，解放人力，提升效率。OctoFlow是智腕AI推出的定制化AI自动化工作流系统，通过多智能体协作，像真实团队一样处理复杂任务。它不仅能执行指令，还能思考、决策、优化，让您的业务流程更智能、更高效。
+            </p>
+        </div>
+
+        <!-- Hero Section - English -->
+        <div id="hero-en" class="octoflow-hero" style="display: none;">
+            <h1 class="octoflow-title">OctoFlow</h1>
+            <h2 class="octoflow-subtitle">Intelligent Automation Workflow System</h2>
+            <p class="octoflow-description">
+                Let AI teams work for you, freeing up manpower and improving efficiency. OctoFlow is a customized AI automation workflow system launched by Octopod AI, handling complex tasks like real teams through multi-agent collaboration. It can not only execute instructions but also think, make decisions, optimize, making your business processes smarter and more efficient.
+            </p>
+        </div>
+
+        <!-- Why Choose OctoFlow - Chinese -->
+        <section id="why-choose-zh" class="section">
+            <div class="section-content">
+                <h2 class="section-title">为什么选择OctoFlow？</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🚀</span>
+                        <h3 class="feature-title">超越传统自动化</h3>
+                        <div class="feature-content">
+                            <div class="comparison-table">
+                                <div class="comparison-row">
+                                    <div class="traditional">
+                                        <h4>传统脚本</h4>
+                                        <p>死板、单一任务、需手动更新</p>
+                                    </div>
+                                    <div class="octoflow">
+                                        <h4>OctoFlow</h4>
+                                        <p>自适应决策、多任务并行、持续学习（RAG知识库）</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3 class="feature-title">量身定制，无缝集成</h3>
+                        <div class="feature-content">
+                            <p>• 根据您的业务逻辑设计专属AI工作流</p>
+                            <p>• 支持与PPT、Excel、MySQL、CRM（如HubSpot、Salesforce）等工具无缝对接</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">📈</span>
+                        <h3 class="feature-title">模块化扩展，长期高回报</h3>
+                        <div class="feature-content">
+                            <p>• 未来只需添加新AI代理，无需重构系统</p>
+                            <p>• 节省人力成本，提升运营效率</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <h3 class="feature-title">智能审核与持续优化</h3>
+                        <div class="feature-content">
+                            <p>• AI自动学习历史审核数据，决策越来越精准</p>
+                            <p>• 提供完整审计追踪，确保合规性</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose OctoFlow - English -->
+        <section id="why-choose-en" class="section" style="display: none;">
+            <div class="section-content">
+                <h2 class="section-title">Why Choose OctoFlow?</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🚀</span>
+                        <h3 class="feature-title">Beyond Traditional Automation</h3>
+                        <div class="feature-content">
+                            <div class="comparison-table">
+                                <div class="comparison-row">
+                                    <div class="traditional">
+                                        <h4>Traditional Scripts</h4>
+                                        <p>Rigid, single-task, manual updates required</p>
+                                    </div>
+                                    <div class="octoflow">
+                                        <h4>OctoFlow</h4>
+                                        <p>Adaptive decision-making, multi-task parallel processing, continuous learning (RAG knowledge base)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3 class="feature-title">Tailored Design, Seamless Integration</h3>
+                        <div class="feature-content">
+                            <p>• Design exclusive AI workflows based on your business logic</p>
+                            <p>• Seamlessly integrate with PPT, Excel, MySQL, CRM (such as HubSpot, Salesforce) and other tools</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">📈</span>
+                        <h3 class="feature-title">Modular Expansion, Long-term ROI</h3>
+                        <div class="feature-content">
+                            <p>• Future expansion only requires adding new AI agents, no system reconstruction needed</p>
+                            <p>• Save labor costs and improve operational efficiency</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <h3 class="feature-title">Intelligent Review & Continuous Optimization</h3>
+                        <div class="feature-content">
+                            <p>• AI automatically learns from historical review data, decisions become increasingly accurate</p>
+                            <p>• Provide complete audit trails to ensure compliance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services - Chinese -->
+        <section id="services-zh" class="section">
+            <div class="section-content">
+                <h2 class="section-title">服务内容</h2>
+                
+                <div class="services-list">
+                    <div class="service-item">
+                        <span class="service-icon">🔧</span>
+                        <h3>需求分析与咨询</h3>
+                        <p>深入评估您的业务流程，精准定位自动化机会</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">🛠️</span>
+                        <h3>定制AI工作流设计</h3>
+                        <p>多智能体架构（订单处理、数据录入、报告生成等）<br>RAG知识库整合，让AI决策更智能</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">🚀</span>
+                        <h3>部署与测试</h3>
+                        <p>支持云端、本地或私有化部署</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">🔄</span>
+                        <h3>培训与移交</h3>
+                        <p>提供团队培训，确保您能自主管理系统</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">📈</span>
+                        <h3>可选升级与扩展</h3>
+                        <p>新增AI代理、多语言处理等</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services - English -->
+        <section id="services-en" class="section" style="display: none;">
+            <div class="section-content">
+                <h2 class="section-title">Services</h2>
+                
+                <div class="services-list">
+                    <div class="service-item">
+                        <span class="service-icon">🔧</span>
+                        <h3>Requirements Analysis & Consulting</h3>
+                        <p>In-depth evaluation of your business processes, precise identification of automation opportunities</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">🛠️</span>
+                        <h3>Custom AI Workflow Design</h3>
+                        <p>Multi-agent architecture (order processing, data entry, report generation, etc.)<br>RAG knowledge base integration for smarter AI decisions</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">🚀</span>
+                        <h3>Deployment & Testing</h3>
+                        <p>Support for cloud, local, or private deployment</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">🔄</span>
+                        <h3>Training & Handover</h3>
+                        <p>Provide team training to ensure you can manage the system independently</p>
+                    </div>
+                    
+                    <div class="service-item">
+                        <span class="service-icon">📈</span>
+                        <h3>Optional Upgrades & Extensions</h3>
+                        <p>New AI agents, multi-language processing, etc.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study - Chinese -->
+        <section id="case-study-zh" class="section">
+            <div class="section-content">
+                <div class="case-study">
+                    <h3>应用案例 1：自动报销系统</h3>
+                    <p class="case-subtitle">为各种规模企业提供自动化、可审计、智能化的报销处理</p>
+                    
+                    <div class="case-steps">
+                        <div class="case-step">
+                            <h4>📊 1. 员工端自动化</h4>
+                            <p>上传收据 — 完成。</p>
+                            <p>员工只需上传收据（图片、PDF等）。</p>
+                            <p>AI助手使用OCR + LLM解析技术提取：</p>
+                            <ul>
+                                <li>📅 日期</li>
+                                <li>🏢 供应商</li>
+                                <li>💰 金额</li>
+                                <li>📋 详细分类信息</li>
+                            </ul>
+                            <p>自动准确填写标准化报销表格。</p>
+                            <p><strong>✅ 成果：</strong>为员工提供快速、无烦恼的报销体验。</p>
+                        </div>
+                        
+                        <div class="case-step">
+                            <h4>🧮 2. 财务部门自动化</h4>
+                            <p>使用公司特定政策进行实时、基于规则的验证。</p>
+                            <p>AI助手根据预加载的公司报销规则检查每项申请。</p>
+                            <p>合规申请即时批准；特殊情况转人工审核。</p>
+                            <p><strong>✅ 成果：</strong>减少财务团队工作量，更好地控制支出。</p>
+                        </div>
+                        
+                        <div class="case-step">
+                            <h4>🧠 3. 自学习审计系统</h4>
+                            <p>从人工审计师学习，持续改进。</p>
+                            <p>每次人工审核结果都被记录并添加到知识库。</p>
+                            <p>系统逐渐理解细微的内部规则，识别有效/无效申请的模式。</p>
+                            <p><strong>✅ 成果：</strong>更智能、持续改进的审计流程。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study - English -->
+        <section id="case-study-en" class="section" style="display: none;">
+            <div class="section-content">
+                <div class="case-study">
+                    <h3>Application Example 1: Automatic Expense Reimbursement System</h3>
+                    <p class="case-subtitle">Automated, auditable, and intelligent reimbursement processing for businesses of all sizes</p>
+                    
+                    <div class="case-steps">
+                        <div class="case-step">
+                            <h4>📊 1. Employee-Side Automation</h4>
+                            <p>Submit receipts — and you're done.</p>
+                            <p>Employees simply upload a receipt (image, PDF, etc.).</p>
+                            <p>The AI assistant uses OCR + LLM parsing to extract:</p>
+                            <ul>
+                                <li>📅 Date</li>
+                                <li>🏢 Vendor</li>
+                                <li>💰 Amount</li>
+                                <li>📋 Itemized details</li>
+                            </ul>
+                            <p>It auto-fills standardized reimbursement forms accurately.</p>
+                            <p><strong>✅ Result:</strong> Fast, frustration-free reimbursement for employees.</p>
+                        </div>
+                        
+                        <div class="case-step">
+                            <h4>🧮 2. Finance Department Automation</h4>
+                            <p>Real-time, rule-based validation using company-specific policies.</p>
+                            <p>The AI assistant checks each claim against pre-loaded company reimbursement rules.</p>
+                            <p>Clean claims are approved instantly; edge cases are escalated for human review.</p>
+                            <p><strong>✅ Result:</strong> Reduced workload for finance teams and better control over spending.</p>
+                        </div>
+                        
+                        <div class="case-step">
+                            <h4>🧠 3. Self-Learning Audit System</h4>
+                            <p>Learn from human auditors to continuously improve.</p>
+                            <p>Each manual review outcome is recorded and added to the knowledge base.</p>
+                            <p>Over time, the system understands nuanced internal rules and identifies patterns in valid/invalid claims.</p>
+                            <p><strong>✅ Result:</strong> A smarter, continuously improving audit process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing - Chinese -->
+        <section id="pricing-zh" class="section">
+            <div class="section-content">
+                <h2 class="section-title">定价透明，灵活选择</h2>
+                
+                <div class="pricing-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>服务项目</th>
+                                <th>价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>咨询与工作流设计</td>
+                                <td>$500</td>
+                            </tr>
+                            <tr>
+                                <td>AI代理开发</td>
+                                <td>$150/代理</td>
+                            </tr>
+                            <tr>
+                                <td>RAG知识库构建</td>
+                                <td>$300-$500（按复杂度）</td>
+                            </tr>
+                            <tr>
+                                <td>数据库集成</td>
+                                <td>$300-$400</td>
+                            </tr>
+                            <tr>
+                                <td>外部应用集成</td>
+                                <td>$100/系统</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing - English -->
+        <section id="pricing-en" class="section" style="display: none;">
+            <div class="section-content">
+                <h2 class="section-title">Transparent Pricing, Flexible Options</h2>
+                
+                <div class="pricing-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Service Item</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Consulting & Workflow Design</td>
+                                <td>$500</td>
+                            </tr>
+                            <tr>
+                                <td>AI Agent Development</td>
+                                <td>$150/agent</td>
+                            </tr>
+                            <tr>
+                                <td>RAG Knowledge Base Construction</td>
+                                <td>$300-$500 (by complexity)</td>
+                            </tr>
+                            <tr>
+                                <td>Database Integration</td>
+                                <td>$300-$400</td>
+                            </tr>
+                            <tr>
+                                <td>External Application Integration</td>
+                                <td>$100/system</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 智腕AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 语言切换功能
+        let currentLang = 'en'; // 从'zh'改为'en'
+        
+        // 获取所有中文和英文元素
+        const zhElements = document.querySelectorAll('[id$="-zh"]');
+        const enElements = document.querySelectorAll('[id$="-en"]');
+        
+        // 语言切换
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            
+            // 切换所有带lang-zh和lang-en类的元素
+            document.querySelectorAll('.lang-zh').forEach(el => {
+                el.style.display = currentLang === 'zh' ? 'inline' : 'none';
+            });
+            
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = currentLang === 'en' ? 'inline' : 'none';
+            });
+            
+            // 切换显示的语言section
+            if (currentLang === 'zh') {
+                zhElements.forEach(element => element.style.display = 'block');
+                enElements.forEach(element => element.style.display = 'none');
+            } else {
+                zhElements.forEach(element => element.style.display = 'none');
+                enElements.forEach(element => element.style.display = 'block');
+            }
+            
+            // 重新检查可见性和导航状态
+            setTimeout(() => {
+                checkVisibility();
+                updateActiveNav();
+            }, 200);
+        }
+        
+
+        
+        // 初始化显示英文
+        enElements.forEach(element => element.style.display = 'block');
+        zhElements.forEach(element => element.style.display = 'none');
+        
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化页面
+            checkVisibility();
+            updateActiveNav();
+        });
+        
+        // 页面切换特效
+        function checkVisibility() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // 当section进入视窗时显示，离开时隐藏
+                if (rect.top < windowHeight * 0.3 && rect.bottom > windowHeight * 0.1) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        }
+        
+        // 导航功能
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        // 滚动到指定页面
+        function scrollToSection(sectionId) {
+            let targetElement = null;
+            
+            // 根据不同的目标ID查找对应的section
+            if (sectionId === 'hero') {
+                targetElement = document.querySelector('.octoflow-hero');
+            } else if (sectionId === 'why-choose') {
+                targetElement = currentLang === 'zh' ? 
+                    document.querySelector('#why-choose-zh') : 
+                    document.querySelector('#why-choose-en');
+            } else if (sectionId === 'services') {
+                targetElement = currentLang === 'zh' ? 
+                    document.querySelector('#services-zh') : 
+                    document.querySelector('#services-en');
+            } else if (sectionId === 'pricing') {
+                targetElement = currentLang === 'zh' ? 
+                    document.querySelector('#pricing-zh') : 
+                    document.querySelector('#pricing-en');
+            } else if (sectionId === 'cases') {
+                targetElement = currentLang === 'zh' ? 
+                    document.querySelector('#case-study-zh') : 
+                    document.querySelector('#case-study-en');
+            }
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                
+                // 更新活动状态
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(nav => {
+                    const link = nav.querySelector('a');
+                    if (link && link.getAttribute('href') === '#' + sectionId) {
+                        nav.classList.add('active');
+                    } else {
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+        }
+        
+        // 更新导航活动状态
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.section, .octoflow-hero');
+            const windowHeight = window.innerHeight;
+            const triggerPoint = windowHeight * 0.5;
+            
+            sections.forEach(section => {
+                if (section.style.display !== 'none') {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < triggerPoint && rect.bottom > triggerPoint) {
+                        // 根据section确定对应的导航项
+                        let navId = '';
+                        if (section.classList.contains('octoflow-hero')) {
+                            navId = 'hero';
+                        } else if (section.id.includes('why-choose')) {
+                            navId = 'why-choose';
+                        } else if (section.id.includes('services')) {
+                            navId = 'services';
+                        } else if (section.id.includes('pricing')) {
+                            navId = 'pricing';
+                        } else if (section.id.includes('cases')) {
+                            navId = 'cases';
+                        }
+                        
+                        navItems.forEach(nav => {
+                            const link = nav.querySelector('a');
+                            if (link && link.getAttribute('href') === '#' + navId) {
+                                nav.classList.add('active');
+                            } else {
+                                nav.classList.remove('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 监听滚动事件
+            window.addEventListener('scroll', function() {
+                checkVisibility();
+                updateActiveNav();
+            });
+            
+            // 初始检查
+            checkVisibility();
+            updateActiveNav();
+        });
+        
+        // 监听窗口大小变化
+        window.addEventListener('resize', checkVisibility);
+        
+        // 齿轮动态效果
+        function updateGearSpeed() {
+            const gears = document.querySelectorAll('.gear');
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const scrollProgress = scrollY / (document.body.scrollHeight - windowHeight);
+            
+            gears.forEach((gear, index) => {
+                const baseSpeed = 20 + (index * 2); // 基础速度
+                const speedMultiplier = 1 + (scrollProgress * 0.5); // 滚动时速度增加
+                const newSpeed = baseSpeed / speedMultiplier;
+                
+                gear.style.animationDuration = newSpeed + 's';
+            });
+        }
+        
+        // 监听滚动事件来调整齿轮速度
+        window.addEventListener('scroll', updateGearSpeed);
+        
+        // 页面加载时初始化齿轮速度
+        document.addEventListener('DOMContentLoaded', function() {
+            updateGearSpeed();
+        });
+    </script>
+
+    <!-- 聊天机器人样式 -->
+    <style>
+        /* 固定聊天机器人按钮样式 - 使用absolute定位 */
+        #dify-chatbot-bubble-button {
+            position: absolute !important;
+            width: 60px !important;
+            height: 60px !important;
+            background: linear-gradient(135deg, #FF6B9D, #FF8C42) !important;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            z-index: 99999 !important;
+            transition: all 0.3s ease !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            pointer-events: auto !important;
+        }
+        
+        /* 隐藏默认图标 */
+        #dify-chatbot-bubble-button svg,
+        #dify-chatbot-bubble-button img,
+        #dify-chatbot-bubble-button .dify-chatbot-bubble-button-icon,
+        #dify-chatbot-bubble-button * {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* 添加章鱼emoji图标 */
+        #dify-chatbot-bubble-button::before {
+            content: "🐙" !important;
+            font-size: 30px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            transform: translateX(1px) translateY(-3px) scale(1.08) !important;
+            animation: float 3s ease-in-out infinite !important;
+            z-index: 10000 !important;
+            position: relative !important;
+            filter: brightness(0) invert(1) !important;
+        }
+        
+        /* 浮动动画效果 */
+        @keyframes float {
+            0%, 100% {
+                transform: translateX(1px) translateY(-3px) scale(1.08) translateY(0px) !important;
+            }
+            50% {
+                transform: translateX(1px) translateY(-3px) scale(1.08) translateY(-5px) !important;
+            }
+        }
+        
+        #dify-chatbot-bubble-button:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+        }
+        
+            /* 聊天窗口样式 - 使用absolute定位 */
+    #dify-chatbot-bubble-window {
+        position: absolute !important;
+        width: 380px !important;
+        height: 600px !important;
+        max-height: 80vh !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+        z-index: 99998 !important;
+        border: none !important;
+        transform: scale(0.8) !important;
+        opacity: 0;
+        transition: all 0.3s ease !important;
+        pointer-events: auto !important;
+    }
+        
+            /* 对话框打开时的放大效果 */
+    #dify-chatbot-bubble-window {
+        transform: scale(1) !important;
+        opacity: 1 !important;
+    }
+    </style>
+
+    <!-- 聊天机器人容器 -->
+    <div id="chatbot-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99999;"></div>
+
+    <!-- Dify 聊天机器人嵌入代码 -->
+    <script>
+        window.difyChatbotConfig = {
+            token: 'UHVIMQCGqadcPFGZ',
+            baseUrl: 'http://localhost',
+        };
+        
+        // 动态定位聊天机器人元素
+        let chatbotButton = null;
+        let chatbotWindow = null;
+        let welcomeDialog = null; // 添加欢迎对话框变量
+        
+        function updateChatbotPosition() {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            
+            // 设置按钮位置（右下角）
+            if (chatbotButton) {
+                chatbotButton.style.left = (scrollLeft + viewportWidth - 80) + 'px';
+                chatbotButton.style.top = (scrollTop + viewportHeight - 80) + 'px';
+            }
+            
+            // 设置对话框位置（按钮左上方）
+            if (chatbotWindow) {
+                chatbotWindow.style.left = (scrollLeft + viewportWidth - 400) + 'px';
+                chatbotWindow.style.top = (scrollTop + viewportHeight - 690) + 'px';
+            }
+            
+            // 设置欢迎对话框位置（按钮左侧）
+            if (welcomeDialog) {
+                const dialogWidth = 350;
+                const dialogHeight = 200;
+                welcomeDialog.style.left = (scrollLeft + viewportWidth - dialogWidth - 130) + 'px';
+                welcomeDialog.style.top = (scrollTop + viewportHeight - dialogHeight - 90) + 'px';
+            }
+        }
+        
+        function initializeChatbot() {
+            chatbotButton = document.querySelector('#dify-chatbot-bubble-button');
+            chatbotWindow = document.querySelector('#dify-chatbot-bubble-window');
+            const container = document.getElementById('chatbot-container');
+            
+            if (chatbotButton && container) {
+                container.appendChild(chatbotButton);
+                updateChatbotPosition();
+            }
+            if (chatbotWindow && container) {
+                container.appendChild(chatbotWindow);
+                updateChatbotPosition();
+            }
+            
+            // 监听滚动和窗口大小变化
+            window.addEventListener('scroll', updateChatbotPosition);
+            window.addEventListener('resize', updateChatbotPosition);
+            
+            // 立即更新位置
+            updateChatbotPosition();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initializeChatbot, 1000);
+            
+            // 定期检查元素是否存在
+            const checkInterval = setInterval(() => {
+                const button = document.querySelector('#dify-chatbot-bubble-button');
+                if (button) {
+                    initializeChatbot();
+                    clearInterval(checkInterval);
+                }
+            }, 500);
+            
+            // 额外的位置更新定时器
+            setTimeout(() => {
+                updateChatbotPosition();
+            }, 3000);
+        });
+    </script>
+    <script src="http://localhost/embed.min.js" id="UHVIMQCGqadcPFGZ" defer></script>
+
+    <!-- 聊天机器人交互效果 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查元素是否加载完成
+            function waitForElement(selector, callback, timeout = 10000) {
+                const startTime = Date.now();
+                function check() {
+                    const element = document.querySelector(selector);
+                    if (element) {
+                        callback(element);
+                    } else if (Date.now() - startTime < timeout) {
+                        setTimeout(check, 100);
+                    }
+                }
+                check();
+            }
+            
+            // 强制应用自定义样式
+            function applyCustomStyles() {
+                const button = document.querySelector('#dify-chatbot-bubble-button');
+                if (button) {
+                    // 隐藏所有默认内容
+                    const defaultElements = button.querySelectorAll('svg, img, .dify-chatbot-bubble-button-icon, *');
+                    defaultElements.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.opacity = '0';
+                        el.style.visibility = 'hidden';
+                    });
+                    
+                    // 确保按钮有渐变背景
+                    button.style.background = 'linear-gradient(135deg, #FF6B9D, #FF8C42)';
+                }
+            }
+            
+            // 显示欢迎对话框
+            function showWelcomeDialog() {
+                // 检测浏览器语言
+                const userLanguage = navigator.language || navigator.userLanguage;
+                const isChinese = userLanguage.startsWith('zh');
+                
+                // 根据语言设置文本内容
+                const welcomeText = isChinese 
+                    ? "你好！我是OTTO，我可以为您介绍Octopod AI。我也是Octochat的产品演示。"
+                    : "Hi, I'm OTTO, I can introduce you to Octopod AI. I am also the product demo of Octochat.";
+                
+                const buttonText = isChinese ? "知道了！" : "Got it!";
+                
+                // 获取按钮
+                const button = document.querySelector('#dify-chatbot-bubble-button');
+                if (!button) return;
+                
+                // 使用视口坐标计算初始位置
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+                
+                const dialogWidth = 350;
+                const dialogHeight = 200;
+                
+                // 计算对话框初始位置
+                const dialogLeft = scrollLeft + viewportWidth - dialogWidth - 130;
+                const dialogTop = scrollTop + viewportHeight - dialogHeight - 90;
+                
+                // 创建对话框元素
+                const dialog = document.createElement('div');
+                welcomeDialog = dialog; // 保存引用以便实时更新位置
+                
+                dialog.style.cssText = `
+                    position: absolute;
+                    top: ${dialogTop}px;
+                    left: ${dialogLeft}px;
+                    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+                    color: white;
+                    padding: 25px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    z-index: 10001;
+                    width: ${dialogWidth}px;
+                    text-align: center;
+                    font-family: Arial, sans-serif;
+                    animation: dialogFadeIn 0.5s ease-out;
+                    pointer-events: auto;
+                `;
+                
+                dialog.innerHTML = `
+                    <div style="font-size: 48px; margin-bottom: 20px;">🐙</div>
+                    <div style="font-size: 18px; line-height: 1.5; margin-bottom: 20px;">
+                        ${welcomeText}
+                    </div>
+                    <button id="welcome-close-btn" style="
+                        background: white;
+                        color: #1E3A8A;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    ">${buttonText}</button>
+                `;
+                
+                // 添加动画样式
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes dialogFadeIn {
+                        from {
+                            opacity: 0;
+                            transform: scale(0.8);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // 添加到容器
+                const container = document.getElementById('chatbot-container');
+                if (container) {
+                    container.appendChild(dialog);
+                } else {
+                    document.body.appendChild(dialog);
+                }
+                
+                // 添加关闭功能
+                const closeBtn = document.getElementById('welcome-close-btn');
+                
+                // 添加悬停效果
+                closeBtn.addEventListener('mouseenter', function() {
+                    this.style.background = '#f8fafc';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                });
+                
+                closeBtn.addEventListener('mouseleave', function() {
+                    this.style.background = 'white';
+                    this.style.transform = 'translateY(0px)';
+                    this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                });
+                
+                // 添加点击效果
+                closeBtn.addEventListener('mousedown', function() {
+                    this.style.transform = 'translateY(0px) scale(0.95)';
+                    this.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)';
+                });
+                
+                closeBtn.addEventListener('mouseup', function() {
+                    this.style.transform = 'translateY(-2px) scale(1)';
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                });
+                
+                // 添加点击关闭功能
+                closeBtn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.9)';
+                    this.style.transition = 'transform 0.1s ease';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                        dialog.style.animation = 'dialogFadeOut 0.3s ease-in forwards';
+                        
+                        setTimeout(() => {
+                            if (container && container.contains(dialog)) {
+                                container.removeChild(dialog);
+                            } else if (document.body.contains(dialog)) {
+                                document.body.removeChild(dialog);
+                            }
+                            welcomeDialog = null; // 清除引用
+                        }, 300);
+                    }, 100);
+                });
+                
+                // 添加淡出动画
+                const fadeOutStyle = document.createElement('style');
+                fadeOutStyle.textContent = `
+                    @keyframes dialogFadeOut {
+                        from {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                        to {
+                            opacity: 0;
+                            transform: scale(0.8);
+                        }
+                    }
+                `;
+                document.head.appendChild(fadeOutStyle);
+            }
+
+            waitForElement('#dify-chatbot-bubble-button', function(button) {
+                applyCustomStyles();
+                
+                // 添加点击事件监听器
+                button.addEventListener('click', function(e) {
+                    // 阻止默认行为，防止页面跳转
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // 按钮点击动画
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                    
+                    // 立即更新聊天框位置
+                    setTimeout(() => {
+                        updateChatbotPosition();
+                    }, 50);
+                });
+                
+                // 显示欢迎对话框
+                setTimeout(showWelcomeDialog, 2000);
+            });
+        });
+    </script>
+
+</body>
+</html> 
