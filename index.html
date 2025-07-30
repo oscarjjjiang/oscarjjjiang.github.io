@@ -481,7 +481,6 @@
         
         // 触摸事件
         section.addEventListener('touchmove', (e) => {
-          e.preventDefault();
           const rect = this.canvas.getBoundingClientRect();
           const touch = e.touches[0];
           this.mouse.x = touch.clientX - rect.left;
@@ -749,6 +748,14 @@
       }, 100);
       
       setTimeout(initParticles, 1000); // 延迟初始化确保动画完成
+      
+      // 移动端滚动优化
+      if ('ontouchstart' in window) {
+        // 确保移动端滚动正常工作
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        document.addEventListener('touchmove', function() {}, {passive: true});
+        document.addEventListener('touchend', function() {}, {passive: true});
+      }
     });
     
     // 窗口大小改变时重新检查

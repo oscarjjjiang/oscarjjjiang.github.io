@@ -245,7 +245,7 @@ body {
 /* 区块样式 */
 .section {
   padding: 0 8vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,7 +257,7 @@ body {
 
 /* 优势页面特殊处理，增加高度以容纳技术优势部分 */
 .section[data-section="advantages"] {
-  height: 120vh;
+  min-height: 120vh;
   align-items: flex-start;
   padding-top: 10vh;
 }
@@ -269,7 +269,7 @@ body {
 
 /* 首页区块 */
 .hero-section {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
