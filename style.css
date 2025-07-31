@@ -1,8 +1,8 @@
 body { 
   font-family: 'Roboto', 'Noto Sans SC', Arial, sans-serif; 
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('tech-bg.webp');
-  background-size: 100% auto;
-  background-position: center top;
+  background-size: 95% auto;
+  background-position: center 20%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: #222; 
@@ -1214,8 +1214,8 @@ body {
   
   /* 平板端背景调整 */
   body {
-    background-size: 110% auto;
-    background-position: center top;
+    background-size: 105% auto;
+    background-position: center 20%;
     background-attachment: fixed;
   }
   
@@ -1297,8 +1297,8 @@ body {
   
   /* 移动端背景调整 */
   body {
-    background-size: 120% auto;
-    background-position: center top;
+    background-size: 115% auto;
+    background-position: center 20%;
     background-attachment: scroll;
   }
   
@@ -1617,8 +1617,8 @@ body {
 @media (max-width: 480px) {
   /* 小屏移动端背景调整 */
   body {
-    background-size: 140% auto;
-    background-position: center top;
+    background-size: 135% auto;
+    background-position: center 20%;
     background-attachment: scroll;
   }
   
