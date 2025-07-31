@@ -1,8 +1,9 @@
 body { 
   font-family: 'Roboto', 'Noto Sans SC', Arial, sans-serif; 
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('tech-bg.webp');
-  background-size: cover;
-  background-position: center;
+  background-size: 80% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
   background-attachment: scroll;
   color: #222; 
   margin: 0; 
@@ -1211,6 +1212,12 @@ body {
     -webkit-overflow-scrolling: touch;
   }
   
+  /* 平板端背景调整 */
+  body {
+    background-size: 90% auto;
+    background-position: center top;
+  }
+  
   .header { padding: 18px 4vw; }
   .logo { font-size: 2.4rem; }
   .hero-title { font-size: 3.8rem; }
@@ -1285,6 +1292,12 @@ body {
     -webkit-overflow-scrolling: touch;
     height: auto;
     min-height: 100vh;
+  }
+  
+  /* 移动端背景调整 */
+  body {
+    background-size: 100% auto;
+    background-position: center top;
   }
   
   .main-content {
@@ -1600,6 +1613,12 @@ body {
 
 /* 移动端额外优化 */
 @media (max-width: 480px) {
+  /* 小屏移动端背景调整 */
+  body {
+    background-size: 120% auto;
+    background-position: center top;
+  }
+  
   .mobile-nav-menu {
     width: 100%;
     right: -100%;
