@@ -779,14 +779,18 @@
         timeout = setTimeout(later, wait);
       };
     }
-
+    
+    // 防抖处理的窗口大小变化
+    const debouncedHandleResize = debounce(handleResize, 250);
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', debouncedHandleResize);
+    
     // 监听滚动事件（带防抖）
     window.addEventListener('scroll', debounce(() => {
       checkVisibility();
     }, 100));
     
-
-
     // 页面加载时检查一次并初始化粒子
     window.addEventListener('load', () => {
       checkVisibility();
@@ -797,6 +801,9 @@
       }, 100);
       
       setTimeout(initParticles, 1000); // 延迟初始化确保动画完成
+      
+      // 检查并关闭移动端菜单（如果在桌面端）
+      checkAndCloseMobileMenu();
       
       // 移动端滚动优化
       if ('ontouchstart' in window) {
@@ -890,7 +897,6 @@
     // 窗口大小改变时重新检查
     window.addEventListener('resize', () => {
       checkVisibility();
-      handleResize();
     });
 
 
@@ -995,10 +1001,50 @@
       document.body.style.overflow = 'auto';
     }
     
+    // 检测是否为移动端
+    function isMobile() {
+      return window.innerWidth <= 600;
+    }
+    
+    // 基于CSS媒体查询的更精确检测
+    function isMobileByMediaQuery() {
+      return window.matchMedia('(max-width: 600px)').matches;
+    }
+    
+    // 屏幕尺寸变化时自动关闭移动端菜单
+    function handleResize() {
+      if (!isMobileByMediaQuery() && mobileNavMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    }
+    
+    // 设备方向变化时也关闭移动端菜单
+    function handleOrientationChange() {
+      // 延迟执行，确保方向变化完成
+      setTimeout(() => {
+        if (!isMobileByMediaQuery() && mobileNavMenu.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      }, 100);
+    }
+    
+    // 页面加载时检查并关闭移动端菜单
+    function checkAndCloseMobileMenu() {
+      if (!isMobileByMediaQuery() && mobileNavMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    }
+    
     // 绑定事件
     mobileMenuToggle.addEventListener('click', openMobileMenu);
     mobileNavClose.addEventListener('click', closeMobileMenu);
     overlay.addEventListener('click', closeMobileMenu);
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', handleResize);
+    
+    // 监听设备方向变化
+    window.addEventListener('orientationchange', handleOrientationChange);
     
     // 移动端导航项点击事件
     mobileNavItems.forEach(item => {
