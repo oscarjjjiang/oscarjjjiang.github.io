@@ -20,6 +20,14 @@
         <span class="lang-zh" style="display: none;">English</span>
         <span class="lang-en">中文</span>
     </button>
+    
+    <!-- 移动端汉堡菜单按钮 -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    
     <nav class="nav-menu">
       <a href="#home" class="nav-item">
         <div class="hexagon">
@@ -52,6 +60,36 @@
         </div>
       </a>
     </nav>
+    
+    <!-- 移动端导航菜单 -->
+    <nav class="mobile-nav-menu" id="mobile-nav-menu">
+      <div class="mobile-nav-header">
+        <span class="mobile-nav-title">菜单</span>
+        <button class="mobile-nav-close" id="mobile-nav-close">×</button>
+      </div>
+      <div class="mobile-nav-items">
+        <a href="#home" class="mobile-nav-item">
+          <span class="mobile-nav-text-zh" style="display:none;">首页</span>
+          <span class="mobile-nav-text-en">Home</span>
+        </a>
+        <a href="#services" class="mobile-nav-item">
+          <span class="mobile-nav-text-zh" style="display:none;">服务</span>
+          <span class="mobile-nav-text-en">Services</span>
+        </a>
+        <a href="#advantages" class="mobile-nav-item">
+          <span class="mobile-nav-text-zh" style="display:none;">优势</span>
+          <span class="mobile-nav-text-en">Advantages</span>
+        </a>
+        <a href="#company" class="mobile-nav-item">
+          <span class="mobile-nav-text-zh" style="display:none;">公司</span>
+          <span class="mobile-nav-text-en">Company</span>
+        </a>
+        <a href="#pricing" class="mobile-nav-item">
+          <span class="mobile-nav-text-zh" style="display:none;">价格</span>
+          <span class="mobile-nav-text-en">Pricing</span>
+        </a>
+      </div>
+    </nav>
   </header>
   
   <main class="main-content">
@@ -70,11 +108,6 @@
         <div class="scroll-indicator">
           <div class="scroll-arrow"></div>
           <span class="scroll-text">向下滑动</span>
-        </div>
-        
-        <!-- 移动端滚动测试按钮 -->
-        <div class="mobile-scroll-test" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: red; color: white; padding: 10px; border-radius: 5px; font-size: 12px; display: none;">
-          测试滚动
         </div>
       </div>
 
@@ -621,6 +654,9 @@
         // 切换导航栏文本
         document.querySelectorAll('.nav-text-zh').forEach(el => el.style.display = 'inline');
         document.querySelectorAll('.nav-text-en').forEach(el => el.style.display = 'none');
+        // 切换移动端导航文本
+        document.querySelectorAll('.mobile-nav-text-zh').forEach(el => el.style.display = 'inline');
+        document.querySelectorAll('.mobile-nav-text-en').forEach(el => el.style.display = 'none');
         // 切换footer文本
         document.querySelector('.footer-text-zh').style.display = 'block';
         document.querySelector('.footer-text-en').style.display = 'none';
@@ -630,10 +666,16 @@
         // 切换导航栏文本
         document.querySelectorAll('.nav-text-zh').forEach(el => el.style.display = 'none');
         document.querySelectorAll('.nav-text-en').forEach(el => el.style.display = 'inline');
+        // 切换移动端导航文本
+        document.querySelectorAll('.mobile-nav-text-zh').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.mobile-nav-text-en').forEach(el => el.style.display = 'inline');
         // 切换footer文本
         document.querySelector('.footer-text-zh').style.display = 'none';
         document.querySelector('.footer-text-en').style.display = 'block';
       }
+      
+      // 更新移动端导航文本
+      updateMobileNavText();
       
       // 重新检查可见性
       setTimeout(() => {
@@ -842,54 +884,6 @@
         document.addEventListener('touchmove', function(e) {
           // 不阻止默认行为
         }, {passive: true});
-        
-        // 移动端滚动测试和修复
-        function testAndFixMobileScroll() {
-          console.log('Testing mobile scroll...');
-          
-          // 检查页面高度
-          const bodyHeight = document.body.scrollHeight;
-          const windowHeight = window.innerHeight;
-          console.log('Body height:', bodyHeight, 'Window height:', windowHeight);
-          
-          // 如果页面内容不够高，强制添加高度
-          if (bodyHeight <= windowHeight) {
-            console.log('Page too short, adding content height');
-            document.body.style.minHeight = (windowHeight * 2) + 'px';
-          }
-          
-          // 强制启用所有滚动
-          const allElements = document.querySelectorAll('*');
-          allElements.forEach(el => {
-            if (el.style.overflow === 'hidden') {
-              el.style.overflow = 'auto';
-            }
-          });
-          
-          // 测试滚动功能
-          setTimeout(() => {
-            window.scrollTo(0, 100);
-            setTimeout(() => {
-              window.scrollTo(0, 0);
-            }, 100);
-          }, 1000);
-        }
-        
-        // 执行测试和修复
-        testAndFixMobileScroll();
-        
-        // 显示移动端滚动测试按钮
-        const testButton = document.querySelector('.mobile-scroll-test');
-        if (testButton) {
-          testButton.style.display = 'block';
-          testButton.addEventListener('click', function() {
-            console.log('Manual scroll test triggered');
-            window.scrollTo(0, 500);
-            setTimeout(() => {
-              window.scrollTo(0, 0);
-            }, 1000);
-          });
-        }
       }
     });
     
@@ -973,6 +967,90 @@
         }
       }
     });
+
+    // 移动端导航菜单功能
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNavMenu = document.getElementById('mobile-nav-menu');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+    
+    // 创建遮罩层
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-nav-overlay';
+    document.body.appendChild(overlay);
+    
+    // 打开移动端菜单
+    function openMobileMenu() {
+      mobileMenuToggle.classList.add('active');
+      mobileNavMenu.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // 关闭移动端菜单
+    function closeMobileMenu() {
+      mobileMenuToggle.classList.remove('active');
+      mobileNavMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // 绑定事件
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    mobileNavClose.addEventListener('click', closeMobileMenu);
+    overlay.addEventListener('click', closeMobileMenu);
+    
+    // 移动端导航项点击事件
+    mobileNavItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        
+        // 根据当前语言选择正确的section
+        let targetSection;
+        if (currentLang === 'zh') {
+          targetSection = document.querySelector(`[data-section="${targetId}"][id$="-zh"]`);
+        } else {
+          targetSection = document.querySelector(`[data-section="${targetId}"][id$="-en"]`);
+        }
+        
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 关闭移动端菜单
+        closeMobileMenu();
+      });
+    });
+    
+    // 语言切换时更新移动端导航文本
+    function updateMobileNavText() {
+      const mobileNavTexts = document.querySelectorAll('.mobile-nav-text-zh, .mobile-nav-text-en');
+      mobileNavTexts.forEach(text => {
+        if (currentLang === 'zh') {
+          if (text.classList.contains('mobile-nav-text-zh')) {
+            text.style.display = 'block';
+          } else {
+            text.style.display = 'none';
+          }
+        } else {
+          if (text.classList.contains('mobile-nav-text-en')) {
+            text.style.display = 'block';
+          } else {
+            text.style.display = 'none';
+          }
+        }
+      });
+      
+      // 更新移动端菜单标题
+      const mobileNavTitle = document.querySelector('.mobile-nav-title');
+      if (mobileNavTitle) {
+        mobileNavTitle.textContent = currentLang === 'zh' ? '菜单' : 'Menu';
+      }
+    }
+    
+    // 初始更新移动端导航文本
+    updateMobileNavText();
   </script>
 
   <!-- 聊天机器人样式 -->
