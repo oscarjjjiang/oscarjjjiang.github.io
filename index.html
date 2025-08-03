@@ -134,7 +134,7 @@
             <h1 class="hero-title">Octopod AI</h1>
             <canvas id="particles-canvas-en" class="particles-canvas"></canvas>
           </div>
-          <h2 class="hero-subtitle">Empowering Businesses with Intelligent Automation</h2>
+          <h2 class="hero-subtitle">Empowering Small Businesses with Intelligent Automation</h2>
           <div class="vision-section">
             <h3 class="vision-title">💡 About Us</h3>
             <p class="vision-text">Octopod AI is an AI studio focused on building customized intelligent automation systems for small and medium-sized businesses. We integrate multi-agent AI and large language models (LLMs) into automated workflows and customer service, helping businesses reduce operational costs, improve efficiency, and free up human resources.</p>
@@ -531,18 +531,18 @@
           this.mouse.y = this.canvas.height / 2;
         });
         
-        // 触摸事件
+        // 触摸事件 - 使用passive: true避免阻止滚动
         section.addEventListener('touchmove', (e) => {
           const rect = this.canvas.getBoundingClientRect();
           const touch = e.touches[0];
           this.mouse.x = touch.clientX - rect.left;
           this.mouse.y = touch.clientY - rect.top;
-        });
+        }, {passive: true});
         
         section.addEventListener('touchend', () => {
           this.mouse.x = this.canvas.width / 2;
           this.mouse.y = this.canvas.height / 2;
-        });
+        }, {passive: true});
       }
       
       updateParticles() {
@@ -817,92 +817,79 @@
       // 检查并关闭移动端菜单（如果在桌面端）
       checkAndCloseMobileMenu();
       
-      // 移动端滚动优化
+      // 移动端滚动修复
+      if ('ontouchstart' in window) {
+        // 确保移动端滚动正常工作
+        setTimeout(() => {
+          document.body.style.overflow = 'auto';
+          document.body.style.webkitOverflowScrolling = 'touch';
+          document.documentElement.style.overflow = 'auto';
+          document.documentElement.style.webkitOverflowScrolling = 'touch';
+        }, 100);
+      }
+      
+      // 移动端滚动优化 - 简化版本
       if ('ontouchstart' in window) {
         // 确保移动端滚动正常工作
         document.addEventListener('touchstart', function() {}, {passive: true});
         document.addEventListener('touchmove', function() {}, {passive: true});
         document.addEventListener('touchend', function() {}, {passive: true});
         
-        // 强制启用滚动
+        // 确保页面可以滚动
         document.body.style.overflow = 'auto';
         document.body.style.webkitOverflowScrolling = 'touch';
         document.documentElement.style.overflow = 'auto';
         document.documentElement.style.webkitOverflowScrolling = 'touch';
         
-        // 移除任何可能阻止滚动的事件监听器
-        document.addEventListener('touchmove', function(e) {
-          // 确保不会阻止滚动
-        }, {passive: true});
+        // 确保所有section都可以滚动
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+          section.style.overflow = 'auto';
+          section.style.webkitOverflowScrolling = 'touch';
+          section.style.touchAction = 'pan-y';
+        });
         
-        // 移动端滚动修复函数
-        function fixMobileScroll() {
-          // 确保body可以滚动
-          document.body.style.overflow = 'auto';
-          document.body.style.webkitOverflowScrolling = 'touch';
-          
-          // 确保所有section都可以滚动
-          const sections = document.querySelectorAll('.section');
-          sections.forEach(section => {
-            section.style.overflow = 'auto';
-            section.style.webkitOverflowScrolling = 'touch';
-            section.style.touchAction = 'pan-y';
-          });
-          
-          // 确保hero-section可以滚动
-          const heroSections = document.querySelectorAll('.hero-section');
-          heroSections.forEach(hero => {
-            hero.style.overflow = 'auto';
-            hero.style.webkitOverflowScrolling = 'touch';
-            hero.style.touchAction = 'pan-y';
-          });
+        // 确保hero-section可以滚动
+        const heroSections = document.querySelectorAll('.hero-section');
+        heroSections.forEach(hero => {
+          hero.style.overflow = 'auto';
+          hero.style.webkitOverflowScrolling = 'touch';
+          hero.style.touchAction = 'pan-y';
+        });
+        
+        // 确保main-content可以滚动
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+          mainContent.style.overflow = 'auto';
+          mainContent.style.webkitOverflowScrolling = 'touch';
+          mainContent.style.touchAction = 'pan-y';
         }
         
-        // 立即执行一次
-        fixMobileScroll();
+        // 强制确保body和html可以滚动
+        document.body.style.overflow = 'auto';
+        document.body.style.webkitOverflowScrolling = 'touch';
+        document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.webkitOverflowScrolling = 'touch';
         
-        // 延迟执行确保DOM完全加载
-        setTimeout(fixMobileScroll, 100);
-        setTimeout(fixMobileScroll, 500);
-        
-        // 添加更强的移动端滚动修复
-        function forceMobileScroll() {
-          // 移除所有可能阻止滚动的事件
-          document.removeEventListener('touchmove', function(){}, true);
-          document.removeEventListener('touchstart', function(){}, true);
-          
-          // 强制设置滚动属性
-          const style = document.createElement('style');
-          style.textContent = `
+        // 添加CSS样式确保移动端滚动正常
+        const mobileScrollStyle = document.createElement('style');
+        mobileScrollStyle.textContent = `
+          @media (max-width: 600px) {
             html, body {
               overflow-y: auto !important;
               -webkit-overflow-scrolling: touch !important;
               height: auto !important;
               min-height: 100vh !important;
             }
-            .section, .hero-section {
+            .main-content, .section, .hero-section {
               overflow-y: auto !important;
               -webkit-overflow-scrolling: touch !important;
               height: auto !important;
               min-height: 100vh !important;
             }
-          `;
-          document.head.appendChild(style);
-          
-          // 确保页面可以滚动
-          document.body.style.height = 'auto';
-          document.body.style.overflow = 'auto';
-          document.documentElement.style.height = 'auto';
-          document.documentElement.style.overflow = 'auto';
-        }
-        
-        // 执行强制修复
-        forceMobileScroll();
-        
-        // 监听触摸事件，确保滚动正常
-        document.addEventListener('touchmove', function(e) {
-          // 不阻止默认行为
-        }, {passive: true});
+          }
+        `;
+        document.head.appendChild(mobileScrollStyle);
       }
     });
     
@@ -1002,7 +989,10 @@
       mobileMenuToggle.classList.add('active');
       mobileNavMenu.classList.add('active');
       overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      // 在移动端不设置overflow hidden，避免滚动问题
+      if (window.innerWidth > 600) {
+        document.body.style.overflow = 'hidden';
+      }
     }
     
     // 关闭移动端菜单
@@ -1113,9 +1103,9 @@
 
   <!-- 聊天机器人样式 -->
   <style>
-    /* 固定聊天机器人按钮样式 - 使用absolute定位 */
+    /* 固定聊天机器人按钮样式 - 使用fixed定位 */
     #dify-chatbot-bubble-button {
-        position: absolute !important;
+        position: fixed !important;
         width: 60px !important;
         height: 60px !important;
         background: linear-gradient(135deg, #FF6B9D, #FF8C42) !important;
@@ -1170,9 +1160,9 @@
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
     }
     
-    /* 聊天窗口样式 - 使用absolute定位 */
+    /* 聊天窗口样式 - 使用fixed定位 */
     #dify-chatbot-bubble-window {
-        position: absolute !important;
+        position: fixed !important;
         width: 380px !important;
         height: 600px !important;
         max-height: 80vh !important;
@@ -1190,6 +1180,57 @@
     #dify-chatbot-bubble-window {
         transform: scale(1) !important;
         opacity: 1 !important;
+    }
+    
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+        #dify-chatbot-bubble-button {
+            width: 50px !important;
+            height: 50px !important;
+            right: 15px !important;
+            bottom: 15px !important;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 99999 !important;
+        }
+        
+        #dify-chatbot-bubble-button::before {
+            font-size: 25px !important;
+        }
+        
+        #dify-chatbot-bubble-window {
+            width: 90vw !important;
+            height: 70vh !important;
+            right: 5vw !important;
+            bottom: 80px !important;
+            left: 5vw !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #dify-chatbot-bubble-button {
+            width: 45px !important;
+            height: 45px !important;
+            right: 10px !important;
+            bottom: 10px !important;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 99999 !important;
+        }
+        
+        #dify-chatbot-bubble-button::before {
+            font-size: 22px !important;
+        }
+        
+        #dify-chatbot-bubble-window {
+            width: 95vw !important;
+            height: 75vh !important;
+            right: 2.5vw !important;
+            bottom: 70px !important;
+            left: 2.5vw !important;
+        }
     }
   </style>
 
@@ -1211,27 +1252,53 @@
       function updateChatbotPosition() {
           const viewportWidth = window.innerWidth;
           const viewportHeight = window.innerHeight;
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+          const isMobile = viewportWidth <= 768;
+          const isSmallMobile = viewportWidth <= 480;
           
-          // 设置按钮位置（右下角）
+          // 设置按钮位置（右下角，使用fixed定位）
           if (chatbotButton) {
-              chatbotButton.style.left = (scrollLeft + viewportWidth - 80) + 'px';
-              chatbotButton.style.top = (scrollTop + viewportHeight - 80) + 'px';
+              chatbotButton.style.position = 'fixed';
+              chatbotButton.style.right = isSmallMobile ? '10px' : (isMobile ? '15px' : '20px');
+              chatbotButton.style.bottom = isSmallMobile ? '10px' : (isMobile ? '15px' : '20px');
+              chatbotButton.style.left = 'auto';
+              chatbotButton.style.top = 'auto';
+              chatbotButton.style.zIndex = '99999';
+              chatbotButton.style.display = 'flex';
           }
           
-          // 设置对话框位置（按钮左上方）
+          // 设置对话框位置（按钮左上方，使用fixed定位）
           if (chatbotWindow) {
-              chatbotWindow.style.left = (scrollLeft + viewportWidth - 400) + 'px';
-              chatbotWindow.style.top = (scrollTop + viewportHeight - 690) + 'px';
+              chatbotWindow.style.position = 'fixed';
+              if (isSmallMobile) {
+                  chatbotWindow.style.width = '95vw';
+                  chatbotWindow.style.height = '75vh';
+                  chatbotWindow.style.right = '2.5vw';
+                  chatbotWindow.style.bottom = '70px';
+                  chatbotWindow.style.left = '2.5vw';
+              } else if (isMobile) {
+                  chatbotWindow.style.width = '90vw';
+                  chatbotWindow.style.height = '70vh';
+                  chatbotWindow.style.right = '5vw';
+                  chatbotWindow.style.bottom = '80px';
+                  chatbotWindow.style.left = '5vw';
+              } else {
+                  chatbotWindow.style.right = '90px';
+                  chatbotWindow.style.bottom = '20px';
+                  chatbotWindow.style.left = 'auto';
+              }
+              chatbotWindow.style.top = 'auto';
+              chatbotWindow.style.zIndex = '99998';
           }
           
-          // 设置欢迎对话框位置（按钮左侧）
+          // 设置欢迎对话框位置（按钮左侧，使用fixed定位）
           if (welcomeDialog) {
-              const dialogWidth = 350;
-              const dialogHeight = 200;
-              welcomeDialog.style.left = (scrollLeft + viewportWidth - dialogWidth - 130) + 'px';
-              welcomeDialog.style.top = (scrollTop + viewportHeight - dialogHeight - 90) + 'px';
+              const dialogWidth = isSmallMobile ? 300 : (isMobile ? 320 : 350);
+              welcomeDialog.style.position = 'fixed';
+              welcomeDialog.style.right = isSmallMobile ? '60px' : (isMobile ? '70px' : '90px');
+              welcomeDialog.style.bottom = isSmallMobile ? '10px' : (isMobile ? '15px' : '20px');
+              welcomeDialog.style.left = 'auto';
+              welcomeDialog.style.top = 'auto';
+              welcomeDialog.style.zIndex = '100001';
           }
       }
       
@@ -1242,6 +1309,10 @@
           
           if (chatbotButton && container) {
               container.appendChild(chatbotButton);
+              // 确保按钮可见
+              chatbotButton.style.display = 'flex';
+              chatbotButton.style.visibility = 'visible';
+              chatbotButton.style.opacity = '1';
               updateChatbotPosition();
           }
           if (chatbotWindow && container) {
@@ -1249,12 +1320,21 @@
               updateChatbotPosition();
           }
           
-          // 监听滚动和窗口大小变化
-          window.addEventListener('scroll', updateChatbotPosition);
+          // 监听窗口大小变化
           window.addEventListener('resize', updateChatbotPosition);
           
           // 立即更新位置
           updateChatbotPosition();
+          
+          // 确保聊天机器人可见
+          setTimeout(() => {
+              if (chatbotButton) {
+                  chatbotButton.style.display = 'flex';
+                  chatbotButton.style.visibility = 'visible';
+                  chatbotButton.style.opacity = '1';
+                  updateChatbotPosition();
+              }
+          }, 1000);
       }
       
       document.addEventListener('DOMContentLoaded', function() {
@@ -1268,7 +1348,229 @@
                   clearInterval(checkInterval);
               }
           }, 1000);
+          
+          // 延迟显示欢迎对话框
+          setTimeout(() => {
+              showWelcomeDialog();
+          }, 2000);
       });
+      
+      // 全局标志位，确保对话框只显示一次
+      let globalWelcomeShown = false;
+      
+      // 显示欢迎对话框
+      function showWelcomeDialog() {
+          // 如果已经显示过，直接返回
+          if (globalWelcomeShown) {
+              return;
+          }
+          
+          // 设置标志位
+          globalWelcomeShown = true;
+          
+          // 检测浏览器语言
+          const userLanguage = navigator.language || navigator.userLanguage;
+          const isChinese = userLanguage.startsWith('zh');
+          
+          // 根据语言设置文本内容
+          const welcomeText = isChinese 
+              ? "你好！我是OTTO，我可以为您介绍Octopod AI。我也是Octochat的产品演示。"
+              : "Hi, I'm OTTO, I can introduce you to Octopod AI. I am also the product demo of Octochat.";
+          
+          const buttonText = isChinese ? "知道了！" : "Got it!";
+          
+          // 获取按钮
+          const button = document.querySelector('#dify-chatbot-bubble-button');
+          if (!button) return;
+          
+          // 检查是否已经存在对话框
+          const existingDialog = document.querySelector('#welcome-close-btn')?.closest('div');
+          if (existingDialog) {
+              return;
+          }
+          
+          // 使用fixed定位计算初始位置
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          const isMobile = viewportWidth <= 768;
+          const isSmallMobile = viewportWidth <= 480;
+          
+          const dialogWidth = isSmallMobile ? 300 : (isMobile ? 320 : 350);
+          const dialogHeight = 200;
+          
+          // 创建对话框元素
+          const dialog = document.createElement('div');
+          welcomeDialog = dialog; // 保存引用以便实时更新位置
+          
+          dialog.style.cssText = `
+              position: fixed;
+              right: ${isSmallMobile ? '60px' : (isMobile ? '70px' : '90px')}px;
+              bottom: ${isSmallMobile ? '10px' : (isMobile ? '15px' : '20px')}px;
+              left: auto;
+              top: auto;
+              background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+              color: white;
+              padding: 25px;
+              border-radius: 15px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+              z-index: 100001;
+              width: ${dialogWidth}px;
+              text-align: center;
+              font-family: Arial, sans-serif;
+              animation: dialogFadeIn 0.5s ease-out;
+              pointer-events: auto;
+              display: block;
+              visibility: visible;
+              opacity: 1;
+          `;
+          
+          dialog.innerHTML = `
+              <div style="font-size: 48px; margin-bottom: 20px;">🐙</div>
+              <div style="font-size: 18px; line-height: 1.5; margin-bottom: 20px;">
+                  ${welcomeText}
+              </div>
+              <button id="welcome-close-btn" onclick="closeWelcomeDialog()" style="
+                  background: white;
+                  color: #1E3A8A;
+                  border: none;
+                  padding: 12px 24px;
+                  border-radius: 8px;
+                  font-size: 16px;
+                  font-weight: bold;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                  pointer-events: auto;
+                  z-index: 100002;
+              ">${buttonText}</button>
+          `;
+          
+          // 添加动画样式
+          const style = document.createElement('style');
+          style.textContent = `
+              @keyframes dialogFadeIn {
+                  from {
+                      opacity: 0;
+                      transform: scale(0.8);
+                  }
+                  to {
+                      opacity: 1;
+                      transform: scale(1);
+                  }
+              }
+          `;
+          document.head.appendChild(style);
+          
+          // 添加到容器
+          const container = document.getElementById('chatbot-container');
+          if (container) {
+              container.appendChild(dialog);
+          } else {
+              document.body.appendChild(dialog);
+          }
+          
+          // 添加关闭功能
+          const closeBtn = document.getElementById('welcome-close-btn');
+          
+          if (closeBtn) {
+              // 添加悬停效果
+              closeBtn.addEventListener('mouseenter', function() {
+                  this.style.background = '#f8fafc';
+                  this.style.transform = 'translateY(-2px)';
+                  this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+              });
+              
+              closeBtn.addEventListener('mouseleave', function() {
+                  this.style.background = 'white';
+                  this.style.transform = 'translateY(0px)';
+                  this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+              });
+              
+              // 添加点击效果
+              closeBtn.addEventListener('mousedown', function() {
+                  this.style.transform = 'translateY(0px) scale(0.95)';
+                  this.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)';
+              });
+              
+              closeBtn.addEventListener('mouseup', function() {
+                  this.style.transform = 'translateY(-2px) scale(1)';
+                  this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+              });
+              
+              // 添加点击关闭功能
+              closeBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  
+                  this.style.transform = 'scale(0.9)';
+                  this.style.transition = 'transform 0.1s ease';
+                  
+                  setTimeout(() => {
+                      this.style.transform = 'scale(1)';
+                      dialog.style.animation = 'dialogFadeOut 0.3s ease-in forwards';
+                      
+                      setTimeout(() => {
+                          if (container && container.contains(dialog)) {
+                              container.removeChild(dialog);
+                          } else if (document.body.contains(dialog)) {
+                              document.body.removeChild(dialog);
+                          }
+                          welcomeDialog = null; // 清除引用
+                      }, 300);
+                  }, 100);
+              });
+              
+              // 添加触摸事件支持（移动端）
+              closeBtn.addEventListener('touchstart', function(e) {
+                  e.preventDefault();
+                  this.style.transform = 'translateY(0px) scale(0.95)';
+                  this.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)';
+              }, {passive: false});
+              
+              closeBtn.addEventListener('touchend', function(e) {
+                  e.preventDefault();
+                  this.style.transform = 'translateY(-2px) scale(1)';
+                  this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+              }, {passive: false});
+              
+              closeBtn.addEventListener('touchcancel', function(e) {
+                  e.preventDefault();
+                  this.style.transform = 'translateY(0px) scale(1)';
+                  this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+              }, {passive: false});
+          }
+          
+          // 添加淡出动画
+          const fadeOutStyle = document.createElement('style');
+          fadeOutStyle.textContent = `
+              @keyframes dialogFadeOut {
+                  from {
+                      opacity: 1;
+                      transform: scale(1);
+                  }
+                  to {
+                      opacity: 0;
+                      transform: scale(0.8);
+                  }
+              }
+          `;
+          document.head.appendChild(fadeOutStyle);
+      }
+      
+      // 全局关闭欢迎对话框函数
+      function closeWelcomeDialog() {
+          const dialog = document.querySelector('#welcome-close-btn')?.closest('div');
+          if (dialog) {
+              dialog.style.animation = 'dialogFadeOut 0.3s ease-in forwards';
+              
+              setTimeout(() => {
+                  if (dialog.parentNode) {
+                      dialog.parentNode.removeChild(dialog);
+                  }
+                  welcomeDialog = null;
+              }, 300);
+          }
+      }
   </script>
   <script src="http://localhost/embed.min.js" id="UHVIMQCGqadcPFGZ" defer></script>
 
@@ -1305,6 +1607,13 @@
           
           // 等待元素加载完成后应用样式
           waitForElement('#dify-chatbot-bubble-button', applyCustomStyles);
+          
+          // 显示欢迎对话框
+          setTimeout(() => {
+              if (typeof showWelcomeDialog === 'function') {
+                  showWelcomeDialog();
+              }
+          }, 3000);
       });
   </script>
 </body>

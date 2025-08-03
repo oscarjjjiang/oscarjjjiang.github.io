@@ -1300,6 +1300,8 @@ body {
     background-size: 120% auto;
     background-position: center 30%;
     background-attachment: scroll;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   
   .main-content {

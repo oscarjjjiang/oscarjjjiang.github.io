@@ -1521,9 +1521,9 @@
 
     <!-- 聊天机器人样式 -->
     <style>
-        /* 固定聊天机器人按钮样式 - 使用absolute定位 */
+        /* 固定聊天机器人按钮样式 - 使用fixed定位 */
         #dify-chatbot-bubble-button {
-            position: absolute !important;
+            position: fixed !important;
             width: 60px !important;
             height: 60px !important;
             background: linear-gradient(135deg, #FF6B9D, #FF8C42) !important;
@@ -1578,9 +1578,9 @@
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
         }
         
-            /* 聊天窗口样式 - 使用absolute定位 */
+            /* 聊天窗口样式 - 使用fixed定位 */
     #dify-chatbot-bubble-window {
-        position: absolute !important;
+        position: fixed !important;
         width: 380px !important;
         height: 600px !important;
         max-height: 80vh !important;
@@ -1598,6 +1598,57 @@
     #dify-chatbot-bubble-window {
         transform: scale(1) !important;
         opacity: 1 !important;
+    }
+    
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+        #dify-chatbot-bubble-button {
+            width: 50px !important;
+            height: 50px !important;
+            right: 15px !important;
+            bottom: 15px !important;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 99999 !important;
+        }
+        
+        #dify-chatbot-bubble-button::before {
+            font-size: 25px !important;
+        }
+        
+        #dify-chatbot-bubble-window {
+            width: 90vw !important;
+            height: 70vh !important;
+            right: 5vw !important;
+            bottom: 80px !important;
+            left: 5vw !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #dify-chatbot-bubble-button {
+            width: 45px !important;
+            height: 45px !important;
+            right: 10px !important;
+            bottom: 10px !important;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 99999 !important;
+        }
+        
+        #dify-chatbot-bubble-button::before {
+            font-size: 22px !important;
+        }
+        
+        #dify-chatbot-bubble-window {
+            width: 95vw !important;
+            height: 75vh !important;
+            right: 2.5vw !important;
+            bottom: 70px !important;
+            left: 2.5vw !important;
+        }
     }
     </style>
 
@@ -1619,27 +1670,53 @@
         function updateChatbotPosition() {
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const isMobile = viewportWidth <= 768;
+            const isSmallMobile = viewportWidth <= 480;
             
-            // 设置按钮位置（右下角）
+            // 设置按钮位置（右下角，使用fixed定位）
             if (chatbotButton) {
-                chatbotButton.style.left = (scrollLeft + viewportWidth - 80) + 'px';
-                chatbotButton.style.top = (scrollTop + viewportHeight - 80) + 'px';
+                chatbotButton.style.position = 'fixed';
+                chatbotButton.style.right = isSmallMobile ? '10px' : (isMobile ? '15px' : '20px');
+                chatbotButton.style.bottom = isSmallMobile ? '10px' : (isMobile ? '15px' : '20px');
+                chatbotButton.style.left = 'auto';
+                chatbotButton.style.top = 'auto';
+                chatbotButton.style.zIndex = '99999';
+                chatbotButton.style.display = 'flex';
             }
             
-            // 设置对话框位置（按钮左上方）
+            // 设置对话框位置（按钮左上方，使用fixed定位）
             if (chatbotWindow) {
-                chatbotWindow.style.left = (scrollLeft + viewportWidth - 400) + 'px';
-                chatbotWindow.style.top = (scrollTop + viewportHeight - 690) + 'px';
+                chatbotWindow.style.position = 'fixed';
+                if (isSmallMobile) {
+                    chatbotWindow.style.width = '95vw';
+                    chatbotWindow.style.height = '75vh';
+                    chatbotWindow.style.right = '2.5vw';
+                    chatbotWindow.style.bottom = '70px';
+                    chatbotWindow.style.left = '2.5vw';
+                } else if (isMobile) {
+                    chatbotWindow.style.width = '90vw';
+                    chatbotWindow.style.height = '70vh';
+                    chatbotWindow.style.right = '5vw';
+                    chatbotWindow.style.bottom = '80px';
+                    chatbotWindow.style.left = '5vw';
+                } else {
+                    chatbotWindow.style.right = '90px';
+                    chatbotWindow.style.bottom = '20px';
+                    chatbotWindow.style.left = 'auto';
+                }
+                chatbotWindow.style.top = 'auto';
+                chatbotWindow.style.zIndex = '99998';
             }
             
-            // 设置欢迎对话框位置（按钮左侧）
+            // 设置欢迎对话框位置（按钮左侧，使用fixed定位）
             if (welcomeDialog) {
-                const dialogWidth = 350;
-                const dialogHeight = 200;
-                welcomeDialog.style.left = (scrollLeft + viewportWidth - dialogWidth - 130) + 'px';
-                welcomeDialog.style.top = (scrollTop + viewportHeight - dialogHeight - 90) + 'px';
+                const dialogWidth = isSmallMobile ? 300 : (isMobile ? 320 : 350);
+                welcomeDialog.style.position = 'fixed';
+                welcomeDialog.style.right = isSmallMobile ? '60px' : (isMobile ? '70px' : '90px');
+                welcomeDialog.style.bottom = isSmallMobile ? '10px' : (isMobile ? '15px' : '20px');
+                welcomeDialog.style.left = 'auto';
+                welcomeDialog.style.top = 'auto';
+                welcomeDialog.style.zIndex = '100001';
             }
         }
         
@@ -1650,6 +1727,10 @@
             
             if (chatbotButton && container) {
                 container.appendChild(chatbotButton);
+                // 确保按钮可见
+                chatbotButton.style.display = 'flex';
+                chatbotButton.style.visibility = 'visible';
+                chatbotButton.style.opacity = '1';
                 updateChatbotPosition();
             }
             if (chatbotWindow && container) {
@@ -1657,12 +1738,21 @@
                 updateChatbotPosition();
             }
             
-            // 监听滚动和窗口大小变化
-            window.addEventListener('scroll', updateChatbotPosition);
+            // 监听窗口大小变化
             window.addEventListener('resize', updateChatbotPosition);
             
             // 立即更新位置
             updateChatbotPosition();
+            
+            // 确保聊天机器人可见
+            setTimeout(() => {
+                if (chatbotButton) {
+                    chatbotButton.style.display = 'flex';
+                    chatbotButton.style.visibility = 'visible';
+                    chatbotButton.style.opacity = '1';
+                    updateChatbotPosition();
+                }
+            }, 1000);
         }
         
         document.addEventListener('DOMContentLoaded', function() {
@@ -1736,27 +1826,23 @@
                 const button = document.querySelector('#dify-chatbot-bubble-button');
                 if (!button) return;
                 
-                // 使用视口坐标计算初始位置
+                // 使用fixed定位计算初始位置
                 const viewportWidth = window.innerWidth;
                 const viewportHeight = window.innerHeight;
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
                 
                 const dialogWidth = 350;
                 const dialogHeight = 200;
-                
-                // 计算对话框初始位置
-                const dialogLeft = scrollLeft + viewportWidth - dialogWidth - 130;
-                const dialogTop = scrollTop + viewportHeight - dialogHeight - 90;
                 
                 // 创建对话框元素
                 const dialog = document.createElement('div');
                 welcomeDialog = dialog; // 保存引用以便实时更新位置
                 
                 dialog.style.cssText = `
-                    position: absolute;
-                    top: ${dialogTop}px;
-                    left: ${dialogLeft}px;
+                    position: fixed;
+                    right: 90px;
+                    bottom: 20px;
+                    left: auto;
+                    top: auto;
                     background: linear-gradient(135deg, #1E3A8A, #3B82F6);
                     color: white;
                     padding: 25px;

@@ -1593,6 +1593,57 @@
       .chat-open #dify-chatbot-bubble-button {
           background: linear-gradient(135deg, #FF5A8A, #FF7A32) !important;
       }
+      
+      /* 移动端适配 */
+      @media (max-width: 768px) {
+          #dify-chatbot-bubble-button {
+              width: 50px !important;
+              height: 50px !important;
+              right: 15px !important;
+              bottom: 15px !important;
+              display: flex !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+              z-index: 99999 !important;
+          }
+          
+          #dify-chatbot-bubble-button::before {
+              font-size: 25px !important;
+          }
+          
+          #dify-chatbot-bubble-window {
+              width: 90vw !important;
+              height: 70vh !important;
+              right: 5vw !important;
+              bottom: 80px !important;
+              left: 5vw !important;
+          }
+      }
+      
+      @media (max-width: 480px) {
+          #dify-chatbot-bubble-button {
+              width: 45px !important;
+              height: 45px !important;
+              right: 10px !important;
+              bottom: 10px !important;
+              display: flex !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+              z-index: 99999 !important;
+          }
+          
+          #dify-chatbot-bubble-button::before {
+              font-size: 22px !important;
+          }
+          
+          #dify-chatbot-bubble-window {
+              width: 95vw !important;
+              height: 75vh !important;
+              right: 2.5vw !important;
+              bottom: 70px !important;
+              left: 2.5vw !important;
+          }
+      }
     </style>
     <!-- Dify 聊天机器人嵌入代码 -->
     <script>
