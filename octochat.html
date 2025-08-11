@@ -682,6 +682,33 @@
             margin: 40px auto;
             border-radius: 2px;
         }
+        
+        /* Demo button hover effects */
+        .demo-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+            background: linear-gradient(135deg, #4ecdc4, #ff6b9d);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .demo-button:active {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -766,6 +793,18 @@
                 <div class="hero-description">
                     <span class="lang-zh" style="display: none;">为你的业务定制一位全天候、全能型"客服专家"。OctoChat 基于大语言模型（LLM）+ RAG（检索增强生成）技术，帮助你打造专属的 AI 客服助理，快速响应客户问题、提升服务效率、降低人工成本。</span>
                     <span class="lang-en">Customize a 24/7, versatile "customer service expert" for your business. OctoChat is built on Large Language Model (LLM) + RAG (Retrieval-Augmented Generation) technology, helping you create a dedicated AI customer service assistant to quickly respond to customer inquiries, improve service efficiency, and reduce labor costs.</span>
+                </div>
+                
+                <!-- Demo Link Section -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <a href="https://udify.app/chat/AkpluEZPx5cJCfh1" target="_blank" class="demo-button">
+                        <span class="lang-zh" style="display: none;">🐙 立即体验 OctoChat 演示</span>
+                        <span class="lang-en">🐙 Try OctoChat Demo Now</span>
+                    </a>
+                    <p style="color: #ffffff; opacity: 0.8; margin-top: 15px; font-size: 0.9rem;">
+                        <span class="lang-zh" style="display: none;">点击体验真实的 AI 客服对话</span>
+                        <span class="lang-en">Click to experience real AI customer service conversation</span>
+                    </p>
                 </div>
             </div>
 
@@ -1503,392 +1542,7 @@
         // 监听窗口大小变化
         window.addEventListener('resize', debounce(checkVisibility, 100));
     </script>
-    <style>
-      /* 固定聊天机器人按钮样式 */
-      #dify-chatbot-bubble-button {
-          position: fixed !important;
-          right: 20px !important;
-          bottom: 20px !important;
-          width: 60px !important;
-          height: 60px !important;
-          background: linear-gradient(135deg, #FF6B9D, #FF8C42) !important;
-          border-radius: 50% !important;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-          z-index: 9999 !important;
-          transition: all 0.3s ease !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          transform: translateZ(0) !important;
-          will-change: transform !important;
-      }
-      
-      /* 隐藏默认图标 - 更强的选择器 */
-      #dify-chatbot-bubble-button svg,
-      #dify-chatbot-bubble-button img,
-      #dify-chatbot-bubble-button .dify-chatbot-bubble-button-icon,
-      #dify-chatbot-bubble-button * {
-          display: none !important;
-          opacity: 0 !important;
-          visibility: hidden !important;
-      }
-      
-      /* 添加章鱼emoji图标 - 更强的选择器 */
-      #dify-chatbot-bubble-button::before {
-          content: "🐙" !important;
-          font-size: 30px !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          width: 100% !important;
-          height: 100% !important;
-          transform: translateX(1px) translateY(-3px) scale(1.08) !important;
-          animation: float 3s ease-in-out infinite !important;
-          z-index: 10000 !important;
-          position: relative !important;
-          filter: brightness(0) invert(1) !important;
-      }
-      
-      /* 浮动动画效果 */
-      @keyframes float {
-          0%, 100% {
-              transform: translateX(1px) translateY(-3px) scale(1.08) translateY(0px) !important;
-          }
-          50% {
-              transform: translateX(1px) translateY(-3px) scale(1.08) translateY(-5px) !important;
-          }
-      }
-      
-      #dify-chatbot-bubble-button:hover {
-          transform: scale(1.1) !important;
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
-      }
-      
-      /* 聊天窗口样式 */
-      #dify-chatbot-bubble-window {
-          position: fixed !important;
-          right: 20px !important;
-          bottom: 90px !important;
-          width: 380px !important;
-          height: 600px !important;
-          max-height: 80vh !important;
-          border-radius: 12px !important;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-          z-index: 9998 !important;
-          border: none !important;
-          display: none; /* 初始隐藏，点击按钮后显示 */
-          transform: translateZ(0) scale(0.8) !important;
-          opacity: 0;
-          transition: all 0.3s ease !important;
-          will-change: transform !important;
-      }
-      
-      /* 对话框打开时的放大效果 */
-      .chat-open #dify-chatbot-bubble-window {
-          transform: translateZ(0) scale(1) !important;
-          opacity: 1 !important;
-      }
-      
-      /* 当窗口打开时的按钮样式 */
-      .chat-open #dify-chatbot-bubble-button {
-          background: linear-gradient(135deg, #FF5A8A, #FF7A32) !important;
-      }
-      
-      /* 移动端适配 */
-      @media (max-width: 768px) {
-          #dify-chatbot-bubble-button {
-              width: 50px !important;
-              height: 50px !important;
-              right: 15px !important;
-              bottom: 15px !important;
-              display: flex !important;
-              visibility: visible !important;
-              opacity: 1 !important;
-              z-index: 99999 !important;
-          }
-          
-          #dify-chatbot-bubble-button::before {
-              font-size: 25px !important;
-          }
-          
-          #dify-chatbot-bubble-window {
-              width: 90vw !important;
-              height: 70vh !important;
-              right: 5vw !important;
-              bottom: 80px !important;
-              left: 5vw !important;
-          }
-      }
-      
-      @media (max-width: 480px) {
-          #dify-chatbot-bubble-button {
-              width: 45px !important;
-              height: 45px !important;
-              right: 10px !important;
-              bottom: 10px !important;
-              display: flex !important;
-              visibility: visible !important;
-              opacity: 1 !important;
-              z-index: 99999 !important;
-          }
-          
-          #dify-chatbot-bubble-button::before {
-              font-size: 22px !important;
-          }
-          
-          #dify-chatbot-bubble-window {
-              width: 95vw !important;
-              height: 75vh !important;
-              right: 2.5vw !important;
-              bottom: 70px !important;
-              left: 2.5vw !important;
-          }
-      }
-    </style>
-    <!-- Dify 聊天机器人嵌入代码 -->
-    <script>
-        window.difyChatbotConfig = {
-            token: 'AkpluEZPx5cJCfh1',
-            baseUrl: 'https://udify.app/embed.min.js',
-            // 可以添加其他配置项
-        };
-    </script>
-    <script src="https://udify.app/embed.min.js" id="UHVIMQCGqadcPFGZ" defer></script>
 
-    <!-- 可选：添加交互效果 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查元素是否加载完成
-            function waitForElement(selector, callback) {
-                if (document.querySelector(selector)) {
-                    callback();
-                } else {
-                    setTimeout(function() {
-                        waitForElement(selector, callback);
-                    }, 100);
-                }
-            }
-            
-            // 强制应用自定义样式
-            function applyCustomStyles() {
-                const button = document.querySelector('#dify-chatbot-bubble-button');
-                if (button) {
-                    // 隐藏所有默认内容
-                    const defaultElements = button.querySelectorAll('svg, img, .dify-chatbot-bubble-button-icon, *');
-                    defaultElements.forEach(el => {
-                        el.style.display = 'none';
-                        el.style.opacity = '0';
-                        el.style.visibility = 'hidden';
-                    });
-                    
-                    // 确保按钮有渐变背景
-                    button.style.background = 'linear-gradient(135deg, #FF6B9D, #FF8C42)';
-                }
-            }
-            
-            // 显示欢迎对话框
-            function showWelcomeDialog() {
-                // 检测浏览器语言
-                const userLanguage = navigator.language || navigator.userLanguage;
-                const isChinese = userLanguage.startsWith('zh');
-                
-                // 根据语言设置文本内容 - 默认显示英文
-                const welcomeText = isChinese 
-                    ? "Hi, I'm OTTO, I can introduce you to Octopod AI. I am also the product demo of Octochat."
-                    : "Hi, I'm OTTO, I can introduce you to Octopod AI. I am also the product demo of Octochat.";
-                
-                const buttonText = isChinese ? "Got it!" : "Got it!";
-                
-                // 获取按钮位置
-                const button = document.querySelector('#dify-chatbot-bubble-button');
-                if (!button) return;
-                
-                const buttonRect = button.getBoundingClientRect();
-                const dialogWidth = 350; // 对话框宽度
-                const dialogHeight = 200; // 对话框高度
-                
-                // 计算对话框位置（按钮左上方）
-                const dialogLeft = buttonRect.left - dialogWidth - 20; // 按钮左侧20px
-                const dialogTop = buttonRect.top - dialogHeight - 20; // 按钮上方20px
-                
-                // 创建对话框元素
-                const dialog = document.createElement('div');
-                dialog.style.cssText = `
-                    position: fixed;
-                    top: ${dialogTop}px;
-                    left: ${dialogLeft}px;
-                    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
-                    color: white;
-                    padding: 25px;
-                    border-radius: 15px;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                    z-index: 10001;
-                    width: ${dialogWidth}px;
-                    text-align: center;
-                    font-family: Arial, sans-serif;
-                    animation: dialogFadeIn 0.5s ease-out;
-                `;
-                
-                dialog.innerHTML = `
-                    <div style="font-size: 48px; margin-bottom: 20px;">🐙</div>
-                    <div style="font-size: 18px; line-height: 1.5; margin-bottom: 20px;">
-                        ${welcomeText}
-                    </div>
-                    <button id="welcome-close-btn" style="
-                        background: white;
-                        color: #1E3A8A;
-                        border: none;
-                        padding: 12px 24px;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                    ">${buttonText}</button>
-                `;
-                
-                // 添加动画样式
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes dialogFadeIn {
-                        from {
-                            opacity: 0;
-                            transform: scale(0.8);
-                        }
-                        to {
-                            opacity: 1;
-                            transform: scale(1);
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                // 添加到页面
-                document.body.appendChild(dialog);
-                
-                // 添加关闭功能
-                const closeBtn = document.getElementById('welcome-close-btn');
-                
-                // 添加悬停效果
-                closeBtn.addEventListener('mouseenter', function() {
-                    this.style.background = '#f8fafc';
-                    this.style.transform = 'translateY(-2px)';
-                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-                });
-                
-                closeBtn.addEventListener('mouseleave', function() {
-                    this.style.background = 'white';
-                    this.style.transform = 'translateY(0px)';
-                    this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
-                });
-                
-                // 添加点击效果
-                closeBtn.addEventListener('mousedown', function() {
-                    this.style.transform = 'translateY(0px) scale(0.95)';
-                    this.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)';
-                });
-                
-                closeBtn.addEventListener('mouseup', function() {
-                    this.style.transform = 'translateY(-2px) scale(1)';
-                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-                });
-                
-                // 添加点击关闭功能
-                closeBtn.addEventListener('click', function() {
-                    // 添加点击动画
-                    this.style.transform = 'scale(0.9)';
-                    this.style.transition = 'transform 0.1s ease';
-                    
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                        dialog.style.animation = 'dialogFadeOut 0.3s ease-in forwards';
-                        
-                        setTimeout(() => {
-                            document.body.removeChild(dialog);
-                        }, 300);
-                    }, 100);
-                });
-                
-                // 添加淡出动画
-                const fadeOutStyle = document.createElement('style');
-                fadeOutStyle.textContent = `
-                    @keyframes dialogFadeOut {
-                        from {
-                            opacity: 1;
-                            transform: scale(1);
-                        }
-                        to {
-                            opacity: 0;
-                            transform: scale(0.8);
-                        }
-                    }
-                `;
-                document.head.appendChild(fadeOutStyle);
-            }
-            
-            // 添加点击效果
-            waitForElement('#dify-chatbot-bubble-button', function() {
-                const button = document.querySelector('#dify-chatbot-bubble-button');
-                const chatWindow = document.querySelector('#dify-chatbot-bubble-window');
-                
-                // 应用自定义样式
-                applyCustomStyles();
-                
-                // 定期检查并重新应用样式（防止被覆盖）
-                setInterval(applyCustomStyles, 1000);
-                
-                button.addEventListener('click', function() {
-                    const chatWindow = document.querySelector('#dify-chatbot-bubble-window');
-                    const isOpen = document.body.classList.contains('chat-open');
-                    
-                    if (!isOpen) {
-                        // 打开对话框
-                        document.body.classList.add('chat-open');
-                        if (chatWindow) {
-                            chatWindow.style.display = 'block';
-                            // 延迟一帧后开始动画，确保display:block生效
-                            requestAnimationFrame(() => {
-                                chatWindow.style.transform = 'scale(1)';
-                                chatWindow.style.opacity = '1';
-                            });
-                        }
-                    } else {
-                        // 关闭对话框
-                        if (chatWindow) {
-                            chatWindow.style.transform = 'scale(0.8)';
-                            chatWindow.style.opacity = '0';
-                            setTimeout(() => {
-                                chatWindow.style.display = 'none';
-                                document.body.classList.remove('chat-open');
-                            }, 300);
-                        } else {
-                            document.body.classList.remove('chat-open');
-                        }
-                    }
-                    
-                    // 添加按钮点击时的放大效果
-                    this.style.transform = 'scale(1.2)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 200);
-                });
-                
-                // 延迟显示欢迎对话框
-                setTimeout(showWelcomeDialog, 2000);
-                
-                // 添加语言切换功能
-                function switchLanguage(language) {
-                    // 直接重新显示对话框
-                    setTimeout(() => {
-                        showWelcomeDialog();
-                    }, 500);
-                }
-                
-                // 每次页面加载都会显示对话框
-                // 用户刷新页面时会重新显示欢迎对话框
-            });
-        });
-    </script>
+
 </body>
 </html> 
