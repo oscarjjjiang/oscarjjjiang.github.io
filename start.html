@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octopod AI 网站启动器</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .features {
+            text-align: left;
+            margin: 30px 0;
+        }
+        .features h3 {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 8px 0;
+            color: #6b7280;
+            position: relative;
+            padding-left: 25px;
+        }
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Octopod AI" class="logo">
+        <h1>Octopod AI - 智腕人工智能科技</h1>
+        <p style="color: #6b7280; margin-bottom: 30px;">现代化双语公司网站已准备就绪</p>
+        
+        <a href="index.html" class="btn">🚀 启动网站</a>
+        <a href="otto-ai.html" class="btn" style="background: #7c3aed;">🤖 OTTO产品</a>
+        <a href="octoflow.html" class="btn" style="background: #3b82f6;">⚙️ OctoFlow系统</a>
+        <a href="README.md" class="btn" style="background: #10b981;">📖 查看文档</a>
+        
+        <div class="features">
+            <h3>✨ 主要功能</h3>
+            <ul>
+                <li>完整的中英文双语切换</li>
+                <li>响应式设计，支持所有设备</li>
+                <li>现代化UI/UX设计</li>
+                <li>产品展示和解决方案介绍</li>
+                <li>联系表单和验证</li>
+                <li>平滑动画和交互效果</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f9fafb; border-radius: 10px;">
+            <h4 style="margin: 0 0 10px 0; color: #1f2937;">💡 使用提示</h4>
+            <p style="margin: 0; color: #6b7280; font-size: 0.9rem;">
+                点击右上角的语言切换按钮可以在中英文之间切换。<br>
+                使用 Ctrl/Cmd + L 快捷键也可以快速切换语言。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

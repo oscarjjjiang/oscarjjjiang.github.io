@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTTO专注陪伴玩具 - Octopod AI</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="otto-ai.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Octopod AI" class="logo-img">
+                <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-zh="首页" data-en="Home">首页</a>
+                <a href="index.html#products" class="nav-link" data-zh="产品" data-en="Products">产品</a>
+                <a href="index.html#solutions" class="nav-link" data-zh="解决方案" data-en="Solutions">解决方案</a>
+                <a href="index.html#about" class="nav-link" data-zh="关于我们" data-en="About">关于我们</a>
+                <a href="index.html#contact" class="nav-link" data-zh="联系我们" data-en="Contact">联系我们</a>
+            </div>
+            <div class="nav-actions">
+                <button class="language-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span data-zh="EN" data-en="中文">EN</span>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="otto-hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge" data-zh="AI专注陪伴玩具" data-en="AI Focus Companion Toy">AI专注陪伴玩具</div>
+                    <h1 class="hero-title">
+                        <span data-zh="OTTO" data-en="OTTO">OTTO</span><br>
+                        <span data-zh="你的专注伙伴" data-en="Your Focus Partner">你的专注伙伴</span>
+                    </h1>
+                    <p class="hero-subtitle" data-zh="在注意力稀缺的时代，OTTO帮助你重建专注力，提升学习与工作效率，同时提供温暖的陪伴与情感支持。" data-en="In an era of attention scarcity, OTTO helps you rebuild focus, improve learning and work efficiency, while providing warm companionship and emotional support.">在注意力稀缺的时代，OTTO帮助你重建专注力，提升学习与工作效率，同时提供温暖的陪伴与情感支持。</p>
+                    <div class="hero-buttons">
+                        <a href="#features" class="btn btn-primary" data-zh="了解功能" data-en="Explore Features">了解功能</a>
+                        <a href="#contact" class="btn btn-secondary" data-zh="预约体验" data-en="Book Demo">预约体验</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="otto-device">
+                        <div class="device-body">
+                            <div class="device-face">
+                                <div class="eyes">
+                                    <div class="eye left-eye"></div>
+                                    <div class="eye right-eye"></div>
+                                </div>
+                                <div class="mouth"></div>
+                            </div>
+                            <div class="device-base"></div>
+                        </div>
+                        <div class="glow-effect"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Propositions -->
+    <section class="value-props">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="核心价值" data-en="Core Values">核心价值</h2>
+                <p class="section-subtitle" data-zh="三重价值，让专注成为你的超能力" data-en="Triple value, making focus your superpower">三重价值，让专注成为你的超能力</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-zh="注意力训练" data-en="Attention Training">注意力训练</h3>
+                    <p data-zh="结合番茄工作法、冥想练习和行为心理学原理，系统性提升专注力，从根本上解决注意力稀缺问题。" data-en="Combining the Pomodoro Technique, meditation exercises, and behavioral psychology principles to systematically improve focus and fundamentally solve attention scarcity issues.">结合番茄工作法、冥想练习和行为心理学原理，系统性提升专注力，从根本上解决注意力稀缺问题。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-zh="效率提升" data-en="Efficiency Enhancement">效率提升</h3>
+                    <p data-zh="通过即时监督和动态专注机制，帮助用户快速进入专注状态，减少分心，实现高质量的学习和工作产出。" data-en="Through real-time supervision and dynamic focus mechanisms, helping users quickly enter a focused state, reduce distractions, and achieve high-quality learning and work output.">通过即时监督和动态专注机制，帮助用户快速进入专注状态，减少分心，实现高质量的学习和工作产出。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 data-zh="心理陪伴" data-en="Emotional Companionship">心理陪伴</h3>
+                    <p data-zh="拟人化设计提供温暖陪伴，通过灯光、声音和表情互动，缓解孤独感，提供持续的情感支持。" data-en="Humanized design provides warm companionship through light, sound, and facial expressions, alleviating loneliness and providing continuous emotional support.">拟人化设计提供温暖陪伴，通过灯光、声音和表情互动，缓解孤独感，提供持续的情感支持。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="核心功能" data-en="Core Features">核心功能</h2>
+                <p class="section-subtitle" data-zh="科学训练 + 效率优化 + 情感陪伴的综合解决方案" data-en="A comprehensive solution combining scientific training + efficiency optimization + emotional companionship">科学训练 + 效率优化 + 情感陪伴的综合解决方案</p>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="专注模式" data-en="Focus Mode">专注模式</h3>
+                            <p data-zh="基于番茄钟工作法（15-40分钟可调），结合计算机视觉检测用户行为，提供即时反馈和积分奖励。" data-en="Based on the Pomodoro Technique (15-40 minutes adjustable), combined with computer vision to detect user behavior, providing instant feedback and point rewards.">基于番茄钟工作法（15-40分钟可调），结合计算机视觉检测用户行为，提供即时反馈和积分奖励。</p>
+                            <ul class="feature-details">
+                                <li data-zh="离座/玩手机检测 → 温和提醒加扣分" data-en="Leave seat/phone usage detection → gentle reminder with point deduction">离座/玩手机检测 → 温和提醒加扣分</li>
+                                <li data-zh="5分钟节点 → 声光小提示" data-en="5-minute milestone → audio-visual cues">5分钟节点 → 声光小提示</li>
+                                <li data-zh="完成番茄钟 → 动画奖励+积分" data-en="Complete Pomodoro → animation reward + points">完成番茄钟 → 动画奖励+积分</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="focus-demo">
+                            <div class="timer-display">25:00</div>
+                            <div class="progress-ring">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="冥想模式" data-en="Meditation Mode">冥想模式</h3>
+                            <p data-zh="通过姿态识别检测冥想状态，引导10-15分钟的放松训练，增强大脑专注力韧性。" data-en="Through posture recognition to detect meditation state, guiding 10-15 minutes of relaxation training to enhance brain focus resilience.">通过姿态识别检测冥想状态，引导10-15分钟的放松训练，增强大脑专注力韧性。</p>
+                            <ul class="feature-details">
+                                <li data-zh="姿态识别（打坐/安静坐姿）" data-en="Posture recognition (lotus/quiet sitting)">姿态识别（打坐/安静坐姿）</li>
+                                <li data-zh="引导式冥想训练" data-en="Guided meditation training">引导式冥想训练</li>
+                                <li data-zh="完成冥想 → 积分加成" data-en="Complete meditation → bonus points">完成冥想 → 积分加成</li>
+                            </ul>
+                        </div>
+                    </div>
+                                         <div class="feature-visual">
+                         <div class="meditation-demo">
+                                                                                         <div class="meditation-person">
+                                  <div class="person-emoji">🧘</div>
+                              </div>
+                              <div class="meditation-particles">
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                              </div>
+                             
+                         </div>
+                     </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="奖励系统" data-en="Reward System">奖励系统</h3>
+                            <p data-zh="完成专注任务获得积分，可兑换现金奖励或礼品卡，让专注训练转化为实际价值。" data-en="Earn points for completing focus tasks, redeemable for cash rewards or gift cards, turning focus training into real value.">完成专注任务获得积分，可兑换现金奖励或礼品卡，让专注训练转化为实际价值。</p>
+                            <ul class="feature-details">
+                                <li data-zh="积分系统：专注/冥想获得积分" data-en="Point system: earn points for focus/meditation">积分系统：专注/冥想获得积分</li>
+                                <li data-zh="现金兑换：每个账号最高可获得50加元" data-en="Cash redemption: up to $50 CAD per account">现金兑换：单次上限50加元</li>
+                                <li data-zh="连续打卡奖励" data-en="Consecutive check-in rewards">连续打卡奖励</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="reward-demo">
+                            <div class="coins">
+                                <div class="coin"></div>
+                                <div class="coin"></div>
+                                <div class="coin"></div>
+                            </div>
+                            <div class="reward-text" data-zh="积分奖励" data-en="Point Rewards">积分奖励</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="AI陪伴交互" data-en="AI Companion Interaction">AI陪伴交互</h3>
+                            <p data-zh="通过大语言模型驱动，提供个性化对话、情感反馈，记住用户名字，建立长期陪伴关系。" data-en="Powered by large language models, providing personalized conversations, emotional feedback, remembering user names, and building long-term companionship relationships.">通过大语言模型驱动，提供个性化对话、情感反馈，记住用户名字，建立长期陪伴关系。</p>
+                            <ul class="feature-details">
+                                <li data-zh="个性化命名：为机器人起独特名字" data-en="Personalized naming: give your robot a unique name">个性化命名：为机器人起独特名字</li>
+                                <li data-zh="记忆功能：永久记住用户名字" data-en="Memory function: permanently remember user names">记忆功能：永久记住用户名字</li>
+                                <li data-zh="情感互动：表情、语音鼓励" data-en="Emotional interaction: facial expressions, voice encouragement">情感互动：表情、语音鼓励</li>
+                                <li data-zh="舞蹈庆祝：完成任务时的欢乐庆祝" data-en="Dance celebration: joyful celebration when completing tasks">舞蹈庆祝：完成任务时的欢乐庆祝</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="ai-demo">
+                            <div class="chat-bubble">
+                                <span data-zh="加油，Alex！我们开始25分钟的番茄钟吧！" data-en="Come on, Alex! Let's start a 25-minute Pomodoro!">加油，Alex！我们开始25分钟的番茄钟吧！</span>
+                            </div>
+                            <div class="ai-face">
+                                <div class="ai-eyes">
+                                    <div class="ai-eye"></div>
+                                    <div class="ai-eye"></div>
+                                </div>
+                                <div class="ai-smile"></div>
+                                <div class="emotion-indicator">
+                                    <div class="heart-beat"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Journey -->
+    <section class="user-journey">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="使用体验" data-en="User Experience">使用体验</h2>
+                <p class="section-subtitle" data-zh="从开箱到专注达人的成长之路" data-en="The journey from unboxing to becoming a focus master">从开箱到专注达人的成长之路</p>
+            </div>
+            <div class="journey-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                                                 <h3 data-zh="初次见面" data-en="First Meeting">初次见面</h3>
+                         <p data-zh="为你的OTTO起个专属名字，它会永远记住你，用名字和你对话" data-en="Give your OTTO a unique name, it will always remember you and talk to you by name">为你的OTTO起个专属名字，它会永远记住你，用名字和你对话</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                                                 <h3 data-zh="开始专注" data-en="Start Focusing">开始专注</h3>
+                         <p data-zh="设定番茄钟时间，OTTO通过视觉检测监督你的专注状态" data-en="Set your Pomodoro time, OTTO monitors your focus state through visual detection">设定番茄钟时间，OTTO通过视觉检测监督你的专注状态</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 data-zh="获得奖励" data-en="Earn Rewards">获得奖励</h3>
+                        <p data-zh="完成专注任务获得积分，连续打卡解锁现金奖励" data-en="Complete focus tasks to earn points, unlock cash rewards with consecutive check-ins">完成专注任务获得积分，连续打卡解锁现金奖励</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                                                 <h3 data-zh="持续成长" data-en="Continuous Growth">持续成长</h3>
+                         <p data-zh="通过数据追踪看到专注力提升，OTTO陪伴你的每一步成长" data-en="See your focus improvement through data tracking, OTTO accompanies every step of your growth">通过数据追踪看到专注力提升，OTTO陪伴你的每一步成长</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                                 <h2 data-zh="准备好重建你的专注力了吗？" data-en="Ready to rebuild your focus?">准备好重建你的专注力了吗？</h2>
+                 <p data-zh="加入OTTO的专注社区，让AI成为你最贴心的学习伙伴" data-en="Join OTTO's focus community and let AI become your most caring study partner">加入OTTO的专注社区，让AI成为你最贴心的学习伙伴</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-primary" data-zh="预约体验" data-en="Book Demo">预约体验</a>
+                    <a href="index.html" class="btn btn-secondary" data-zh="了解更多产品" data-en="Explore More Products">了解更多产品</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Octopod AI" class="logo-img">
+                        <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+                    </div>
+                                         <p data-zh="让人工智能成为每个人的得力伙伴" data-en="Making AI a powerful partner for everyone">让人工智能成为每个人的得力伙伴</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="产品" data-en="Products">产品</h4>
+                    <ul>
+                                                 <li><a href="otto-ai.html" data-zh="OTTO专注陪伴玩具" data-en="OTTO Focus Companion">OTTO专注陪伴玩具</a></li>
+                        <li><a href="index.html#products" data-zh="AI智能体团队" data-en="AI Agent Team">AI智能体团队</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="公司" data-en="Company">公司</h4>
+                    <ul>
+                        <li><a href="index.html#about" data-zh="关于我们" data-en="About Us">关于我们</a></li>
+                        <li><a href="index.html#contact" data-zh="联系我们" data-en="Contact Us">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="支持" data-en="Support">支持</h4>
+                    <ul>
+                        <li><a href="#" data-zh="使用指南" data-en="User Guide">使用指南</a></li>
+                        <li><a href="#" data-zh="技术支持" data-en="Technical Support">技术支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Octopod AI. <span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

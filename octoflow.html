@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OctoFlow多智能体自动化系统 - Octopod AI</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="octoflow.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Octopod AI" class="logo-img">
+                <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-zh="首页" data-en="Home">首页</a>
+                <a href="index.html#products" class="nav-link" data-zh="产品" data-en="Products">产品</a>
+                <a href="index.html#solutions" class="nav-link" data-zh="解决方案" data-en="Solutions">解决方案</a>
+                <a href="index.html#about" class="nav-link" data-zh="关于我们" data-en="About">关于我们</a>
+                <a href="index.html#contact" class="nav-link" data-zh="联系我们" data-en="Contact">联系我们</a>
+            </div>
+            <div class="nav-actions">
+                <button class="language-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span data-zh="EN" data-en="中文">EN</span>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="octoflow-hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge" data-zh="AI多智能体自动化系统" data-en="AI Multi-Agent Automation System">AI多智能体自动化系统</div>
+                    <h1 class="hero-title">
+                        <span data-zh="OctoFlow" data-en="OctoFlow">OctoFlow</span><br>
+                        <span data-zh="智能工作流自动化" data-en="Intelligent Workflow Automation">智能工作流自动化</span>
+                    </h1>
+                    <p class="hero-subtitle" data-zh="构建定制化的智能自动化系统，多个AI智能体协同工作，像真实团队一样处理复杂任务，超越基础自动化，让AI为您的业务思考、审查和行动。" data-en="Build customized intelligent automation systems where multiple AI agents work together like a real team to handle complex tasks, going beyond basic automation to make AI think, review, and act for your business.">构建定制化的智能自动化系统，多个AI智能体协同工作，像真实团队一样处理复杂任务，超越基础自动化，让AI为您的业务思考、审查和行动。</p>
+                    <div class="hero-buttons">
+                        <a href="#features" class="btn btn-primary" data-zh="了解功能" data-en="Explore Features">了解功能</a>
+                        <a href="#pricing" class="btn btn-secondary" data-zh="查看价格" data-en="View Pricing">查看价格</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="workflow-demo">
+                        <div class="agent-network">
+                            <div class="agent agent-1">
+                                <div class="agent-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="agent-label" data-zh="数据录入员" data-en="Data Entry">数据录入员</div>
+                            </div>
+                            <div class="agent agent-2">
+                                <div class="agent-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="agent-label" data-zh="分析师" data-en="Analyst">分析师</div>
+                            </div>
+                            <div class="agent agent-3">
+                                <div class="agent-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div class="agent-label" data-zh="客服" data-en="Support">客服</div>
+                            </div>
+                            <div class="agent agent-4">
+                                <div class="agent-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <div class="agent-label" data-zh="协调员" data-en="Coordinator">协调员</div>
+                            </div>
+                            <div class="connection-lines"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="service-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="服务内容" data-en="Service Overview">服务内容</h2>
+                <p class="section-subtitle" data-zh="从需求评估到部署维护，我们提供完整的AI自动化解决方案" data-en="From needs assessment to deployment and maintenance, we provide complete AI automation solutions">从需求评估到部署维护，我们提供完整的AI自动化解决方案</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 data-zh="需求评估与咨询" data-en="Needs Assessment & Consultation">需求评估与咨询</h3>
+                    <p data-zh="深入了解您的业务流程，识别自动化机会，协商确定总费用" data-en="Deeply understand your business processes, identify automation opportunities, and negotiate total costs">深入了解您的业务流程，识别自动化机会，协商确定总费用</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 data-zh="定制AI工作流设计" data-en="Custom AI Workflow Design">定制AI工作流设计</h3>
+                    <p data-zh="基于您业务的多智能体架构，集成PPT、Excel、数据库等工具，RAG知识库支持AI决策" data-en="Multi-agent architecture based on your business, integrating tools like PPT, Excel, databases, with RAG knowledge base for AI decision-making">基于您业务的多智能体架构，集成PPT、Excel、数据库等工具，RAG知识库支持AI决策</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 data-zh="部署与测试" data-en="Deployment & Testing">部署与测试</h3>
+                    <p data-zh="在您偏好的环境（云端/本地/私有）部署系统，确保稳定运行" data-en="Deploy the system in your preferred environment (cloud/local/private) with stable operation">在您偏好的环境（云端/本地/私有）部署系统，确保稳定运行</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 data-zh="培训与交付" data-en="Training & Handover">培训与交付</h3>
+                    <p data-zh="培训您的团队管理、监控和扩展系统，提供持续支持" data-en="Train your team to manage, monitor, and scale the system with ongoing support">培训您的团队管理、监控和扩展系统，提供持续支持</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="核心优势" data-en="Core Advantages">核心优势</h2>
+                <p class="section-subtitle" data-zh="相比传统自动化系统，AI智能体工作流系统的独特优势" data-en="Unique advantages of AI agent workflow systems compared to traditional automation">相比传统自动化系统，AI智能体工作流系统的独特优势</p>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="智能决策能力" data-en="Intelligent Decision Making">智能决策能力</h3>
+                            <p data-zh="我们的系统不仅仅是执行命令，而是使用AI智能体+知识库(RAG)做出智能决策，适应复杂业务场景。" data-en="Our system doesn't just execute commands, but makes intelligent decisions using AI agents + knowledge base (RAG), adapting to complex business scenarios.">我们的系统不仅仅是执行命令，而是使用AI智能体+知识库(RAG)做出智能决策，适应复杂业务场景。</p>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="decision-demo">
+                            <div class="decision-flow">
+                                <div class="flow-step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="step-label" data-zh="数据输入" data-en="Data Input">数据输入</div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="step-label" data-zh="AI分析" data-en="AI Analysis">AI分析</div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <div class="step-label" data-zh="智能决策" data-en="Smart Decision">智能决策</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="多智能体协作" data-en="Multi-Agent Collaboration">多智能体协作</h3>
+                            <p data-zh="多个AI智能体并行工作，共享上下文信息，无需人工干预即可处理多步骤任务，就像真实的团队协作。" data-en="Multiple AI agents work in parallel, share context, and handle multi-step tasks without human intervention, just like real team collaboration.">多个AI智能体并行工作，共享上下文信息，无需人工干预即可处理多步骤任务，就像真实的团队协作。</p>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="collaboration-demo">
+                            <div class="agent-team">
+                                <div class="team-agent">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <div class="agent-status" data-zh="处理文档" data-en="Processing Docs">处理文档</div>
+                                </div>
+                                <div class="team-agent">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <div class="agent-status" data-zh="数据分析" data-en="Data Analysis">数据分析</div>
+                                </div>
+                                <div class="team-agent">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <div class="agent-status" data-zh="客户沟通" data-en="Customer Comm">客户沟通</div>
+                                </div>
+                                <div class="collaboration-lines"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="无缝集成" data-en="Seamless Integration">无缝集成</h3>
+                            <p data-zh="无论您使用Excel、CRM还是自定义数据库，我们都能无缝集成，不破坏您现有的工作流程。" data-en="Whether you use Excel, CRM, or custom databases, we integrate seamlessly without disrupting your existing workflows.">无论您使用Excel、CRM还是自定义数据库，我们都能无缝集成，不破坏您现有的工作流程。</p>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="integration-demo">
+                            <div class="integration-hub">
+                                <div class="hub-center">
+                                    <i class="fas fa-hub"></i>
+                                </div>
+                                <div class="integration-tool" data-zh="Excel" data-en="Excel">Excel</div>
+                                <div class="integration-tool" data-zh="CRM" data-en="CRM">CRM</div>
+                                <div class="integration-tool" data-zh="数据库" data-en="Database">数据库</div>
+                                <div class="integration-tool" data-zh="PPT" data-en="PPT">PPT</div>
+                                <div class="integration-lines"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="价格方案" data-en="Pricing Plans">价格方案</h2>
+                <p class="section-subtitle" data-zh="透明定价，按需定制，确保最佳投资回报" data-en="Transparent pricing, customized on demand, ensuring optimal ROI">透明定价，按需定制，确保最佳投资回报</p>
+            </div>
+            <div class="pricing-table">
+                <div class="pricing-header">
+                    <div class="pricing-feature" data-zh="功能特性" data-en="Feature">功能特性</div>
+                    <div class="pricing-price" data-zh="价格" data-en="Price">价格</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-feature" data-zh="咨询和工作流设计" data-en="Consulting and workflow design">咨询和工作流设计</div>
+                    <div class="pricing-price">$500</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-feature" data-zh="AI智能体开发" data-en="AI agent development">AI智能体开发</div>
+                    <div class="pricing-price">$150/智能体</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-feature" data-zh="RAG知识库构建" data-en="RAG Knowledge base building">RAG知识库构建</div>
+                    <div class="pricing-price">$300-500</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-feature" data-zh="数据库构建和集成" data-en="Database building and integration">数据库构建和集成</div>
+                    <div class="pricing-price">$300-400</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-feature" data-zh="CRM系统集成" data-en="CRM system integration">CRM系统集成</div>
+                    <div class="pricing-price">$100/系统</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="与传统自动化对比" data-en="vs Traditional Automation">与传统自动化对比</h2>
+                <p class="section-subtitle" data-zh="了解AI智能体工作流系统相比传统自动化的优势" data-en="Understand the advantages of AI agent workflow systems over traditional automation">了解AI智能体工作流系统相比传统自动化的优势</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="comparison-feature" data-zh="特性" data-en="Feature">特性</div>
+                    <div class="comparison-traditional" data-zh="传统自动化" data-en="Traditional Automation">传统自动化</div>
+                    <div class="comparison-ai" data-zh="AI智能体系统" data-en="AI Agent System">AI智能体系统</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-zh="逻辑处理" data-en="Logic">逻辑处理</div>
+                    <div class="comparison-traditional" data-zh="基于规则（僵化）" data-en="Rule-based (rigid)">基于规则（僵化）</div>
+                    <div class="comparison-ai" data-zh="AI驱动（自适应）" data-en="AI-driven (adaptive)">AI驱动（自适应）</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-zh="任务处理" data-en="Task Handling">任务处理</div>
+                    <div class="comparison-traditional" data-zh="每个流程一个任务" data-en="One task per flow">每个流程一个任务</div>
+                    <div class="comparison-ai" data-zh="多智能体，多步骤" data-en="Multi-agent, multi-step">多智能体，多步骤</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-zh="学习能力" data-en="Learning Ability">学习能力</div>
+                    <div class="comparison-traditional" data-zh="无" data-en="None">无</div>
+                    <div class="comparison-ai" data-zh="从数据学习（RAG/微调）" data-en="Learns from data (RAG/fine-tuning)">从数据学习（RAG/微调）</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-zh="更新方式" data-en="Updates">更新方式</div>
+                    <div class="comparison-traditional" data-zh="手动重新编程" data-en="Manual reprogramming">手动重新编程</div>
+                    <div class="comparison-ai" data-zh="通过知识库自动更新" data-en="Auto-updatable via knowledge base">通过知识库自动更新</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-zh="集成能力" data-en="Integration">集成能力</div>
+                    <div class="comparison-traditional" data-zh="有限（仅API）" data-en="Limited (API only)">有限（仅API）</div>
+                    <div class="comparison-ai" data-zh="API + 自然语言 + 数据库" data-en="API + Natural Language + Database">API + 自然语言 + 数据库</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-zh="用户体验" data-en="User Experience">用户体验</div>
+                    <div class="comparison-traditional" data-zh="技术性，不灵活" data-en="Technical, inflexible">技术性，不灵活</div>
+                    <div class="comparison-ai" data-zh="对话式，智能化" data-en="Conversational, intelligent">对话式，智能化</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 data-zh="准备好升级您的业务流程了吗？" data-en="Ready to upgrade your business processes?">准备好升级您的业务流程了吗？</h2>
+                <p data-zh="让AI智能体团队为您的业务创造真正的价值，提升效率，降低成本" data-en="Let AI agent teams create real value for your business, improve efficiency, and reduce costs">让AI智能体团队为您的业务创造真正的价值，提升效率，降低成本</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-primary" data-zh="预约咨询" data-en="Book Consultation">预约咨询</a>
+                    <a href="index.html" class="btn btn-secondary" data-zh="了解更多产品" data-en="Explore More Products">了解更多产品</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Octopod AI" class="logo-img">
+                        <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+                    </div>
+                                         <p data-zh="让人工智能成为每个人的得力伙伴" data-en="Making AI a powerful partner for everyone">让人工智能成为每个人的得力伙伴</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="产品" data-en="Products">产品</h4>
+                    <ul>
+                        <li><a href="otto-ai.html" data-zh="OTTO专注陪伴玩具" data-en="OTTO Focus Companion">OTTO专注陪伴玩具</a></li>
+                        <li><a href="octoflow.html" data-zh="OctoFlow自动化系统" data-en="OctoFlow Automation">OctoFlow自动化系统</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="公司" data-en="Company">公司</h4>
+                    <ul>
+                        <li><a href="index.html#about" data-zh="关于我们" data-en="About Us">关于我们</a></li>
+                        <li><a href="index.html#contact" data-zh="联系我们" data-en="Contact Us">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="支持" data-en="Support">支持</h4>
+                    <ul>
+                        <li><a href="#" data-zh="使用指南" data-en="User Guide">使用指南</a></li>
+                        <li><a href="#" data-zh="技术支持" data-en="Technical Support">技术支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Octopod AI. <span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
