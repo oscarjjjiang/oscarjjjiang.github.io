@@ -1,5 +1,5 @@
 // Language switching functionality
-let currentLanguage = 'zh';
+let currentLanguage = 'en';
 
 function toggleLanguage() {
     currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
@@ -264,3 +264,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLanguage();
     updateLanguageButton();
 });
+

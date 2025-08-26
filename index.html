@@ -1,33 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Octopod AI - 智腕人工智能科技</title>
+    <title>Octopod AI - Intelligent AI Technology</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Octopus Background Elements -->
+    <div class="octopus-bg">
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+    </div>
+    <div class="tech-grid"></div>
+    <div class="tech-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <img src="logo.png" alt="Octopod AI" class="logo-img">
-                <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+                <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">Octopod AI</span>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link" data-zh="首页" data-en="Home">首页</a>
-                <a href="#products" class="nav-link" data-zh="产品" data-en="Products">产品</a>
-                <a href="#solutions" class="nav-link" data-zh="解决方案" data-en="Solutions">解决方案</a>
-                <a href="#about" class="nav-link" data-zh="关于我们" data-en="About">关于我们</a>
-                <a href="#contact" class="nav-link" data-zh="联系我们" data-en="Contact">联系我们</a>
+                <a href="#home" class="nav-link" data-zh="首页" data-en="Home">Home</a>
+                <a href="#products" class="nav-link" data-zh="产品" data-en="Products">Products</a>
+                <a href="#about" class="nav-link" data-zh="关于我们" data-en="About">About</a>
+                <a href="#contact" class="nav-link" data-zh="联系我们" data-en="Contact">Contact</a>
             </div>
             <div class="nav-actions">
                 <button class="language-toggle" onclick="toggleLanguage()">
                     <i class="fas fa-globe"></i>
-                    <span data-zh="EN" data-en="中文">EN</span>
+                    <span data-zh="EN" data-en="中文">中文</span>
                 </button>
                 <div class="hamburger" id="hamburger">
                     <span></span>
@@ -43,20 +60,21 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    <span data-zh="让人工智能成为每个人的得力伙伴" data-en="Making AI a Powerful Partner for Everyone">让人工智能成为每个人的得力伙伴</span>
+                    <span data-zh="让人工智能成为每个人的得力伙伴" data-en="Making AI a Powerful Partner for Everyone">Making AI a Powerful Partner for Everyone</span>
                 </h1>
                 <p class="hero-subtitle">
-                    <span data-zh="智腕AI致力于打造AI驱动的智能系统，帮助每个人在学习、工作和生活中更高效、更专注、更幸福。" data-en="Octopod AI is dedicated to building AI-driven intelligent systems that help everyone be more efficient, focused, and happy in learning, work, and life.">智腕AI致力于打造AI驱动的智能系统，帮助每个人在学习、工作和生活中更高效、更专注、更幸福。</span>
+                    <span data-zh="智腕AI致力于打造AI驱动的智能系统，帮助每个人在学习、工作和生活中更高效、更专注、更幸福。" data-en="Octopod AI is dedicated to building AI-driven intelligent systems that help everyone be more efficient, focused, and happy in learning, work, and life.">Octopod AI is dedicated to building AI-driven intelligent systems that help everyone be more efficient, focused, and happy in learning, work, and life.</span>
                 </p>
                 <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary" data-zh="探索产品" data-en="Explore Products">探索产品</a>
-                    <a href="#about" class="btn btn-secondary" data-zh="了解更多" data-en="Learn More">了解更多</a>
+                    <a href="#products" class="btn btn-primary" data-zh="探索产品" data-en="Explore Products">Explore Products</a>
+                    <a href="#about" class="btn btn-secondary" data-zh="了解更多" data-en="Learn More">Learn More</a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="hero-image">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-brain"></i>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -65,106 +83,130 @@
     <section id="products" class="products">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-zh="我们的产品" data-en="Our Products">我们的产品</h2>
-                <p class="section-subtitle" data-zh="创新的AI解决方案，为个人和企业创造价值" data-en="Innovative AI solutions creating value for individuals and businesses">创新的AI解决方案，为个人和企业创造价值</p>
+                <h2 class="section-title" data-zh="我们的产品" data-en="Our Products">Our Products</h2>
+                <p class="section-subtitle" data-zh="创新的AI解决方案，为个人和企业创造价值" data-en="Innovative AI solutions creating value for individuals and businesses">Innovative AI solutions creating value for individuals and businesses</p>
             </div>
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
-                                            <h3 data-zh="OTTO 桌面AI专注力养成伙伴" data-en="OTTO Desktop AI Focus Development Partner">OTTO 桌面AI专注力养成伙伴</h3>
-                    <p data-zh="融合科学训练、效率优化与情感陪伴的AI伙伴，帮助重建专注力，提升学习工作效率。" data-en="An AI companion that combines scientific training, efficiency optimization, and emotional companionship to help rebuild focus and improve learning and work efficiency.">融合科学训练、效率优化与情感陪伴的AI伙伴，帮助重建专注力，提升学习工作效率。</p>
+                    <h3 data-zh="OTTO 专注陪伴玩具" data-en="OTTO Focus Companion Toy">OTTO Focus Companion Toy</h3>
+                    <p data-zh="融合科学训练、效率优化与情感陪伴的AI伙伴，帮助重建专注力，提升学习工作效率。" data-en="An AI companion that combines scientific training, efficiency optimization, and emotional companionship to help rebuild focus and improve learning and work efficiency.">An AI companion that combines scientific training, efficiency optimization, and emotional companionship to help rebuild focus and improve learning and work efficiency.</p>
                     <ul class="product-features">
-                        <li data-zh="番茄钟专注训练 + 视觉监督" data-en="Pomodoro focus training + visual supervision">番茄钟专注训练 + 视觉监督</li>
-                        <li data-zh="积分奖励系统 + 现金兑换" data-en="Point reward system + cash redemption">积分奖励系统 + 现金兑换</li>
-                        <li data-zh="AI陪伴交互 + 情感支持" data-en="AI companion interaction + emotional support">AI陪伴交互 + 情感支持</li>
+                        <li data-zh="番茄钟专注训练 + 视觉监督" data-en="Pomodoro focus training + visual supervision">Pomodoro focus training + visual supervision</li>
+                        <li data-zh="积分奖励系统 + 现金兑换" data-en="Point reward system + cash redemption">Point reward system + cash redemption</li>
+                        <li data-zh="AI陪伴交互 + 情感支持" data-en="AI companion interaction + emotional support">AI companion interaction + emotional support</li>
                     </ul>
                     <div class="product-actions">
-                        <a href="otto-ai.html" class="btn btn-primary product-btn" data-zh="了解详情" data-en="Learn More">了解详情</a>
+                        <a href="otto-ai.html" class="btn btn-primary product-btn" data-zh="了解详情" data-en="Learn More">Learn More</a>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-icon">
-                        <i class="fas fa-users-cog"></i>
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3 data-zh="OctoFlow自动化系统" data-en="OctoFlow Automation System">OctoFlow自动化系统</h3>
-                    <p data-zh="构建定制化的智能自动化系统，多个AI智能体协同工作，像真实团队一样处理复杂任务，超越基础自动化，让AI为您的业务思考、审查和行动。" data-en="Build customized intelligent automation systems where multiple AI agents work together like a real team to handle complex tasks, going beyond basic automation to make AI think, review, and act for your business.">构建定制化的智能自动化系统，多个AI智能体协同工作，像真实团队一样处理复杂任务，超越基础自动化，让AI为您的业务思考、审查和行动。</p>
+                    <h3 data-zh="OctoFlow自动化系统开发" data-en="OctoFlow Automation System Development">OctoFlow Automation System Development</h3>
+                    <p data-zh="构建定制化的智能自动化系统，多个AI智能体协同工作，像真实团队一样处理复杂任务，超越基础自动化，让AI为您的业务思考、审查和行动。" data-en="Build customized intelligent automation systems where multiple AI agents work together like a real team to handle complex tasks, going beyond basic automation to make AI think, review, and act for your business.">Build customized intelligent automation systems where multiple AI agents work together like a real team to handle complex tasks, going beyond basic automation to make AI think, review, and act for your business.</p>
                     <ul class="product-features">
-                        <li data-zh="多智能体协作系统" data-en="Multi-agent collaboration system">多智能体协作系统</li>
-                        <li data-zh="智能工作流自动化" data-en="Intelligent workflow automation">智能工作流自动化</li>
-                        <li data-zh="无缝工具集成" data-en="Seamless tool integration">无缝工具集成</li>
+                        <li data-zh="多智能体协作系统" data-en="Multi-agent collaboration system">Multi-agent collaboration system</li>
+                        <li data-zh="智能工作流自动化搭建" data-en="Intelligent workflow automation building">Intelligent workflow automation building</li>
+                        <li data-zh="无缝工具集成" data-en="Seamless tool integration">Seamless tool integration</li>
                     </ul>
                     <div class="product-actions">
-                        <a href="octoflow.html" class="btn btn-primary product-btn" data-zh="了解详情" data-en="Learn More">了解详情</a>
+                        <a href="octoflow.html" class="btn btn-primary product-btn" data-zh="了解详情" data-en="Learn More">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="solutions">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-zh="解决方案" data-en="Solutions">解决方案</h2>
-                <p class="section-subtitle" data-zh="让公司在AI的驱动下降本增效" data-en="Helping companies reduce costs and increase efficiency through AI">让公司在AI的驱动下降本增效</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 data-zh="效率提升" data-en="Efficiency Enhancement">效率提升</h3>
-                    <p data-zh="通过AI自动化流程，显著提升工作效率，减少重复性工作。" data-en="Significantly improve work efficiency and reduce repetitive tasks through AI automation.">通过AI自动化流程，显著提升工作效率，减少重复性工作。</p>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <h3 data-zh="成本优化" data-en="Cost Optimization">成本优化</h3>
-                    <p data-zh="智能化的解决方案帮助企业降低运营成本，提高投资回报率。" data-en="Intelligent solutions help companies reduce operational costs and improve ROI.">智能化的解决方案帮助企业降低运营成本，提高投资回报率。</p>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 data-zh="智能决策" data-en="Intelligent Decision Making">智能决策</h3>
-                    <p data-zh="基于数据分析的智能决策支持，帮助企业做出更明智的商业决策。" data-en="Data-driven intelligent decision support helps companies make wiser business decisions.">基于数据分析的智能决策支持，帮助企业做出更明智的商业决策。</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-zh="关于我们" data-en="About Us">关于我们</h2>
-                <p class="section-subtitle" data-zh="智腕AI是一家致力于打造AI驱动的智能系统的创新企业" data-en="Octopod AI is an innovative company dedicated to building AI-driven intelligent systems">智腕AI是一家致力于打造AI驱动的智能系统的创新企业</p>
+                <h2 class="section-title" data-zh="关于我们" data-en="About Us">About Us</h2>
+                <p class="section-subtitle" data-zh="智腕AI是一家致力于打造AI驱动的智能系统的创新企业" data-en="Octopod AI is an innovative company dedicated to building AI-driven intelligent systems">Octopod AI is an innovative company dedicated to building AI-driven intelligent systems</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 data-zh="我们的愿景" data-en="Our Vision">我们的愿景</h3>
-                    <p data-zh="让人工智能成为人类的得力伙伴" data-en="Making artificial intelligence a powerful partner for humanity">让人工智能成为人类的得力伙伴</p>
-                    
-                    <h3 data-zh="核心价值观" data-en="Core Values">核心价值观</h3>
-                    <div class="values-grid">
-                        <div class="value-item">
-                            <h4 data-zh="以人为本" data-en="People-Oriented">以人为本</h4>
-                            <p data-zh="我们相信，AI应该是人类的伙伴，而非替代品。所有设计都从用户的体验与需求出发。" data-en="We believe AI should be a partner to humans, not a replacement. All designs start from user experience and needs.">我们相信，AI应该是人类的伙伴，而非替代品。所有设计都从用户的体验与需求出发。</p>
+            
+            <!-- Vision Section -->
+            <div class="vision-section">
+                <div class="vision-content">
+                    <div class="vision-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="vision-text">
+                        <h3 data-zh="我们的愿景" data-en="Our Vision">Our Vision</h3>
+                        <p data-zh="让人工智能成为人类的得力伙伴" data-en="Making artificial intelligence a powerful partner for humanity">Making artificial intelligence a powerful partner for humanity</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Values Section -->
+            <div class="values-section">
+                <h3 class="section-subtitle" data-zh="核心价值观" data-en="Core Values">Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
                         </div>
-                        <div class="value-item">
-                            <h4 data-zh="科学驱动" data-en="Science-Driven">科学驱动</h4>
-                            <p data-zh="以认知科学、神经科学与行为心理学为根基，结合先进的人工智能技术。" data-en="Based on cognitive science, neuroscience and behavioral psychology, combined with advanced AI technology.">以认知科学、神经科学与行为心理学为根基，结合先进的人工智能技术。</p>
+                        <h4 data-zh="以人为本" data-en="People-Oriented">People-Oriented</h4>
+                        <p data-zh="我们相信，AI应该是人类的伙伴，而非替代品。所有设计都从用户的体验与需求出发。" data-en="We believe AI should be a partner to humans, not a replacement. All designs start from user experience and needs.">We believe AI should be a partner to humans, not a replacement. All designs start from user experience and needs.</p>
+                    </div>
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-icon">
+                            <i class="fas fa-flask"></i>
                         </div>
-                        <div class="value-item">
-                            <h4 data-zh="责任与信任" data-en="Responsibility & Trust">责任与信任</h4>
-                            <p data-zh="数据隐私与安全是我们最基本的承诺。致力于建立一个值得长期依赖的智能系统。" data-en="Data privacy and security are our most basic commitments. Committed to building a trustworthy intelligent system.">数据隐私与安全是我们最基本的承诺。致力于建立一个值得长期依赖的智能系统。</p>
+                        <h4 data-zh="科学驱动" data-en="Science-Driven">Science-Driven</h4>
+                        <p data-zh="以认知科学、神经科学与行为心理学为根基，结合先进的人工智能技术。" data-en="Based on cognitive science, neuroscience and behavioral psychology, combined with advanced AI technology.">Based on cognitive science, neuroscience and behavioral psychology, combined with advanced AI technology.</p>
+                    </div>
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <div class="value-item">
-                            <h4 data-zh="实用价值" data-en="Practical Value">实用价值</h4>
-                            <p data-zh="我们关注现实痛点，将AI融入日常生活，确保每一项功能都能真正解决问题、创造价值。" data-en="We focus on real pain points, integrate AI into daily life, ensuring every function truly solves problems and creates value.">我们关注现实痛点，将AI融入日常生活，确保每一项功能都能真正解决问题、创造价值。</p>
+                        <h4 data-zh="责任与信任" data-en="Responsibility & Trust">Responsibility & Trust</h4>
+                        <p data-zh="数据隐私与安全是我们最基本的承诺。致力于建立一个值得长期依赖的智能系统。" data-en="Data privacy and security are our most basic commitments. Committed to building a trustworthy intelligent system.">Data privacy and security are our most basic commitments. Committed to building a trustworthy intelligent system.</p>
+                    </div>
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4 data-zh="实用价值" data-en="Practical Value">Practical Value</h4>
+                        <p data-zh="我们关注现实痛点，将AI融入日常生活，确保每一项功能都能真正解决问题、创造价值。" data-en="We focus on real pain points, integrate AI into daily life, ensuring every function truly solves problems and creates value.">We focus on real pain points, integrate AI into daily life, ensuring every function truly solves problems and creates value.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Section -->
+            <div class="team-section">
+                <h3 class="section-subtitle" data-zh="核心团队" data-en="Core Team">Core Team</h3>
+                <div class="team-grid">
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member-photo">
+                            <img src="ceo-photo.jpg" alt="CEO OSCAR" class="member-img">
+                            <div class="member-overlay">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4 data-zh="OSCAR" data-en="OSCAR">OSCAR</h4>
+                                                                    <p class="member-title" data-zh="董事长、CEO、CTO" data-en="Chairman, CEO, CTO">Chairman, CEO, CTO</p>
+                            <p class="member-desc" data-zh="拥有丰富的AI产品开发经验，致力于将前沿技术转化为实用的用户解决方案。" data-en="With extensive experience in AI product development, dedicated to transforming cutting-edge technology into practical user solutions.">With extensive experience in AI product development, dedicated to transforming cutting-edge technology into practical user solutions.</p>
+                        </div>
+                    </div>
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                        <div class="member-photo">
+                            <img src="ai-cfo-photo.jpg" alt="AI财务总监" class="member-img">
+                            <div class="member-overlay">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4 data-zh="AI财务总监" data-en="AI CFO">AI CFO</h4>
+                            <p class="member-title" data-zh="智能财务管理" data-en="Intelligent Financial Management">Intelligent Financial Management</p>
+                            <p class="member-desc" data-zh="运用AI技术优化财务流程，提供智能化的财务决策支持。" data-en="Using AI technology to optimize financial processes and provide intelligent financial decision support.">Using AI technology to optimize financial processes and provide intelligent financial decision support.</p>
                         </div>
                     </div>
                 </div>
@@ -176,48 +218,34 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-zh="联系我们" data-en="Contact Us">联系我们</h2>
-                <p class="section-subtitle" data-zh="让我们一起探讨AI的未来" data-en="Let's explore the future of AI together">让我们一起探讨AI的未来</p>
+                <h2 class="section-title" data-zh="联系我们" data-en="Contact Us">Contact Us</h2>
+                <p class="section-subtitle" data-zh="让我们一起探讨AI的未来" data-en="Let's explore the future of AI together">Let's explore the future of AI together</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <h4 data-zh="邮箱" data-en="Email">邮箱</h4>
+                            <h4 data-zh="邮箱" data-en="Email">Email</h4>
                             <p>jiangzaixi836@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <h4 data-zh="电话" data-en="Phone">电话</h4>
-                            <p>+1 289-952-9500</p>
+                            <h4 data-zh="电话" data-en="Phone">Phone</h4>
+                            <p>289-952-9500</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4 data-zh="地址" data-en="Address">地址</h4>
-                            <p data-zh="2259 Munn's Ave, Oakville, ON" data-en="2259 Munn's Ave, Oakville, ON">2259 Munn's Ave, Oakville, ON</p>
+                            <p data-zh="加拿大·奥克维尔" data-en="Oakville, ON, Canada">Oakville, ON, Canada</p>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name" data-zh="姓名" data-en="Name">姓名</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email" data-zh="邮箱" data-en="Email">邮箱</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                        <label for="message" data-zh="留言" data-en="Message">留言</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-zh="发送消息" data-en="Send Message">发送消息</button>
-                </form>
+
             </div>
         </div>
     </section>
@@ -236,17 +264,11 @@
                 <div class="footer-section">
                     <h4 data-zh="产品" data-en="Products">产品</h4>
                     <ul>
-                                                 <li><a href="otto-ai.html" data-zh="OTTO桌面AI专注力养成伙伴" data-en="OTTO Desktop AI Focus Development Partner">OTTO桌面AI专注力养成伙伴</a></li>
-                        <li><a href="octoflow.html" data-zh="OctoFlow自动化系统" data-en="OctoFlow Automation">OctoFlow自动化系统</a></li>
+                                                 <li><a href="otto-ai.html" data-zh="OTTO专注陪伴玩具" data-en="OTTO Focus Companion">OTTO专注陪伴玩具</a></li>
+                        <li><a href="octoflow.html" data-zh="OctoFlow自动化系统开发" data-en="OctoFlow Automation Development">OctoFlow自动化系统开发</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4 data-zh="解决方案" data-en="Solutions">解决方案</h4>
-                    <ul>
-                        <li><a href="#solutions" data-zh="效率提升" data-en="Efficiency Enhancement">效率提升</a></li>
-                        <li><a href="#solutions" data-zh="成本优化" data-en="Cost Optimization">成本优化</a></li>
-                    </ul>
-                </div>
+
                 <div class="footer-section">
                     <h4 data-zh="公司" data-en="Company">公司</h4>
                     <ul>
@@ -256,11 +278,22 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Octopod AI. <span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></p>
+                <p>&copy; 2024 Octopod AI. <span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
+</html>
+
 </html>

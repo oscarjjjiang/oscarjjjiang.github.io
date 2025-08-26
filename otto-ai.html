@@ -9,8 +9,26 @@
     <link rel="stylesheet" href="otto-ai.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Octopus Background Elements -->
+    <div class="octopus-bg">
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+    </div>
+    <div class="tech-grid"></div>
+    <div class="tech-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -21,7 +39,6 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link" data-zh="首页" data-en="Home">首页</a>
                 <a href="index.html#products" class="nav-link" data-zh="产品" data-en="Products">产品</a>
-                <a href="index.html#solutions" class="nav-link" data-zh="解决方案" data-en="Solutions">解决方案</a>
                 <a href="index.html#about" class="nav-link" data-zh="关于我们" data-en="About">关于我们</a>
                 <a href="index.html#contact" class="nav-link" data-zh="联系我们" data-en="Contact">联系我们</a>
             </div>
@@ -334,5 +351,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
