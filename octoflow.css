@@ -486,8 +486,8 @@
 
 .integration-hub {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
 }
 
 .hub-center {
@@ -508,6 +508,14 @@
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
+.integration-tools {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .integration-tool {
     position: absolute;
     padding: 8px 16px;
@@ -520,34 +528,49 @@
     animation: pulse 3s ease-in-out infinite;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
+    white-space: nowrap;
 }
 
-.integration-tool:nth-child(2) {
+.integration-tool:nth-child(1) {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 0s;
 }
 
-.integration-tool:nth-child(3) {
+.integration-tool:nth-child(2) {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
     animation-delay: 0.5s;
 }
 
-.integration-tool:nth-child(4) {
+.integration-tool:nth-child(3) {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 1s;
 }
 
-.integration-tool:nth-child(5) {
+.integration-tool:nth-child(4) {
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
     animation-delay: 1.5s;
+}
+
+.integration-tool:nth-child(5) {
+    top: 25%;
+    right: 10px;
+    transform: translateY(-50%);
+    animation-delay: 2s;
+}
+
+.integration-tool:nth-child(6) {
+    bottom: 25%;
+    left: 10px;
+    transform: translateY(-50%);
+    animation-delay: 2.5s;
 }
 
 .integration-lines {
