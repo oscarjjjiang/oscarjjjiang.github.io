@@ -37,8 +37,8 @@
 - 动画机器人图标
 
 ### 2. 产品页 (Products)
-- **Otto-ai 专注陪伴玩具**：融合科学训练、效率优化与情感陪伴的AI伙伴
-  - 专门的产品页面：`otto-ai.html`
+- **Zendy-ai 专注陪伴玩具**：融合科学训练、健康管理、双积分系统、虚拟成长与情感陪伴的AI伙伴
+  - 专门的产品页面：`zendy-ai.html`
   - 详细功能介绍和用户体验流程
 - **AI 智能体团队**：为企业提供AI自动化解决方案
 
@@ -73,9 +73,9 @@
 ```
 octopod-ai-website/
 ├── index.html          # 主页面
-├── otto-ai.html        # Otto-ai产品专门页面
+├── zendy-ai.html        # Zendy-ai产品专门页面
 ├── styles.css          # 主站样式文件
-├── otto-ai.css         # Otto-ai产品页样式
+├── zendy-ai.css         # Zendy-ai产品页样式
 ├── script.js           # JavaScript功能
 ├── start.html          # 快速启动页面
 ├── logo.png            # 公司logo

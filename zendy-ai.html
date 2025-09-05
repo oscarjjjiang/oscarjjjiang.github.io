@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENDY桌面AI专注力养成伙伴 - Octopod AI</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="zendy-ai.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Octopus Background Elements -->
+    <div class="octopus-bg">
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+        <div class="tentacle"></div>
+    </div>
+    <div class="tech-grid"></div>
+    <div class="tech-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Octopod AI" class="logo-img">
+                <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-zh="首页" data-en="Home">首页</a>
+                <a href="index.html#products" class="nav-link" data-zh="产品" data-en="Products">产品</a>
+                <a href="index.html#about" class="nav-link" data-zh="关于我们" data-en="About">关于我们</a>
+                <a href="index.html#contact" class="nav-link" data-zh="联系我们" data-en="Contact">联系我们</a>
+            </div>
+            <div class="nav-actions">
+                <button class="language-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span data-zh="EN" data-en="中文">EN</span>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="zendy-hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge" data-zh="AI专注与健康伙伴" data-en="AI Focus & Health Partner">AI Focus & Health Partner</div>
+                    <h1 class="hero-title">
+                        <span data-zh="小澄" data-en="ZENDY">小澄</span><br>
+                        <span data-zh="你的专注与健康伙伴" data-en="Your Focus & Wellness Partner">Your Focus & Wellness Partner</span>
+                    </h1>
+                    <p class="hero-subtitle" data-zh="在注意力稀缺的时代，小澄帮助你重建专注力，提升学习与工作效率，同时提供温暖的陪伴与情感支持。" data-en="In today's era of attention scarcity, ZENDY empowers you to regain control of your focus, enhance learning and work efficiency, and nurture your well-being through warm companionship and emotional support.">In today's era of attention scarcity, ZENDY empowers you to regain control of your focus, enhance learning and work efficiency, and nurture your well-being through warm companionship and emotional support.</p>
+                    <div class="hero-buttons">
+                        <a href="#features" class="btn btn-primary" data-zh="了解功能" data-en="Explore Features">Explore Features</a>
+                        <a href="#contact" class="btn btn-secondary" data-zh="敬请期待" data-en="Coming Soon">Coming Soon</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="zendy-device">
+                        <div class="device-body">
+                            <div class="device-face">
+                                <div class="eyes">
+                                    <div class="eye left-eye"></div>
+                                    <div class="eye right-eye"></div>
+                                </div>
+                                <div class="mouth"></div>
+                            </div>
+                            <div class="device-base"></div>
+                        </div>
+                        <div class="glow-effect"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase Section -->
+    <section class="product-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="产品设计" data-en="Product Design">Product Design</h2>
+                <p class="section-subtitle" data-zh="未来科技与人文关怀的完美融合" data-en="Perfect fusion of future technology and human care">Perfect fusion of future technology and human care</p>
+            </div>
+            
+            <div class="product-grid">
+                <!-- White Edition -->
+                <div class="product-card white-edition">
+                    <div class="product-image">
+                        <img src="white.png" alt="Zendy Selunie - White Edition" class="product-img">
+                        <div class="product-badge" data-zh="白色版" data-en="White Edition">White Edition</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name" data-zh="小澄·澄月" data-en="Zendy Selunie">Zendy Selunie</h3>
+                        <p class="product-description" data-zh="如澄澈之月，清光环身。小澄·澄月，温润悠远，在宁静中陪伴你修得专注长久。" data-en="Gentle as the moonlight, Zendy Selunie soothes the heart and mind, making every moment of focus calm and healing.">Gentle as the moonlight, Zendy Selunie soothes the heart and mind, making every moment of focus calm and healing.</p>
+                        
+                        <div class="product-pricing">
+                            <div class="price-tag">
+                                <span class="price" data-zh="$249 CAD" data-en="$249 CAD">$249 CAD</span>
+                                <span class="subsidy" data-zh="完成任务返现 $40" data-en="Earn $40 Cashback">Earn $40 Cashback</span>
+                            </div>
+                        </div>
+
+                        <div class="product-features">
+                            <h4 data-zh="设计特色" data-en="Design Features">Design Features</h4>
+                            <ul>
+                                <li data-zh="圆润化轮廓线条" data-en="Rounded contour lines">Rounded contour lines</li>
+                                <li data-zh="月光白哑光材质" data-en="Moonlight white matte finish">Moonlight white matte finish</li>
+                                <li data-zh="悬浮能量球" data-en="Floating energy sphere">Floating energy sphere</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Black Edition -->
+                <div class="product-card black-edition">
+                    <div class="product-image">
+                        <img src="black.png" alt="Zendy Asterin - Black Edition" class="product-img">
+                        <div class="product-badge" data-zh="黑色版" data-en="Black Edition">Black Edition</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name" data-zh="小澄·星珑" data-en="Zendy Asterin">Zendy Asterin</h3>
+                        <p class="product-description" data-zh="如星悬夜空，光华玲珑。小澄·星珑，以悬浮之姿点亮心境，带来更深的专注体验。" data-en="A floating star in your study — Zendy Asterin brings the mystery of the cosmos to your desk, guiding you with focus and discipline.">A floating star in your study — Zendy Asterin brings the mystery of the cosmos to your desk, guiding you with focus and discipline.</p>
+                        
+                        <div class="product-pricing">
+                            <div class="price-tag">
+                                <span class="price" data-zh="$249 CAD" data-en="$249 CAD">$249 CAD</span>
+                                <span class="subsidy" data-zh="完成任务返现 $40" data-en="Earn $40 Cashback">Earn $40 Cashback</span>
+                            </div>
+                        </div>
+
+                        <div class="product-features">
+                            <h4 data-zh="设计特色" data-en="Design Features">Design Features</h4>
+                            <ul>
+                                <li data-zh="六边形几何设计语言" data-en="Hexagonal geometric design language">Hexagonal geometric design language</li>
+                                <li data-zh="深色磨砂材质" data-en="Dark matte material">Dark matte material</li>
+                                <li data-zh="悬浮能量球" data-en="Floating energy sphere">Floating energy sphere</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="design-philosophy">
+                <div class="philosophy-content">
+                    <h3 data-zh="设计理念" data-en="Design Philosophy">Design Philosophy</h3>
+                    <p data-zh="Zendy 以科学训练守护专注，以健康管理塑造习惯，以效率提升创造价值，并以情感陪伴缓解孤独。它不仅提高学习与工作的产出，更在点滴互动中带来支持、关怀与成长，让专注与健康变得温暖而持久。" data-en="Zendy protects focus through scientific training, shapes habits through health management, creates value through efficiency enhancement, and alleviates loneliness through emotional companionship. It not only improves learning and work output, but also brings support, care, and growth through daily interactions, making focus and health warm and sustainable.">Zendy protects focus through scientific training, shapes habits through health management, creates value through efficiency enhancement, and alleviates loneliness through emotional companionship. It not only improves learning and work output, but also brings support, care, and growth through daily interactions, making focus and health warm and sustainable.</p>
+                    <div class="philosophy-illustration">
+                        <div class="core-values-grid">
+                            <div class="core-value-item">
+                                <div class="value-icon focus-icon">
+                                    <div class="icon-circle blue">
+                                        <span class="emoji-icon">🎯</span>
+                                    </div>
+                                </div>
+                                <span class="value-label" data-zh="专注" data-en="Focus">Focus</span>
+                            </div>
+                            <div class="core-value-item">
+                                <div class="value-icon health-icon">
+                                    <div class="icon-circle green">
+                                        <span class="emoji-icon">🌿</span>
+                                    </div>
+                                </div>
+                                <span class="value-label" data-zh="健康" data-en="Health">Health</span>
+                            </div>
+                            <div class="core-value-item">
+                                <div class="value-icon efficiency-icon">
+                                    <div class="icon-circle yellow">
+                                        <span class="emoji-icon">⚡</span>
+                                    </div>
+                                </div>
+                                <span class="value-label" data-zh="效率" data-en="Efficiency">Efficiency</span>
+                            </div>
+                            <div class="core-value-item">
+                                <div class="value-icon companionship-icon">
+                                    <div class="icon-circle pink">
+                                        <span class="emoji-icon">💝</span>
+                                    </div>
+                                </div>
+                                <span class="value-label" data-zh="陪伴" data-en="Companionship">Companionship</span>
+                            </div>
+                        </div>
+                        <div class="caption" data-zh="四大核心价值：专注、健康、效率、陪伴" data-en="Four Core Values: Focus, Health, Efficiency, Companionship">Four Core Values: Focus, Health, Efficiency, Companionship</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Propositions -->
+    <section class="value-props">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="核心价值" data-en="Core Values">核心价值</h2>
+                <p class="section-subtitle" data-zh="四重价值，让生活与成长更高效、更健康、更有温度。" data-en="Four-fold value, making life and growth more efficient, healthier, and warmer.">Four-fold value, making life and growth more efficient, healthier, and warmer.</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-zh="注意力训练" data-en="Attention Training">Attention Training</h3>
+                    <p data-zh="结合番茄工作法、冥想练习和行为心理学原理，系统性提升专注力，从根本上解决注意力稀缺问题。" data-en="Combining the Pomodoro Technique, meditation exercises, and behavioral psychology principles to systematically improve focus and fundamentally solve attention scarcity issues.">Combining the Pomodoro Technique, meditation exercises, and behavioral psychology principles to systematically improve focus and fundamentally solve attention scarcity issues.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 data-zh="健康管理" data-en="Health Management">Health Management</h3>
+                    <p data-zh="真正的专注不是长时间坐在桌前不动，而是在专注与健康之间找到平衡。长时间学习或工作往往带来颈椎僵硬、眼部疲劳、缺乏运动和熬夜等问题，这些健康隐患最终会反噬效率。AI专注陪伴玩具将健康管理作为优先级高于工作的第二核心功能，它不仅提醒用户定时喝水、起身活动、放松眼睛，还能根据用户的专注时长和当前时间，主动提示午间休息、晚间放松或睡眠准备。" data-en="True focus isn't about sitting still, but balancing work and health. Long sessions can cause stiffness, eye strain, inactivity, and poor sleep—hurting efficiency. That's why the AI companion makes health management a core function, reminding users to hydrate, stretch, rest their eyes, and suggesting breaks, relaxation, or sleep based on focus time and schedule.">True focus isn't about sitting still, but balancing work and health. Long sessions can cause stiffness, eye strain, inactivity, and poor sleep—hurting efficiency. That's why the AI companion makes health management a core function, reminding users to hydrate, stretch, rest their eyes, and suggesting breaks, relaxation, or sleep based on focus time and schedule.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-zh="效率提升" data-en="Efficiency Enhancement">Efficiency Enhancement</h3>
+                    <p data-zh="通过即时监督和动态专注机制，帮助用户快速进入专注状态，减少分心，实现高质量的学习和工作产出。" data-en="Through real-time supervision and dynamic focus mechanisms, helping users quickly enter a focused state, reduce distractions, and achieve high-quality learning and work output.">Through real-time supervision and dynamic focus mechanisms, helping users quickly enter a focused state, reduce distractions, and achieve high-quality learning and work output.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 data-zh="心理陪伴" data-en="Emotional Companionship">Emotional Companionship</h3>
+                    <p data-zh="拟人化设计提供温暖陪伴，通过灯光、声音和表情互动，缓解孤独感，提供持续的情感支持。" data-en="Humanized design provides warm companionship through light, sound, and facial expressions, alleviating loneliness and providing continuous emotional support.">Humanized design provides warm companionship through light, sound, and facial expressions, alleviating loneliness and providing continuous emotional support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="核心功能" data-en="Core Features">核心功能</h2>
+                <p class="section-subtitle" data-zh="科学训练 + 健康管理 + 效率优化 + 情感陪伴的综合解决方案" data-en="A comprehensive solution combining scientific training + health management + efficiency optimization + emotional companionship">A comprehensive solution combining scientific training + health management + efficiency optimization + emotional companionship</p>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="专注模式" data-en="Focus Mode">Focus Mode</h3>
+                            <p data-zh="基于番茄钟工作法（15-40分钟可调），结合计算机视觉检测用户行为，提供即时反馈和积分奖励。" data-en="Based on the Pomodoro Technique (15-40 minutes adjustable), combined with computer vision to detect user behavior, providing instant feedback and point rewards.">Based on the Pomodoro Technique (15-40 minutes adjustable), combined with computer vision to detect user behavior, providing instant feedback and point rewards.</p>
+                            <ul class="feature-details">
+                                <li data-zh="专注时间默认25分钟，动态可调15-40分钟" data-en="Default 25 minutes, adjustable 15-40 minutes">Default 25 minutes, adjustable 15-40 minutes</li>
+                                <li data-zh="离座/玩手机检测 → 提醒并扣分" data-en="Leave seat/phone detection → reminder and point deduction">Leave seat/phone detection → reminder and point deduction</li>
+                                <li data-zh="5分钟 → 声音/灯光小提示" data-en="5 minutes → audio/light cues">5 minutes → audio/light cues</li>
+                                <li data-zh="10分钟 → 表情/语音鼓励" data-en="10 minutes → expression/voice encouragement">10 minutes → expression/voice encouragement</li>
+                                <li data-zh="完成番茄钟 → 动画奖励+积分到账" data-en="Complete Pomodoro → animation reward + points">Complete Pomodoro → animation reward + points</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="focus-demo">
+                            <div class="timer-display">25:00</div>
+                            <div class="progress-ring">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="冥想模式" data-en="Meditation Mode">Meditation Mode</h3>
+                            <p data-zh="通过姿态识别检测冥想状态，引导10-15分钟的放松训练，增强大脑专注力韧性。" data-en="Through posture recognition to detect meditation state, guiding 10-15 minutes of relaxation training to enhance brain focus resilience.">Through posture recognition to detect meditation state, guiding 10-15 minutes of relaxation training to enhance brain focus resilience.</p>
+                            <ul class="feature-details">
+                                <li data-zh="姿态识别（打坐/安静坐姿）" data-en="Posture recognition (lotus/quiet sitting)">Posture recognition (lotus/quiet sitting)</li>
+                                <li data-zh="倒计时10-15分钟，引导冥想" data-en="10-15 minute countdown, guided meditation">10-15 minute countdown, guided meditation</li>
+                                <li data-zh="冥想完成 → 积分加成；中断 → 扣分" data-en="Complete meditation → bonus points; interrupt → point deduction">Complete meditation → bonus points; interrupt → point deduction</li>
+                            </ul>
+                        </div>
+                    </div>
+                                         <div class="feature-visual">
+                         <div class="meditation-demo">
+                                                                                         <div class="meditation-person">
+                                  <div class="person-emoji">🧘</div>
+                              </div>
+                              <div class="meditation-particles">
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                                  <div class="particle"></div>
+                              </div>
+                             
+                         </div>
+                     </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="健康管理" data-en="Health Management">Health Management</h3>
+                            <p data-zh="真正的专注不是长时间坐在桌前不动，而是在专注与健康之间找到平衡。长时间学习或工作往往带来颈椎僵硬、眼部疲劳、缺乏运动和熬夜等问题，这些健康隐患最终会反噬效率。AI专注陪伴玩具将健康管理作为优先级高于工作的第二核心功能，它不仅提醒用户定时喝水、起身活动、放松眼睛，还能根据用户的专注时长和当前时间，主动提示午间休息、晚间放松或睡眠准备。" data-en="True focus isn't about sitting still, but balancing work and health. Long sessions can cause stiffness, eye strain, inactivity, and poor sleep—hurting efficiency. That's why the AI companion makes health management a core function, reminding users to hydrate, stretch, rest their eyes, and suggesting breaks, relaxation, or sleep based on focus time and schedule.">True focus isn't about sitting still, but balancing work and health. Long sessions can cause stiffness, eye strain, inactivity, and poor sleep—hurting efficiency. That's why the AI companion makes health management a core function, reminding users to hydrate, stretch, rest their eyes, and suggesting breaks, relaxation, or sleep based on focus time and schedule.</p>
+                            <ul class="feature-details">
+                                <li data-zh="定时提醒：喝水、用餐、起身活动、眼部放松" data-en="Timed reminders: drink water, dining, get up and move, eye relaxation">Timed reminders: drink water, dining, get up and move, eye relaxation</li>
+                                <li data-zh="智能建议：根据专注时长主动提示休息" data-en="Smart suggestions: proactively suggest breaks based on focus duration">Smart suggestions: proactively suggest breaks based on focus duration</li>
+                                <li data-zh="健康优先：深夜工作时建议停止并休息" data-en="Health first: suggest stopping and resting when working late">Health first: suggest stopping and resting when working late</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="health-demo">
+                            <div class="health-indicators">
+                                <div class="health-icon water">
+                                    <i class="fas fa-tint"></i>
+                                    <span data-zh="喝水提醒" data-en="Water Reminder">Water Reminder</span>
+                                </div>
+                                <div class="health-icon apple">
+                                    <i class="fas fa-apple-alt"></i>
+                                    <span data-zh="苹果提醒" data-en="Apple Reminder">Apple Reminder</span>
+                                </div>
+                                <div class="health-icon stretch">
+                                    <i class="fas fa-walking"></i>
+                                    <span data-zh="活动提醒" data-en="Activity Reminder">Activity Reminder</span>
+                                </div>
+                                <div class="health-icon eye">
+                                    <i class="fas fa-eye"></i>
+                                    <span data-zh="眼部放松" data-en="Eye Relaxation">Eye Relaxation</span>
+                                </div>
+                            </div>
+                            <div class="health-pulse">
+                                <div class="pulse-ring"></div>
+                                <div class="pulse-ring"></div>
+                                <div class="pulse-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="奖励系统" data-en="Reward System">Reward System</h3>
+                            <p data-zh="双积分系统（专注积分+健康积分），可兑换现金奖励、礼品卡和限定周边，让专注训练转化为实际价值。" data-en="Dual point system (focus points + health points), redeemable for cash rewards, gift cards and limited merchandise, turning focus training into real value.">Dual point system (focus points + health points), redeemable for cash rewards, gift cards and limited merchandise, turning focus training into real value.</p>
+                            <ul class="feature-details">
+                                <li data-zh="专注积分：完成番茄钟/冥想获得" data-en="Focus points: earn from completing Pomodoro/meditation">Focus points: earn from completing Pomodoro/meditation</li>
+                                <li data-zh="健康积分：喝水/吃苹果/起身活动获得" data-en="Health points: earn from drinking water/eating apples/getting up">Health points: earn from drinking water/eating apples/getting up</li>
+                                <li data-zh="现金兑换：专注积分满级可兑换20加元" data-en="Cash redemption: focus points max level redeemable for $20 CAD">Cash redemption: focus points max level redeemable for $20 CAD</li>
+                                <li data-zh="礼品卡：联名Starbucks、Amazon等品牌" data-en="Gift cards: partnered with Starbucks, Amazon and other brands">Gift cards: partnered with Starbucks, Amazon and other brands</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="reward-demo">
+                            <div class="coins">
+                                <div class="coin"></div>
+                                <div class="coin"></div>
+                                <div class="coin"></div>
+                            </div>
+                            <div class="reward-text" data-zh="积分奖励" data-en="Point Rewards">Point Rewards</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="AI陪伴交互" data-en="AI Companion Interaction">AI Companion Interaction</h3>
+                            <p data-zh="通过大语言模型驱动，提供个性化对话、情感反馈，记住用户名字，建立长期陪伴关系。" data-en="Powered by large language models, providing personalized conversations, emotional feedback, remembering user names, and building long-term companionship relationships.">Powered by large language models, providing personalized conversations, emotional feedback, remembering user names, and building long-term companionship relationships.</p>
+                            <ul class="feature-details">
+                                <li data-zh="专注教练：个性化建议与复盘文案" data-en="Focus coach: personalized advice and review content">Focus coach: personalized advice and review content</li>
+                                <li data-zh="健康小管家：基于数据生成休息建议" data-en="Health assistant: generate rest suggestions based on data">Health assistant: generate rest suggestions based on data</li>
+                                <li data-zh="情绪陪伴：短句鼓励、庆祝、缓解挫败感" data-en="Emotional companionship: short encouragement, celebration, frustration relief">Emotional companionship: short encouragement, celebration, frustration relief</li>
+                                <li data-zh="头部追踪：实时人脸识别，增加互动性" data-en="Head tracking: real-time face recognition for enhanced interaction">Head tracking: real-time face recognition for enhanced interaction</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="ai-demo">
+                            <div class="chat-bubble">
+                                <span data-zh="加油，Alex！我们开始25分钟的番茄钟吧" data-en="Come on, Alex! Let's start a 25-minute Pomodoro">Come on, Alex! Let's start a 25-minute Pomodoro!</span>
+                            </div>
+                            <div class="ai-face">
+                                <div class="ai-eyes">
+                                    <div class="ai-eye"></div>
+                                    <div class="ai-eye"></div>
+                                </div>
+                                <div class="ai-smile"></div>
+                                <div class="emotion-indicator">
+                                    <div class="heart-beat"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="打卡系统" data-en="Check-in System">Check-in System</h3>
+                            <p data-zh="每日打卡日历追踪专注与冥想，完成连续打卡可获得现金奖励，形成正向激励的行为反馈闭环。" data-en="Daily check-in calendar tracks focus and meditation, completing consecutive check-ins earns cash rewards, forming a positive incentive behavioral feedback loop.">Daily check-in calendar tracks focus and meditation, completing consecutive check-ins earns cash rewards, forming a positive incentive behavioral feedback loop.</p>
+                            <ul class="feature-details">
+                                <li data-zh="每日打卡日历：追踪专注与冥想完成情况" data-en="Daily check-in calendar: track focus and meditation completion">Daily check-in calendar: track focus and meditation completion</li>
+                                <li data-zh="连续打卡奖励：完成一定天数可获取现金奖励" data-en="Consecutive check-in rewards: complete certain days for cash rewards">Consecutive check-in rewards: complete certain days for cash rewards</li>
+                                <li data-zh="健康积分：喝水、吃苹果、连续早睡获得积分" data-en="Health points: earn points for drinking water, eating apples, early sleep">Health points: earn points for drinking water, eating apples, early sleep</li>
+                                <li data-zh="扣分机制：分心、冥想中断、深夜工作扣分" data-en="Point deduction: distraction, meditation interruption, late work">Point deduction: distraction, meditation interruption, late work</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="checkin-demo">
+                            <div class="calendar-grid">
+                                <div class="calendar-day completed">1</div>
+                                <div class="calendar-day completed">2</div>
+                                <div class="calendar-day completed">3</div>
+                                <div class="calendar-day completed">4</div>
+                                <div class="calendar-day completed">5</div>
+                                <div class="calendar-day current">6</div>
+                                <div class="calendar-day">7</div>
+                            </div>
+                            <div class="streak-counter" data-zh="连续5天" data-en="5 Day Streak">5 Day Streak</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="虚拟成长系统" data-en="Virtual Growth System">Virtual Growth System</h3>
+                            <p data-zh="用户在平台内拥有虚拟形象小澄Avatar，积分累积解锁等级、外观皮肤、动作特效，让坚持习惯变得游戏化沉浸。" data-en="Users have a virtual Zendy Avatar in the platform, accumulating points unlocks levels, appearance skins, and action effects, making habit persistence gamified and immersive.">Users have a virtual Zendy Avatar in the platform, accumulating points unlocks levels, appearance skins, and action effects, making habit persistence gamified and immersive.</p>
+                            <ul class="feature-details">
+                                <li data-zh="虚拟形象：小澄Avatar随积分累积升级" data-en="Virtual avatar: Zendy Avatar upgrades with accumulated points">Virtual avatar: Zendy Avatar upgrades with accumulated points</li>
+                                <li data-zh="等级系统：新手学徒→专注守护者→心境大师" data-en="Level system: Novice Apprentice → Focus Guardian → Mind Master">Level system: Novice Apprentice → Focus Guardian → Mind Master</li>
+                                <li data-zh="外观解锁：皮肤、动作特效、限定周边" data-en="Appearance unlock: skins, action effects, limited merchandise">Appearance unlock: skins, action effects, limited merchandise</li>
+                                <li data-zh="能量核心：颜色随知识/健康/专注力比例变化" data-en="Energy core: color changes with knowledge/health/focus ratio">Energy core: color changes with knowledge/health/focus ratio</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="energy-core-demo">
+                            <img src="color-changing-energy-core.png" alt="Color-Changing Energy Core" class="energy-core-image">
+                            <div class="energy-core-overlay">
+                                <div class="focus-indicator">
+                                    <span class="indicator-dot blue"></span>
+                                    <span class="indicator-text" data-zh="专注" data-en="Focus">Focus</span>
+                                </div>
+                                <div class="health-indicator">
+                                    <span class="indicator-dot green"></span>
+                                    <span class="indicator-text" data-zh="健康" data-en="Health">Health</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 data-zh="排行榜与社交" data-en="Leaderboards & Social">Leaderboards & Social</h3>
+                            <p data-zh="个人榜、全服排行榜激发竞争，挑战活动营造集体努力氛围，从个人成就到团体竞争，逐步强化用户黏性。" data-en="Personal and global leaderboards inspire competition, challenge events create collective effort atmosphere, from personal achievement to group competition, gradually strengthening user engagement.">Personal and global leaderboards inspire competition, challenge events create collective effort atmosphere, from personal achievement to group competition, gradually strengthening user engagement.</p>
+                            <ul class="feature-details">
+                                <li data-zh="个人榜：基于总积分/连续打卡天数" data-en="Personal ranking: based on total points/consecutive check-in days">Personal ranking: based on total points/consecutive check-in days</li>
+                                <li data-zh="全服排行榜：单独积分/总分排行榜" data-en="Global leaderboard: individual points/total score rankings">Global leaderboard: individual points/total score rankings</li>
+                                <li data-zh="挑战活动：30天专注挑战、健康守护月" data-en="Challenge events: 30-day focus challenge, health guardian month">Challenge events: 30-day focus challenge, health guardian month</li>
+                                <li data-zh="社交分享：成就徽章、积分兑换成果分享" data-en="Social sharing: achievement badges, point redemption results">Social sharing: achievement badges, point redemption results</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="social-demo">
+                            <div class="leaderboard">
+                                <div class="rank-item">
+                                    <span class="rank">1</span>
+                                    <span class="name">Alex</span>
+                                    <span class="score">2,450</span>
+                                </div>
+                                <div class="rank-item">
+                                    <span class="rank">2</span>
+                                    <span class="name">Emma</span>
+                                    <span class="score">2,180</span>
+                                </div>
+                                <div class="rank-item">
+                                    <span class="rank">3</span>
+                                    <span class="name">Mike</span>
+                                    <span class="score">1,950</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Journey -->
+    <section class="user-journey">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-zh="使用体验" data-en="User Experience">使用体验</h2>
+                <p class="section-subtitle" data-zh="从开箱到专注达人的成长之路" data-en="The journey from unboxing to becoming a focus master">The journey from unboxing to becoming a focus master</p>
+            </div>
+            <div class="journey-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                                                 <h3 data-zh="初次见面" data-en="First Meeting">初次见面</h3>
+                         <p data-zh="为你的小澄起个专属名字，它会永远记住你，用名字和你对话" data-en="Give your ZENDY a unique name, it will always remember you and talk to you by name">为你的小澄起个专属名字，它会永远记住你，用名字和你对话</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                                                 <h3 data-zh="开始专注" data-en="Start Focusing">开始专注</h3>
+                         <p data-zh="设定番茄钟时间，小澄通过视觉检测监督你的专注状态" data-en="Set your Pomodoro time, ZENDY monitors your focus state through visual detection">设定番茄钟时间，小澄通过视觉检测监督你的专注状态</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 data-zh="获得奖励" data-en="Earn Rewards">获得奖励</h3>
+                        <p data-zh="完成专注任务获得双积分（专注积分+健康积分），连续打卡解锁现金奖励" data-en="Complete focus tasks to earn dual points (focus points + health points), unlock cash rewards with consecutive check-ins">完成专注任务获得双积分（专注积分+健康积分），连续打卡解锁现金奖励</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                                                 <h3 data-zh="持续成长" data-en="Continuous Growth">持续成长</h3>
+                         <p data-zh="通过数据追踪看到专注力提升，虚拟形象升级，小澄陪伴你的每一步成长" data-en="See your focus improvement through data tracking, virtual avatar upgrades, ZENDY accompanies every step of your growth">通过数据追踪看到专注力提升，虚拟形象升级，小澄陪伴你的每一步成长</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                                 <h2 data-zh="准备好重建你的专注力了吗？" data-en="Ready to rebuild your focus?">准备好重建你的专注力了吗？</h2>
+                 <p data-zh="加入小澄的专注社区，体验双积分系统、虚拟成长和健康管理，让AI成为你最贴心的学习伙伴" data-en="Join ZENDY's focus community, experience dual point system, virtual growth and health management, let AI become your most caring study partner">加入小澄的专注社区，体验双积分系统、虚拟成长和健康管理，让AI成为你最贴心的学习伙伴</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-primary" data-zh="敬请期待" data-en="Coming Soon">敬请期待</a>
+                    <a href="index.html" class="btn btn-secondary" data-zh="了解更多产品" data-en="Explore More Products">了解更多产品</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Octopod AI" class="logo-img">
+                        <span class="logo-text" data-zh="智腕AI" data-en="Octopod AI">智腕AI</span>
+                    </div>
+                                         <p data-zh="让人工智能成为每个人的得力伙伴" data-en="Making AI a powerful partner for everyone">让人工智能成为每个人的得力伙伴</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="产品" data-en="Products">产品</h4>
+                    <ul>
+                                                 <li><a href="zendy-ai.html" data-zh="小澄桌面AI专注力养成伙伴" data-en="ZENDY Desktop AI Focus Development Partner">小澄桌面AI专注力养成伙伴</a></li>
+                        <li><a href="index.html#products" data-zh="AI智能体团队" data-en="AI Agent Team">AI智能体团队</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="公司" data-en="Company">公司</h4>
+                    <ul>
+                        <li><a href="index.html#about" data-zh="关于我们" data-en="About Us">关于我们</a></li>
+                        <li><a href="index.html#contact" data-zh="联系我们" data-en="Contact Us">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-zh="支持" data-en="Support">支持</h4>
+                    <ul>
+                        <li><a href="#" data-zh="使用指南" data-en="User Guide">使用指南</a></li>
+                        <li><a href="#" data-zh="技术支持" data-en="Technical Support">技术支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Octopod AI. <span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
